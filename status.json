@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T20:57:33.722126+00:00",
+  "generated_utc": "2026-09-15T21:02:37.351488+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,13 +165,13 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.81 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T20:57:33.722126+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.89 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T21:02:37.351488+00:00",
     "counts": {
       "running": 4,
-      "succeeded": 188,
+      "succeeded": 208,
       "error": 0,
-      "pending": 1868
+      "pending": 1848
     },
     "jobs": [
       {
@@ -184,7 +184,7 @@
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 176；执行错误 0。完整有效布局 106；只验证H16后果。"
+        "verdict": "执行完成 196；执行错误 0。完整有效布局 106；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -195,15 +195,15 @@
       {
         "name": "随机 VLA 前置接口验收",
         "question": "冻结真实 VLA 的采样噪声能否控制动作，能否求导",
-        "status": "blocked",
-        "verdict": "第二次接口验证未完成；原始诊断保留，完整 ASBS 仍未验收。"
+        "status": "running",
+        "verdict": "静态循环未通过一致性门；正在原采样器上检验前向求导，测量成本。"
       }
     ],
     "resources": [
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T20:57:33.585160+00:00"
+        "observed_utc": "2026-09-15T21:02:37.211206+00:00"
       },
       {
         "name": "Main · GPU",
