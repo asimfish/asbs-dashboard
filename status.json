@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T20:14:06.445570+00:00",
+  "generated_utc": "2026-09-15T20:15:07.228665+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,26 +165,26 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.08 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T20:14:06.445570+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.10 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T20:15:07.228665+00:00",
     "counts": {
       "running": 5,
-      "succeeded": 18,
+      "succeeded": 22,
       "error": 0,
-      "pending": 2037
+      "pending": 2033
     },
     "jobs": [
       {
         "name": "时间表示配对 · 12臂",
         "question": "数值失败是否来自时间表示",
         "status": "running",
-        "verdict": "执行完成 4；执行错误 0。INCOMPLETE"
+        "verdict": "执行完成 5；执行错误 0。INCOMPLETE"
       },
       {
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 14；执行错误 0。完整有效布局 14；只验证H16后果。"
+        "verdict": "执行完成 17；执行错误 0。完整有效布局 14；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -197,7 +197,7 @@
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前5个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T20:14:06.234808+00:00"
+        "observed_utc": "2026-09-15T20:15:07.027709+00:00"
       },
       {
         "name": "Main · GPU",
