@@ -1,6 +1,6 @@
 "use strict";
 (() => {
-  const labels={verified:"已验证",partial:"条件证据",failed:"未通过",planned:"未开始",running:"运行中",succeeded:"执行完成",error:"执行失败",blocked:"前置阻塞",skipped:"未执行"};
+  const labels={verified:"已验证",partial:"条件证据",failed:"未通过",planned:"未开始",insufficient:"样本不足",reference:"参照",running:"运行中",succeeded:"执行完成",error:"执行失败",blocked:"前置阻塞",skipped:"未执行"};
   const $=id=>document.getElementById(id);
   const node=(tag,text,cls)=>{const el=document.createElement(tag);if(text!==undefined)el.textContent=String(text);if(cls)el.className=cls;return el;};
   const pill=status=>node("span",labels[status]||"未知",`pill ${Object.hasOwn(labels,status)?status:"planned"}`);
