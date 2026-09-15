@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T21:37:02.686266+00:00",
+  "generated_utc": "2026-09-15T21:42:06.847517+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,13 +165,13 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 1.47 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T21:37:02.686266+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 1.55 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T21:42:06.847517+00:00",
     "counts": {
       "running": 4,
-      "succeeded": 343,
+      "succeeded": 362,
       "error": 0,
-      "pending": 1713
+      "pending": 1694
     },
     "jobs": [
       {
@@ -184,7 +184,7 @@
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 331；执行错误 0。完整有效布局 224；只验证H16后果。"
+        "verdict": "执行完成 350；执行错误 0。完整有效布局 343；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -203,7 +203,7 @@
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T21:37:02.548119+00:00"
+        "observed_utc": "2026-09-15T21:42:06.710799+00:00"
       },
       {
         "name": "Main · GPU",
@@ -214,7 +214,7 @@
   },
   "proposal_sha256": "61615fb81efe1571f3348d311625239f344017dd793dadfea55f854dacb81d4f",
   "findings": {
-    "observed_utc": "2026-09-15T21:09:42.296218+00:00",
+    "observed_utc": "2026-09-15T21:40:05.334348+00:00",
     "rows": [
       {
         "name": "asbs / job0",
@@ -254,31 +254,31 @@
       },
       {
         "name": "prior",
-        "result": "224 新布局；H16 qualified 66.6%；相对prior +0.0%；布局CI [+0.0%, +0.0%]；目标方向进展 +0.00 cm",
+        "result": "343 新布局；H16 qualified 67.6%；相对prior +0.0%；布局CI [+0.0%, +0.0%]；目标方向进展 +0.00 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "reference"
       },
       {
         "name": "nominal",
-        "result": "224 新布局；H16 qualified 74.3%；相对prior +7.6%；布局CI [+5.1%, +10.3%]；目标方向进展 -1.60 cm",
+        "result": "343 新布局；H16 qualified 75.8%；相对prior +8.1%；布局CI [+6.0%, +10.3%]；目标方向进展 -1.58 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "failed"
       },
       {
         "name": "model_s0",
-        "result": "224 新布局；H16 qualified 88.3%；相对prior +21.7%；布局CI [+18.1%, +25.2%]；目标方向进展 -3.15 cm",
+        "result": "343 新布局；H16 qualified 87.9%；相对prior +20.3%；布局CI [+17.4%, +23.2%]；目标方向进展 -3.19 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "failed"
       },
       {
         "name": "model_s1",
-        "result": "224 新布局；H16 qualified 88.3%；相对prior +21.7%；布局CI [+18.2%, +25.2%]；目标方向进展 -3.09 cm",
+        "result": "343 新布局；H16 qualified 87.9%；相对prior +20.3%；布局CI [+17.5%, +23.2%]；目标方向进展 -3.15 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "failed"
       },
       {
         "name": "model_s2",
-        "result": "224 新布局；H16 qualified 89.3%；相对prior +22.6%；布局CI [+19.1%, +26.1%]；目标方向进展 -2.67 cm",
+        "result": "343 新布局；H16 qualified 88.6%；相对prior +21.0%；布局CI [+18.1%, +23.9%]；目标方向进展 -2.70 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "failed"
       }
