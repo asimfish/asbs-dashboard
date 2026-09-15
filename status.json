@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T21:02:37.351488+00:00",
+  "generated_utc": "2026-09-15T21:07:40.710976+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,13 +165,13 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.89 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T21:02:37.351488+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.98 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T21:07:40.710976+00:00",
     "counts": {
       "running": 4,
-      "succeeded": 208,
+      "succeeded": 228,
       "error": 0,
-      "pending": 1848
+      "pending": 1828
     },
     "jobs": [
       {
@@ -184,7 +184,7 @@
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 196；执行错误 0。完整有效布局 106；只验证H16后果。"
+        "verdict": "执行完成 216；执行错误 0。完整有效布局 106；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -195,15 +195,15 @@
       {
         "name": "随机 VLA 前置接口验收",
         "question": "冻结真实 VLA 的采样噪声能否控制动作，能否求导",
-        "status": "running",
-        "verdict": "静态循环未通过一致性门；正在原采样器上检验前向求导，测量成本。"
+        "status": "partial",
+        "verdict": "真实检查点：固定噪声重放误差 0；换噪声7维动作 RMS 0.0581。前向梯度一致性通过；仅合成观测接口测试，不是闭环 ASBS 成功。"
       }
     ],
     "resources": [
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T21:02:37.211206+00:00"
+        "observed_utc": "2026-09-15T21:07:40.574052+00:00"
       },
       {
         "name": "Main · GPU",
