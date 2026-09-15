@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T20:42:23.956036+00:00",
+  "generated_utc": "2026-09-15T20:47:27.015189+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,13 +165,13 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.56 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T20:42:23.956036+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.64 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T20:47:27.015189+00:00",
     "counts": {
       "running": 4,
-      "succeeded": 130,
+      "succeeded": 151,
       "error": 0,
-      "pending": 1926
+      "pending": 1905
     },
     "jobs": [
       {
@@ -184,7 +184,7 @@
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 118；执行错误 0。完整有效布局 106；只验证H16后果。"
+        "verdict": "执行完成 139；执行错误 0。完整有效布局 106；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -196,14 +196,14 @@
         "name": "随机 VLA 前置接口验收",
         "question": "冻结真实 VLA 的采样噪声能否控制动作，能否求导",
         "status": "running",
-        "verdict": "官方 π0.5 LIBERO 权重与隔离环境准备中；不计入八小时实验完成数。"
+        "verdict": "真实检查点接口测试已提交；等待结果，不等于闭环任务实验。"
       }
     ],
     "resources": [
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T20:42:23.827117+00:00"
+        "observed_utc": "2026-09-15T20:47:26.868647+00:00"
       },
       {
         "name": "Main · GPU",
