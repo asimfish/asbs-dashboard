@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="snapshot-source" content="https://raw.githubusercontent.com/asimfish/asbs-dashboard/data/status.json">
+  <meta name="referrer" content="no-referrer">
+  <title>ASBS 研究主板</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="snapshot.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主内容</a>
+  <div class="layout">
+    <aside>
+      <div class="brand">ASBS<span>RESEARCH BOARD</span></div>
+      <nav aria-label="主板导航">
+        <a href="#overview">01 / 当前判断</a><a href="#method">02 / 方案与作用</a>
+        <a href="#campaign">03 / 今晚验证</a><a href="#milestones">04 / 证据门槛</a>
+        <a href="#evidence">05 / 已有结果</a><a href="#hypotheses">06 / 待反驳假说</a>
+        <a href="#decisions">07 / 决策记录</a><a href="#maintenance">08 / 维护契约</a>
+      </nav>
+      <p class="side-note">目标是可复现的科学贡献。<br>不把忙碌当成证据。</p>
+    </aside>
+    <main id="main">
+      <header id="overview"><div class="eyebrow">FROZEN VLA · FEEDBACK · ASBS</div>
+        <h1>ASBS 研究主板</h1><p id="subtitle" class="subtitle"></p>
+        <div class="meta"><span id="version"></span><span id="updated"></span><button id="refresh" type="button">刷新快照</button></div>
+        <div id="freshness" role="status" aria-live="polite"></div>
+        <div class="verdict"><span class="label">当前判断</span><strong id="verdict"></strong><p id="goal"></p></div>
+        <ul id="focus" class="focus"></ul>
+      </header>
+      <section id="method"><h2><span>02</span>方案与 ASBS 的位置</h2>
+        <p>学习时把经过真实后果验证的反馈转成动作倾向；熟悉任务执行时撤去局部教师和 Q 查询。</p>
+        <div id="flow" class="flow"></div>
+        <p class="links"><a href="proposal.html">阅读完整方案 v2 ↗</a><span id="proposal-hash"></span></p>
+      </section>
+      <section id="campaign"><h2><span>03</span>8 小时验证窗口</h2>
+        <div id="campaign-meta" class="notice">尚未取得运行快照，不能判断实验已启动。</div>
+        <div id="counters" class="counter-grid"></div>
+        <div class="table-wrap"><table><caption>实验队列：执行状态与科学判定分开</caption><thead><tr><th>实验</th><th>要回答的问题</th><th>执行</th><th>科学判定 / 进展</th></tr></thead><tbody id="jobs"></tbody></table></div>
+        <h3>本轮指标：只统计完整任务</h3><p id="findings-time" class="muted">尚无正式结果</p><div id="findings" class="milestone-grid"></div>
+        <h3>资源快照</h3><div id="resources" class="resource-grid"></div>
+        <p class="muted">只展示本轮登记任务。未分配的卡可能有其他项目，不能据此判断空闲或终止其进程。</p>
+      </section>
+      <section id="milestones"><h2><span>04</span>证据门槛</h2><div id="milestone-grid" class="milestone-grid"></div></section>
+      <section id="evidence"><h2><span>05</span>已有结果，不混作新实验</h2>
+        <div class="table-wrap"><table><caption>每项结果都保留适用范围与反例</caption><thead><tr><th>主题</th><th>结果</th><th>判断</th><th>适用范围 / 来源</th></tr></thead><tbody id="evidence-rows"></tbody></table></div>
+      </section>
+      <section id="hypotheses"><h2><span>06</span>待反驳的假说</h2><div id="hypothesis-grid" class="hypothesis-grid"></div></section>
+      <section id="decisions"><h2><span>07</span>决策记录</h2><div id="decision-list"></div></section>
+      <section id="maintenance"><h2><span>08</span>维护契约</h2><ul id="maintenance-list"></ul>
+        <p class="muted">计划与证据版本可追溯；公开发布与否不影响本地实验运行。所有时间明确标注时区。</p>
+      </section>
+      <footer>ASBS / Evidence before claims <span id="footer-task"></span></footer>
+    </main>
+  </div>
+</body>
+</html>
