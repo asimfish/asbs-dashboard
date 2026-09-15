@@ -1,0 +1,257 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-09-15T20:14:06.445570+00:00",
+  "content": {
+    "schema_version": 1,
+    "title": "ASBS 研究主板",
+    "subtitle": "从外部纠错，到冻结 VLA 的自主恢复",
+    "goal": "形成可被独立验证的 ICLR 级贡献；录用不是当前已达成的结果。",
+    "proposal_version": "v2 · 2026-09-16",
+    "current_task": "T-661",
+    "verdict": "方案已明确；ASBS 的独立优势未验证",
+    "focus": [
+      "先验收 ASBS 数值与随机动作接口，不跳过已有负结果。",
+      "把一次动作后的真实后果与学生连续执行的价值分开。",
+      "同反馈、同预算对比加权回归、噪声 RL、AMDP 与 ASBS。"
+    ],
+    "method": [
+      {
+        "name": "Agent",
+        "detail": "提出诊断与试探；不是未经验证的真值"
+      },
+      {
+        "name": "真实后果 → Q",
+        "detail": "记录实际执行前缀，评价学生后续行为"
+      },
+      {
+        "name": "ASBS",
+        "detail": "从后果能量学习条件动作采样器"
+      },
+      {
+        "name": "冻结 VLA",
+        "detail": "生成动作、执行前缀、重新观察"
+      }
+    ],
+    "milestones": [
+      {
+        "id": "M0",
+        "title": "问题与方案",
+        "status": "verified",
+        "summary": "v2 定义了信息、动作与多步学习接口。",
+        "boundary": "定义完成不代表新颖性成立。",
+        "evidence": "T-660 / PROPOSAL_V2.md"
+      },
+      {
+        "id": "M1",
+        "title": "数值采样",
+        "status": "failed",
+        "summary": "原 AM/ASBS 端点门仍未通过。",
+        "boundary": "时间表示修正只是待检验假说。",
+        "evidence": "T-657 / MORNING_REVIEW §5–6"
+      },
+      {
+        "id": "M2",
+        "title": "可用反馈",
+        "status": "partial",
+        "summary": "同上下文后果有排序信号；原布局门未过。",
+        "boundary": "高 AUC 不是实际所选动作的风险或成功率。",
+        "evidence": "T-657 / MORNING_REVIEW §2"
+      },
+      {
+        "id": "M3",
+        "title": "VLA 自主纠错",
+        "status": "planned",
+        "summary": "随机 VLA 接口、可恢复动作支持待验收。",
+        "boundary": "D3IL 诊断不能替代 VLA 证据。",
+        "evidence": "T-660 / PROPOSAL_V2 §7"
+      },
+      {
+        "id": "M4",
+        "title": "ASBS 独立贡献",
+        "status": "planned",
+        "summary": "尚无相对 AMDP / 噪声 RL 的同预算优势。",
+        "boundary": "不得认领首次 ASBS 用于具身。",
+        "evidence": "T-660 / PROPOSAL_V2 §6"
+      }
+    ],
+    "evidence": [
+      {
+        "topic": "后果排序",
+        "result": "AUC 0.9146 / 0.9129 / 0.9069",
+        "status": "partial",
+        "scope": "旧 D3IL 同 context，n128 三 seed；不是新 v2 实验",
+        "source": "T-657 MORNING_REVIEW §2"
+      },
+      {
+        "topic": "布局风险门",
+        "result": "五个模型均未通过",
+        "status": "failed",
+        "scope": "布局内任一推荐不合格的事件；不是选一次动作的失败率",
+        "source": "T-657 MORNING_REVIEW §2"
+      },
+      {
+        "topic": "名义梯度诊断",
+        "result": "qualified +4.69 pp [2.86, 6.77]",
+        "status": "partial",
+        "scope": "learned_model_forwards=0；不是 ASBS 或 learned feedback 收益",
+        "source": "T-657 MORNING_REVIEW §3"
+      },
+      {
+        "topic": "独立 continuation",
+        "result": "qualified 排序复现约 0.8313",
+        "status": "partial",
+        "scope": "真实结果排名复现；不是预测器泛化或 VLA 恢复",
+        "source": "T-657 MORNING_REVIEW §4"
+      },
+      {
+        "topic": "v2 理论检查",
+        "result": "有限 MDP 恒等式与反例核查通过",
+        "status": "verified",
+        "scope": "CPU 数学检查，不是算法/机器人实验",
+        "source": "T-660 VERIFICATION.md"
+      }
+    ],
+    "hypotheses": [
+      {
+        "id": "H-time",
+        "question": "晚期时间表示是否限制真实 AM 场的拟合？",
+        "experiment": "函数不变初始化的 raw-time vs log-time 配对",
+        "falsifier": "仅 loss 改善、端点不改善，或三 seed 不一致。"
+      },
+      {
+        "id": "H-feedback",
+        "question": "模型是否改善固定选择规则实际选中的动作？",
+        "experiment": "新布局，冻结模型/候选/selector，逐布局配对实测",
+        "falsifier": "只有排序指标好，真实选择收益没有。"
+      },
+      {
+        "id": "H-credit",
+        "question": "恢复是否依赖连续多步，而非单前缀改动？",
+        "experiment": "先核验随机 VLA 与动作支持，再做真实转移诊断",
+        "falsifier": "观测或动作空间不足；不得用 oracle 中间状态补齐。"
+      },
+      {
+        "id": "H-sampler",
+        "question": "相同反馈下，ASBS 是否比强替代方法有效？",
+        "experiment": "前置门通过后，同 Q / 同预算的 actor 比较",
+        "falsifier": "AMDP、噪声 RL 或加权回归同样好。"
+      }
+    ],
+    "decisions": [
+      {
+        "date": "2026-09-16",
+        "title": "固定研究问题",
+        "detail": "重复外部纠错能否积累为无在线局部教师的自主恢复。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "补上最强近邻",
+        "detail": "AMDP 已有 Q + Adjoint Matching；不能把两者结合本身当贡献。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "8 小时验证窗口",
+        "detail": "先封存协议、跑 canary，再启动有硬截止的隔离队列；负结果同样保留。"
+      }
+    ],
+    "maintenance": [
+      "方案源文件和 .agent 任务是依据；主板只是可读投影，不维护第二套事实。",
+      "内容由里程碑更新，运行快照由采集器更新；超过 10 分钟标过期。",
+      "job 退出 0 只叫执行完成；科学通过需要指定指标和门槛。",
+      "候选数、GPU 小时或代码数量不等于论文完成比例。",
+      "公开包只允许脱敏摘要；不包含原始命令、服务器地址、凭据与私有路径。"
+    ]
+  },
+  "runtime": {
+    "started_utc": "2026-09-15T20:09:02.456339+00:00",
+    "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.08 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T20:14:06.445570+00:00",
+    "counts": {
+      "running": 5,
+      "succeeded": 18,
+      "error": 0,
+      "pending": 2037
+    },
+    "jobs": [
+      {
+        "name": "时间表示配对 · 12臂",
+        "question": "数值失败是否来自时间表示",
+        "status": "running",
+        "verdict": "执行完成 4；执行错误 0。INCOMPLETE"
+      },
+      {
+        "name": "新布局 · 五个冻结选择器",
+        "question": "模型选出的动作是否真的更好",
+        "status": "running",
+        "verdict": "执行完成 14；执行错误 0。完整有效布局 14；只验证H16后果。"
+      },
+      {
+        "name": "随机 VLA / 完整 ASBS 对比",
+        "question": "外部纠错能否沉淀为自主恢复",
+        "status": "blocked",
+        "verdict": "随机动作接口/检查点尚未验收；未把D3IL结果当VLA证据。"
+      }
+    ],
+    "resources": [
+      {
+        "name": "30109 · 本轮 CPU",
+        "summary": "最多4物理worker + 1数值worker；当前5个。无本机GPU分配。",
+        "observed_utc": "2026-09-15T20:14:06.234808+00:00"
+      },
+      {
+        "name": "Main · GPU",
+        "summary": "GPU1的数值witness通过；尚未分配正式VLA作业。资源占用只代表此前观测，不声称当前空闲。",
+        "observed_utc": "2026-09-15T18:20:00+00:00"
+      }
+    ]
+  },
+  "proposal_sha256": "61615fb81efe1571f3348d311625239f344017dd793dadfea55f854dacb81d4f",
+  "findings": {
+    "observed_utc": "2026-09-15T20:13:58.859961+00:00",
+    "rows": [
+      {
+        "name": "asbs / job0",
+        "result": "KS raw 0.8097 → log 0.7438；相对下降 8.1%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
+        "name": "am / job1",
+        "result": "KS raw 0.6074 → log 0.8066；相对下降 -32.8%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
+        "name": "prior",
+        "result": "14 新布局；H16 qualified 55.4%；相对prior +0.0%",
+        "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
+        "status": "planned"
+      },
+      {
+        "name": "nominal",
+        "result": "14 新布局；H16 qualified 65.5%；相对prior +10.1%",
+        "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
+        "status": "planned"
+      },
+      {
+        "name": "model_s0",
+        "result": "14 新布局；H16 qualified 86.6%；相对prior +31.2%",
+        "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
+        "status": "planned"
+      },
+      {
+        "name": "model_s1",
+        "result": "14 新布局；H16 qualified 85.7%；相对prior +30.4%",
+        "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
+        "status": "planned"
+      },
+      {
+        "name": "model_s2",
+        "result": "14 新布局；H16 qualified 89.3%；相对prior +33.9%",
+        "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
+        "status": "planned"
+      }
+    ]
+  }
+}
