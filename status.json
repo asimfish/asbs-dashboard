@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T20:37:20.701141+00:00",
+  "generated_utc": "2026-09-15T20:42:23.956036+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -165,39 +165,45 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.47 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T20:37:20.701141+00:00",
+    "summary": "隔离队列运行中；累计有作业运行 0.56 小时；GPU研究作业0。",
+    "observed_utc": "2026-09-15T20:42:23.956036+00:00",
     "counts": {
       "running": 4,
-      "succeeded": 110,
+      "succeeded": 130,
       "error": 0,
-      "pending": 1946
+      "pending": 1926
     },
     "jobs": [
       {
         "name": "时间表示配对 · 12臂",
         "question": "数值失败是否来自时间表示",
         "status": "succeeded",
-        "verdict": "执行完成 12；执行错误 0。INCOMPLETE"
+        "verdict": "执行完成 12；执行错误 0。CURRENT_TIME_FIX_NOT_SUPPORTED"
       },
       {
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
         "status": "running",
-        "verdict": "执行完成 98；执行错误 0。完整有效布局 26；只验证H16后果。"
+        "verdict": "执行完成 118；执行错误 0。完整有效布局 106；只验证H16后果。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
         "question": "外部纠错能否沉淀为自主恢复",
         "status": "blocked",
         "verdict": "随机动作接口/检查点尚未验收；未把D3IL结果当VLA证据。"
+      },
+      {
+        "name": "随机 VLA 前置接口验收",
+        "question": "冻结真实 VLA 的采样噪声能否控制动作，能否求导",
+        "status": "running",
+        "verdict": "官方 π0.5 LIBERO 权重与隔离环境准备中；不计入八小时实验完成数。"
       }
     ],
     "resources": [
       {
         "name": "30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T20:37:20.563282+00:00"
+        "observed_utc": "2026-09-15T20:42:23.827117+00:00"
       },
       {
         "name": "Main · GPU",
@@ -208,7 +214,7 @@
   },
   "proposal_sha256": "61615fb81efe1571f3348d311625239f344017dd793dadfea55f854dacb81d4f",
   "findings": {
-    "observed_utc": "2026-09-15T20:18:00.869523+00:00",
+    "observed_utc": "2026-09-15T20:39:22.163471+00:00",
     "rows": [
       {
         "name": "asbs / job0",
@@ -229,34 +235,52 @@
         "status": "failed"
       },
       {
+        "name": "am / job3",
+        "result": "KS raw 0.7106 → log 0.6904；相对下降 2.8%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
+        "name": "asbs / job4",
+        "result": "KS raw 0.9210 → log 0.5359；相对下降 41.8%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "partial"
+      },
+      {
+        "name": "am / job5",
+        "result": "KS raw 0.6408 → log 0.6313；相对下降 1.5%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
         "name": "prior",
-        "result": "26 新布局；H16 qualified 65.4%；相对prior +0.0%",
+        "result": "106 新布局；H16 qualified 65.7%；相对prior +0.0%；布局CI [+0.0%, +0.0%]；目标方向进展 +0.00 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "reference"
       },
       {
         "name": "nominal",
-        "result": "26 新布局；H16 qualified 73.2%；相对prior +7.9%",
+        "result": "106 新布局；H16 qualified 74.5%；相对prior +8.8%；布局CI [+5.3%, +12.3%]；目标方向进展 -1.57 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s0",
-        "result": "26 新布局；H16 qualified 88.5%；相对prior +23.1%",
+        "result": "106 新布局；H16 qualified 89.4%；相对prior +23.7%；布局CI [+18.3%, +28.8%]；目标方向进展 -2.97 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s1",
-        "result": "26 新布局；H16 qualified 88.0%；相对prior +22.6%",
+        "result": "106 新布局；H16 qualified 89.1%；相对prior +23.3%；布局CI [+18.1%, +28.4%]；目标方向进展 -2.95 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s2",
-        "result": "26 新布局；H16 qualified 89.9%；相对prior +24.5%",
+        "result": "106 新布局；H16 qualified 90.7%；相对prior +25.0%；布局CI [+19.9%, +30.0%]；目标方向进展 -2.52 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       }
     ]
   }
