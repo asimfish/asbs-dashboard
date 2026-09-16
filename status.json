@@ -238,26 +238,26 @@
       {
         "name": "T-665 / GPU1 VLA接口",
         "question": "真实LIBERO观测下的官方π0.5采样、动作变异与重放是否正确？",
-        "status": "running",
-        "verdict": "16个真实观测×8噪声；输入接口验证，无机器人执行或ASBS效果主张。"
+        "status": "partial",
+        "verdict": "16个观测完成；重放/变异接口通过。不是闭环控制结果。"
       },
       {
         "name": "T-665 / GPU4 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
         "status": "running",
-        "verdict": "种子0，1/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "verdict": "种子0，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       },
       {
         "name": "T-665 / GPU5 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
         "status": "running",
-        "verdict": "种子1，1/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "verdict": "种子1，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       },
       {
         "name": "T-665 / GPU6 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
         "status": "running",
-        "verdict": "种子2，1/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "verdict": "种子2，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       }
     ],
     "resources": [
