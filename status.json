@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-16T04:08:57.400823+00:00",
+  "generated_utc": "2026-09-16T04:20:27.504066+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -8,7 +8,7 @@
     "goal": "形成可被独立验证的 ICLR 级贡献；录用不是当前已达成的结果。",
     "proposal_version": "v2 · 2026-09-16",
     "current_task": "T-664 / T-665（T-661 八小时窗口已结束）",
-    "verdict": "纯策略Gibbs选择通过终点筛查；四GPU验证推进中，ASBS优势仍未成立",
+    "verdict": "四GPU批次完成：12项拟合与16观测采样；纯策略目标筛查通过，ASBS优势仍未成立",
     "focus": [
       "先验收 ASBS 数值与随机动作接口，不跳过已有负结果。",
       "纯策略Gibbs16在32布局终点+5.34pp；进入同目标采样器验证，保持筛查结论边界。",
@@ -60,10 +60,10 @@
       {
         "id": "M3",
         "title": "VLA 自主纠错",
-        "status": "planned",
-        "summary": "随机 VLA 接口、可恢复动作支持待验收。",
-        "boundary": "D3IL 诊断不能替代 VLA 证据。",
-        "evidence": "T-660 / PROPOSAL_V2 §7"
+        "status": "partial",
+        "summary": "官方π0.5在16真实观测×8噪声下通过采样与重放接口检查。",
+        "boundary": "尚无机器人执行；动作变异不等于可恢复动作支持。",
+        "evidence": "T-665 / GPU_READOUT.md"
       },
       {
         "id": "M4",
@@ -140,6 +140,11 @@
     "decisions": [
       {
         "date": "2026-09-16",
+        "title": "四GPU批次完成",
+        "detail": "12个固定终点拟合共24万次优化更新；宽网络6组误差均下降，但仅3组达到减半门槛，容量解释门未通过。VLA真实观测16/16通过同噪声重放；仍需端点分布与闭环验证。"
+      },
+      {
+        "date": "2026-09-16",
         "title": "并行使用空闲GPU",
         "detail": "Main四张空闲A100：三卡分种子跑采样场诊断，一卡验证真实观测π0.5。保留设备解析/测试输入失败，修正后新目录重启；不抢占其他作业。"
       },
@@ -190,12 +195,12 @@
   "runtime": {
     "started_utc": "2026-09-15T20:09:02.456339+00:00",
     "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 8.00 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-16T04:08:57.400823+00:00",
+    "summary": "T-661 八小时窗口已截止；以下计数仅属于该旧批次。后续 T-664/T-665 见各自卡片；执行结束不代表科学通过。",
+    "observed_utc": "2026-09-16T04:09:04.064222+00:00",
     "counts": {
-      "running": 4,
+      "running": 0,
       "succeeded": 1867,
-      "error": 0,
+      "error": 4,
       "pending": 189
     },
     "jobs": [
@@ -208,8 +213,8 @@
       {
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
-        "status": "running",
-        "verdict": "执行完成 1855；执行错误 0。完整有效布局 1773；只验证H16后果。"
+        "status": "partial",
+        "verdict": "T-661 已按硬截止停止；以已落地结果判读，未完成项不算通过。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
@@ -244,30 +249,30 @@
       {
         "name": "T-665 / GPU4 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
-        "status": "running",
-        "verdict": "种子0，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "status": "partial",
+        "verdict": "种子0，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       },
       {
         "name": "T-665 / GPU5 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
-        "status": "running",
-        "verdict": "种子1，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "status": "partial",
+        "verdict": "种子1，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       },
       {
         "name": "T-665 / GPU6 采样场诊断",
         "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
-        "status": "running",
-        "verdict": "种子2，3/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+        "status": "partial",
+        "verdict": "种子2，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
       }
     ],
     "resources": [
       {
-        "name": "30109 · 本轮 CPU",
+        "name": "T-661 历史快照 / 30109 · 本轮 CPU",
         "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
         "observed_utc": "2026-09-16T04:08:57.243366+00:00"
       },
       {
-        "name": "Main · GPU",
+        "name": "T-661 历史快照 / Main · GPU",
         "summary": "GPU1的数值witness通过；尚未分配正式VLA作业。资源占用只代表此前观测，不声称当前空闲。",
         "observed_utc": "2026-09-15T18:20:00+00:00"
       }
