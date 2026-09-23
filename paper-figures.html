@@ -15,7 +15,8 @@
   <main>
     <nav class="site-nav" aria-label="页面导航"><a class="wordmark" href="index.html">ASBS <span>RESEARCH</span></a><div><a href="index.html">研究主板 ↗</a><a href="#history">版本档案</a></div></nav>
     <header class="intro"><div><p class="eyebrow">FIGURE ARCHIVE / CONTINUATION-AWARE RECOVERY</p><h1>论文图稿，逐版对照。</h1><p class="lead">把方案变化与视觉修改分开记录。查看主图、方法图和采样机制对照，保留每一次可追溯的迭代。</p></div><div class="archive-mark"><span>当前迭代</span><strong id="latest-label">v20</strong><span>2026.09.23 · 视觉候选</span></div></header>
-    <p class="scope-note"><span class="status-dot"></span>方法示意，不是实验结果。生成稿不等于矢量稿或可编辑 PPT；不以图稿完成代表论文已达到录用标准。</p>
+    <p class="scope-note"><span class="status-dot"></span>以下为视觉历史候选，不是实验结果。另增 v21 实验对齐逻辑稿与 v20 可编辑重建；不覆盖原图，也不以图稿完成代表论文已达到录用标准。</p>
+    <p class="viewer-tip"><a href="downloads/v21-aligned.pptx" download>下载 v21 实验对齐 PPT ↓</a> · <a href="downloads/v20-editable.pptx" download>v20 历史重建 ↓</a> · <a href="figure-history.html">查看完整历史及 PPT 源文件 →</a> · <a href="editing-guide.html">编辑说明</a></p>
     <section id="workspace" aria-labelledby="workspace-title">
       <div class="section-heading"><h2 id="workspace-title">图稿工作台</h2><span id="selection-status" role="status" aria-live="polite"></span></div>
       <div class="toolbar">
@@ -27,7 +28,7 @@
       <p class="viewer-tip">点击图片放大；也可直接打开原图。并排模式在小屏幕上纵向排列，避免缩小图中文字。</p>
     </section>
     <section id="history" aria-labelledby="history-title"><div class="section-heading"><h2 id="history-title">版本档案</h2><span>旧版保留，不覆盖</span></div><div id="history-list" class="history-list"></div></section>
-    <section class="reading-notes" aria-labelledby="notes-title"><h2 id="notes-title">看图时需要区分的三件事</h2><div><article><h3>01 / 视觉偏好</h3><p>v19 图 3 上半部是已认可的视觉方向。新版本保留其比较结构，集中改进主图、方法层次及下方应用区。</p></article><article><h3>02 / 科学边界</h3><p>ASBS 本身属于扩散采样器。对照图比较的是监督来源与学习机制，不证明它普遍优于 diffusion 或 flow matching。</p></article><article><h3>03 / 图稿状态</h3><p>此页展示 PNG 生成候选。原尺寸审阅与浏览器测试不替代论文尺寸可读性、原生矢量排版或实际 PPT 渲染。</p></article></div></section>
+    <section class="reading-notes" aria-labelledby="notes-title"><h2 id="notes-title">看图时需要区分的三件事</h2><div><article><h3>01 / 视觉偏好</h3><p>v19 图 3 上半部是已认可的视觉方向。新版本保留其比较结构，集中改进主图、方法层次及下方应用区。</p></article><article><h3>02 / 科学边界</h3><p>ASBS 本身属于扩散采样器。对照图比较的是监督来源与学习机制，不证明它普遍优于 diffusion 或 flow matching。</p></article><article><h3>03 / 图稿状态</h3><p>此工作台展示生成原图。完整历史页另列实际 PPT 渲染及编辑文件；复杂插画和一处公式仍是独立图片，不宣称全矢量。</p></article></div></section>
     <footer><span>ASBS / Figure archive</span><span>只发布脱敏图稿和版本说明 · 无实验日志或服务器信息</span></footer>
   </main>
   <dialog id="lightbox" aria-labelledby="lightbox-title"><div class="lightbox-bar"><h2 id="lightbox-title">图稿原图</h2><button type="button" id="close-lightbox" aria-label="关闭放大图">关闭 ×</button></div><div class="lightbox-body"><img id="lightbox-image" alt=""></div><a id="lightbox-original" target="_blank" rel="noopener">打开原图 ↗</a></dialog>
