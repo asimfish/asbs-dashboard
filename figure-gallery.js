@@ -5,20 +5,20 @@
   if (!data || !Array.isArray(data.versions)) { $("selection-status").textContent = "版本数据未加载，请刷新页面。"; return; }
   const byVersion = new Map(data.versions.map(v => [v.id, v]));
   const kinds = Object.keys(data.figures);
-  const state = {version:data.latest, figure:"teaser", compare:"v19", comparing:false};
+  const state = {version:data.latest, figure:"teaser", compare:"v20", comparing:false};
   const element = (tag, text, cls) => { const node=document.createElement(tag); if(text!==undefined)node.textContent=text; if(cls)node.className=cls; return node; };
   function source(version,kind) {
     const v=byVersion.get(version), f=data.figures[kind];
     if(!v || !f || !v.available.includes(kind))return null;
-    const path=`figures/${version}/${f.file}`;
-    return /^figures\/v(?:17|18|19|20)\/(?:teaser|method|asbs_diffusion_flow)\.png$/.test(path) ? path : null;
+    const path=v.sources?.[kind] || `figures/${version}/${f.file}`;
+    return /^(?:figures\/v(?:17|18|19|20)\/(?:teaser|method|asbs_diffusion_flow)|figures\/history\/v21-editable-(?:teaser|method|comparison))\.png$/.test(path) ? path : null;
   }
   function readHash(){
     const parts=location.hash.slice(1).split("/");
     state.version=byVersion.has(parts[0]) ? parts[0] : data.latest;
     state.figure=kinds.includes(parts[1]) ? parts[1] : "teaser";
     state.comparing=byVersion.has(parts[2]);
-    state.compare=state.comparing ? parts[2] : "v19";
+    state.compare=state.comparing ? parts[2] : "v20";
   }
   function writeHash(){history.replaceState(null,"",`#${state.version}/${state.figure}${state.comparing?`/${state.compare}`:""}`);}
   function openImage(path,label){
@@ -49,7 +49,7 @@
       const empty=element("div",undefined,"empty-state");empty.append(element("strong","此版本尚无这张图"),element("span",`${v.id} 仅归档了主图与方法图；ASBS 对照图从 v19 开始。`));card.append(empty);
     }
     const note=element("div",undefined,"figure-note"), scope=element("p");
-    scope.append(element("span",v.scope==="online"?"历史在线方案":"当前离线方案",`tag${v.scope==="online"?" old":""}`),document.createTextNode(v.notes[state.figure]||v.limit));
+    scope.append(element("span",v.scope==="online"?"历史在线方案":v.scope==="point-source"?"实验对齐接口":"历史离线方案",`tag${v.scope==="online"?" old":""}`),document.createTextNode(v.notes[state.figure]||v.limit));
     note.append(scope,element("p",v.limit));card.append(note);return card;
   }
   function render(){
@@ -60,7 +60,7 @@
     if(state.comparing)$("figures").append(panel(state.compare));
     const different=state.comparing && byVersion.get(state.version).scope!==byVersion.get(state.compare).scope;
     $("formulation-warning").hidden=!different;
-    $("formulation-warning").textContent=different?"注意：这两个版本属于不同科学方案。v17 是历史在线适配；v18 起为离线续接感知巩固。差异不只是视觉样式。":"";
+    $("formulation-warning").textContent=different?"注意：这两个版本属于不同科学方案或实现阶段。v17 为历史在线适配，v18–v20 为早期离线巩固示意，v21 按点源实现修正；差异不只是视觉样式。":"";
     $("selection-status").textContent=`${state.version}${state.comparing?` ↔ ${state.compare}`:""} · ${data.figures[state.figure].label}`;
     $("copy-link").textContent="复制此视图链接";writeHash();
   }
