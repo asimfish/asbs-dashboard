@@ -5,11 +5,11 @@
   const make=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
   const states={candidate:"原稿 / 候选",rejected:"弃用稿","ppt-preview":"历史 PPT 预览","render-comparison":"源图—渲染诊断","editable-preview":"本次 PPT 实际预览"};
   const kinds={teaser:"主图",method:"方法图",comparison:"ASBS 对照",framework:"框架"};
-  const validImage=s=>/^figures\/history\/(?:f\d{3}|v2[01]-editable-(?:teaser|method|comparison))\.png$/.test(s);
-  const validDeck=s=>/^downloads\/(?:v20-editable|v21-aligned|history-\d{2})\.pptx$/.test(s);
+  const validImage=s=>/^figures\/history\/(?:f\d{3}|v2[01]-editable-(?:teaser|method|comparison)|v22-(?:r1|r2|editable)-(?:teaser|method|comparison))\.png$/.test(s);
+  const validDeck=s=>/^downloads\/(?:v20-editable|v21-aligned|v22-editable|history-\d{2})\.pptx$/.test(s);
   const images=data.figures.filter(f=>validImage(f.src));
   const byId=new Map(images.map(f=>[f.id,f]));
-  const pair={left:'v20-edit-method',right:'v21-edit-method'};
+  const pair={left:'v20-edit-method',right:'v22-r2-method'};
   const imageLabel=f=>`${f.version} · ${kinds[f.kind]||'框架'} · ${f.label}`;
   function zoom(f){$("zoom-title").textContent=imageLabel(f);$("zoom-image").src=f.src;$("zoom-image").alt=f.label;$("zoom-original").href=f.src;$("archive-lightbox").showModal();}
   for(const side of ['left','right']){
@@ -22,7 +22,7 @@
   function readPair(){
     const parts=location.hash.length<512?location.hash.slice(1).split('/'):[];
     pair.left=parts[0]==='compare'&&byId.has(parts[1])?parts[1]:'v20-edit-method';
-    pair.right=parts[0]==='compare'&&byId.has(parts[2])?parts[2]:'v21-edit-method';
+    pair.right=parts[0]==='compare'&&byId.has(parts[2])?parts[2]:'v22-r2-method';
   }
   function renderPair(){
     $('history-compare-panels').replaceChildren();
@@ -64,7 +64,7 @@
   }
   for(const k of ["version","kind","state"])$(k).addEventListener("change",render);
   $("zoom-close").addEventListener("click",()=>$("archive-lightbox").close());
-  $("deck-count").textContent=`${data.decks.length} 个去重文件（含 v20 重建与 v21 对齐稿）`;
+  $("deck-count").textContent=`${data.decks.length} 个去重文件（含 v20、v21 与 v22 编辑稿）`;
   for(const d of data.decks){
     if(!validDeck(d.src))continue;
     const item=make("article",undefined,"deck-item"),body=make("div"),a=make("a","下载 PPTX ↓");

@@ -11,7 +11,7 @@
     const v=byVersion.get(version), f=data.figures[kind];
     if(!v || !f || !v.available.includes(kind))return null;
     const path=v.sources?.[kind] || `figures/${version}/${f.file}`;
-    return /^(?:figures\/v(?:17|18|19|20)\/(?:teaser|method|asbs_diffusion_flow)|figures\/history\/v21-editable-(?:teaser|method|comparison))\.png$/.test(path) ? path : null;
+    return /^(?:figures\/v(?:17|18|19|20)\/(?:teaser|method|asbs_diffusion_flow)|figures\/history\/(?:v21-editable|v22-r2)-(?:teaser|method|comparison))\.png$/.test(path) ? path : null;
   }
   function readHash(){
     const parts=location.hash.slice(1).split("/");
@@ -49,7 +49,7 @@
       const empty=element("div",undefined,"empty-state");empty.append(element("strong","此版本尚无这张图"),element("span",`${v.id} 仅归档了主图与方法图；ASBS 对照图从 v19 开始。`));card.append(empty);
     }
     const note=element("div",undefined,"figure-note"), scope=element("p");
-    scope.append(element("span",v.scope==="online"?"历史在线方案":v.scope==="point-source"?"实验对齐接口":"历史离线方案",`tag${v.scope==="online"?" old":""}`),document.createTextNode(v.notes[state.figure]||v.limit));
+    scope.append(element("span",v.scope==="online"?"历史在线方案":v.scope==="segment"?"分段提议协议":v.scope==="point-source"?"实验对齐接口":"历史离线方案",`tag${v.scope==="online"?" old":""}`),document.createTextNode(v.notes[state.figure]||v.limit));
     note.append(scope,element("p",v.limit));card.append(note);return card;
   }
   function render(){
@@ -60,7 +60,7 @@
     if(state.comparing)$("figures").append(panel(state.compare));
     const different=state.comparing && byVersion.get(state.version).scope!==byVersion.get(state.compare).scope;
     $("formulation-warning").hidden=!different;
-    $("formulation-warning").textContent=different?"注意：这两个版本属于不同科学方案或实现阶段。v17 为历史在线适配，v18–v20 为早期离线巩固示意，v21 按点源实现修正；差异不只是视觉样式。":"";
+    $("formulation-warning").textContent=different?"注意：这两个版本属于不同科学方案或实现阶段。v17 为历史在线适配，v18–v20 为早期离线示意，v21 修正点源接口，v22 对齐十个 chunk 的分段协议；差异不只是视觉样式。":"";
     $("selection-status").textContent=`${state.version}${state.comparing?` ↔ ${state.compare}`:""} · ${data.figures[state.figure].label}`;
     $("copy-link").textContent="复制此视图链接";writeHash();
   }

@@ -1,6 +1,6 @@
 window.ASBS_HISTORY = {
   "date": "2026-09-24",
-  "scope": "All located whole-figure candidates in the paper figures, presentation, ppt and deliverables directories. Standalone experimental plots and cropped assets are inventoried separately, not mislabeled as architecture revisions. Missing versions are not invented.",
+  "scope": "All previously located figure history retained, plus all six returned v22 images and three actual editable PPT previews. Conceptual art and proposed protocols are not experimental results.",
   "summary": {
     "files": 230,
     "unique_whole_figures": 52,
@@ -714,9 +714,136 @@ window.ASBS_HISTORY = {
       "width": 1600,
       "height": 900,
       "aliases": 0
+    },
+    {
+      "id": "v22-r1-teaser",
+      "version": "v22",
+      "kind": "teaser",
+      "src": "figures/history/v22-r1-teaser.png",
+      "label": "首稿 · 保留接口错误供追溯 · teaser",
+      "state": "candidate",
+      "sha256": "250789bdfc048126b32f4e3652799e8e84e8853339b937d09da3c8b6f4a2bd59",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-r2-teaser",
+      "version": "v22",
+      "kind": "teaser",
+      "src": "figures/history/v22-r2-teaser.png",
+      "label": "生成修订稿 · 场景与分段提议 · teaser",
+      "state": "candidate",
+      "sha256": "ec6eb38e043b7a869c6058a50bd539c12876cc672bc8136e6380e0a33d9ac8c6",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-editable-teaser",
+      "version": "v22",
+      "kind": "teaser",
+      "src": "figures/history/v22-editable-teaser.png",
+      "label": "实际 PPT 渲染 · 原生文本与可移动插图 · teaser",
+      "state": "editable-preview",
+      "sha256": "a2c32a3843f48ea929c728959ab98e2bb62d80834af4698f1174eedd0cd24e40",
+      "width": 1600,
+      "height": 800,
+      "aliases": 0
+    },
+    {
+      "id": "v22-r1-method",
+      "version": "v22",
+      "kind": "method",
+      "src": "figures/history/v22-r1-method.png",
+      "label": "首稿 · 保留接口错误供追溯 · method",
+      "state": "candidate",
+      "sha256": "1226697af9464d18056d4cbc2921dfd370c8fa04bc967b30255ac63e8aff3540",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-r2-method",
+      "version": "v22",
+      "kind": "method",
+      "src": "figures/history/v22-r2-method.png",
+      "label": "生成修订稿 · 场景与分段提议 · method",
+      "state": "candidate",
+      "sha256": "985b5d837a39fe7172779c1124e685c6ac704b79cfe8762976c8d21e95c411b2",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-editable-method",
+      "version": "v22",
+      "kind": "method",
+      "src": "figures/history/v22-editable-method.png",
+      "label": "实际 PPT 渲染 · 原生文本与可移动插图 · method",
+      "state": "editable-preview",
+      "sha256": "0f323b466d7f631b6f1867ffea543fa2d0b439b3ac2428080395147bd111b314",
+      "width": 1600,
+      "height": 800,
+      "aliases": 0
+    },
+    {
+      "id": "v22-r1-comparison",
+      "version": "v22",
+      "kind": "comparison",
+      "src": "figures/history/v22-r1-comparison.png",
+      "label": "首稿 · 保留接口错误供追溯 · comparison",
+      "state": "candidate",
+      "sha256": "c349500cbe632277355d1305d93b1fb01133179ef60438d18eebfea28574ebce",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-r2-comparison",
+      "version": "v22",
+      "kind": "comparison",
+      "src": "figures/history/v22-r2-comparison.png",
+      "label": "生成修订稿 · 场景与分段提议 · comparison",
+      "state": "candidate",
+      "sha256": "73b066976a60e5b781a1515a5f3658f22aadde5c83b3eaa3718c938a241aca49",
+      "width": 1774,
+      "height": 887,
+      "aliases": 0
+    },
+    {
+      "id": "v22-editable-comparison",
+      "version": "v22",
+      "kind": "comparison",
+      "src": "figures/history/v22-editable-comparison.png",
+      "label": "实际 PPT 渲染 · 原生文本与可移动插图 · comparison",
+      "state": "editable-preview",
+      "sha256": "f592df206941c159a94bd676cf2f4a66d156934964dd7947818f2abde106b07c",
+      "width": 1600,
+      "height": 800,
+      "aliases": 0
     }
   ],
   "decks": [
+    {
+      "id": "v22-editable",
+      "version": "v22",
+      "label": "v22 · 场景与分段提议 · 可编辑重建",
+      "src": "downloads/v22-editable.pptx",
+      "sha256": "9908bddef8944b66126328b1d1722fd1aebfdef237889c9106f71ce4cf9aa3da",
+      "source_sha256": "2dfc68e76c29cded58c9e5f39e12d58a431b78624d7c37008eb40b1b682e0b89",
+      "aliases": 0,
+      "latest": true,
+      "counts": {
+        "slides": 3,
+        "text": 100,
+        "images": 40
+      },
+      "copy_changes": [
+        "Normalized document author properties",
+        "Removed device-specific printer settings"
+      ]
+    },
     {
       "id": "v21-aligned",
       "version": "v21",
@@ -725,7 +852,7 @@ window.ASBS_HISTORY = {
       "sha256": "cb5cf70d3060df6be7d6038afcd20711d3222bca7c807e37b86971a1f9c915b5",
       "source_sha256": "e70e5b26dbbac90ea02742a0504ccc99d82a29fe5f60ce6391ed2f678760e440",
       "aliases": 0,
-      "latest": true,
+      "latest": false,
       "counts": {
         "slides": 3,
         "text": 83,
@@ -959,5 +1086,11 @@ window.ASBS_HISTORY = {
         "Normalized document author properties"
       ]
     }
-  ]
+  ],
+  "v22": {
+    "generated": 6,
+    "editable_previews": 3,
+    "status": "candidate_for_author_review",
+    "source": "generated schematic; not execution photography"
+  }
 };

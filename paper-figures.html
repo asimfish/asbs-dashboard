@@ -14,9 +14,9 @@
   <a class="skip-link" href="#workspace">跳到图稿</a>
   <main>
     <nav class="site-nav" aria-label="页面导航"><a class="wordmark" href="index.html">ASBS <span>RESEARCH</span></a><div><a href="index.html">研究主板 ↗</a><a href="#history">版本档案</a></div></nav>
-    <header class="intro"><div><p class="eyebrow">FIGURE ARCHIVE / CONTINUATION-AWARE RECOVERY</p><h1>论文图稿，逐版对照。</h1><p class="lead">把方案变化与视觉修改分开记录。查看主图、方法图和采样机制对照，保留每一次可追溯的迭代。</p></div><div class="archive-mark"><span>当前迭代</span><strong id="latest-label">v21</strong><span>2026.09.24 · 实验对齐稿</span></div></header>
-    <p class="scope-note"><span class="status-dot"></span>v21 为实验对齐逻辑稿，其余版本保留原图。选择两版即可并排比较；完整历史页支持任意两张归档图直接对比。图稿不是实验结果或录用保证。</p>
-    <p class="viewer-tip"><a href="downloads/v21-aligned.pptx" download>下载 v21 实验对齐 PPT ↓</a> · <a href="downloads/v20-editable.pptx" download>v20 历史重建 ↓</a> · <a href="figure-history.html">查看完整历史及 PPT 源文件 →</a> · <a href="editing-guide.html">编辑说明</a></p>
+    <header class="intro"><div><p class="eyebrow">FIGURE ARCHIVE / CONTINUATION-AWARE RECOVERY</p><h1>论文图稿，逐版对照。</h1><p class="lead">把方案变化与视觉修改分开记录。查看主图、方法图和采样机制对照，保留每一次可追溯的迭代。</p></div><div class="archive-mark"><span>当前迭代</span><strong id="latest-label">v22</strong><span>2026.09.24 · 场景与分段提议</span></div></header>
+    <p class="scope-note"><span class="status-dot"></span>v22 恢复 v20 的场景与机制视觉，按新分段协议改写。旧版不覆盖；生成首稿、修订原图与 PPT 实际预览分别归档。图稿不是实验结果或录用保证。</p>
+    <p class="viewer-tip"><a href="downloads/v22-editable.pptx" download>下载 v22 可编辑 PPT ↓</a> · <a href="downloads/v21-aligned.pptx" download>v21 逻辑稿 ↓</a> · <a href="downloads/v20-editable.pptx" download>v20 历史重建 ↓</a> · <a href="figure-history.html">完整历史及 PPT →</a> · <a href="editing-guide.html">编辑说明</a></p>
     <section id="workspace" aria-labelledby="workspace-title">
       <div class="section-heading"><h2 id="workspace-title">图稿工作台</h2><span id="selection-status" role="status" aria-live="polite"></span></div>
       <div class="toolbar">
@@ -28,7 +28,7 @@
       <p class="viewer-tip">点击图片放大；也可直接打开原图。并排模式在小屏幕上纵向排列，避免缩小图中文字。</p>
     </section>
     <section id="history" aria-labelledby="history-title"><div class="section-heading"><h2 id="history-title">版本档案</h2><span>旧版保留，不覆盖</span></div><div id="history-list" class="history-list"></div></section>
-    <section class="reading-notes" aria-labelledby="notes-title"><h2 id="notes-title">看图时需要区分的三件事</h2><div><article><h3>01 / 视觉偏好</h3><p>v19 图 3 上半部是已认可的视觉方向，旧图完整保留。v21 优先校正实验接口，是独立逻辑稿，不冒称已经完成最终视觉设计。</p></article><article><h3>02 / 科学边界</h3><p>ASBS 本身属于扩散采样器。对照图比较的是监督来源与学习机制，不证明它普遍优于 diffusion 或 flow matching。</p></article><article><h3>03 / 图稿状态</h3><p>v17–v20 展示生成原图，v21 展示实际 PPT 渲染。完整历史页另含旧稿重建、弃用稿和编辑文件；不同版本的可编辑范围请看编辑说明。</p></article></div></section>
+    <section class="reading-notes" aria-labelledby="notes-title"><h2 id="notes-title">看图时需要区分的三件事</h2><div><article><h3>01 / 视觉偏好</h3><p>作者偏好 v20，而非 v21 的文字卡片。v22 恢复具体场景、衬线层次和粒子机制；视觉质量仍待作者确认。</p></article><article><h3>02 / 科学边界</h3><p>ASBS 本身属于扩散采样器。学习价值重排也能不调用在线 S2；优势须经同反馈、同部署频率和成本比较，不能由图稿推断。</p></article><article><h3>03 / 图稿状态</h3><p>v22 此处展示生成修订原图；完整历史页另有生成首稿和实际 PPT 渲染。新方案每段抽样、逐 chunk 观测解码，不是单次 VLA 前向完成全段。</p></article></div></section>
     <footer><span>ASBS / Figure archive</span><span>只发布脱敏图稿和版本说明 · 无实验日志或服务器信息</span></footer>
   </main>
   <dialog id="lightbox" aria-labelledby="lightbox-title"><div class="lightbox-bar"><h2 id="lightbox-title">图稿原图</h2><button type="button" id="close-lightbox" aria-label="关闭放大图">关闭 ×</button></div><div class="lightbox-body"><img id="lightbox-image" alt=""></div><a id="lightbox-original" target="_blank" rel="noopener">打开原图 ↗</a></dialog>
