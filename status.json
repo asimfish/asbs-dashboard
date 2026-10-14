@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T18:11:11.905838+00:00",
+  "generated_utc": "2026-10-14T18:12:31.131673+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -1184,7 +1184,7 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T18:10:26.750032+00:00",
+      "observed_utc": "2026-10-14T18:11:37.176024+00:00",
       "status": "running",
       "summary": "RoboDojo r0_remaining_v2：完成 3/5，成功 1，执行错误 0，待返回 2。这批仅检查完整闭环，不发布正式成功率。",
       "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：RUNNING。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 可复用采集/重放模块通过6项CPU检查；真实采集与预训练重放待验证。",
