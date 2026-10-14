@@ -47,11 +47,19 @@
     list("standard-plan-rows",s.standard_plan,row=>{const tr=node("tr");tr.append(node("th",row.label),node("td",row.tasks),node("td",row.starts_per_task),node("td",row.episodes_per_model),node("td",row.horizon));tr.firstChild.scope="row";return tr;});
     for(const [id,key] of [["standard-seeds","seed_plan"],["standard-settings","settings"],["standard-pilot","pilot_boundary"],["standard-checkpoint","checkpoint_boundary"]])$(id).textContent=s[key];
   }
+  function renderRoboDojo(r){
+    if(!r){$("robodojo-summary").textContent="尚无迁移协议回执。";return;}
+    $("robodojo-observed").textContent="协议检查回执 "+time(r.observed_utc)+"；不代表仿真已运行。";
+    for(const key of ["summary","boundary","retention"])$("robodojo-"+key).textContent=r[key];
+    list("robodojo-stages",r.stages,row=>{const tr=node("tr"),state=node("td");state.append(pill(row.status));tr.append(node("th",row.name),node("td",row.scale),node("td",row.question),state);tr.firstChild.scope="row";return tr;});
+    list("robodojo-hypotheses",r.hypotheses,item=>node("li",item));
+  }
   function renderResearch(research){
     if(!research)return;
     if(research.schema_version!==1||!research.offline||!research.closed_loop)throw new Error("research schema mismatch");
     const off=research.offline,c=research.closed_loop,d=research.design;
     renderStandard(research.standard_eval);
+    renderRoboDojo(research.robodojo);
     $("research-observed").textContent="闭环回执 "+time(c.observed_utc)+" · 离线结果 "+time(off.observed_utc)+"；快照生成时间不替代实验观测时间。";
     const state=$("closed-loop-status");state.replaceChildren(pill(c.status),node("strong"," "+count(c.completed_episodes)+" / "+c.expected_episodes+" 回合"),node("p",c.summary));
     $("closed-loop-conclusion").textContent=c.conclusion?.text||"";
@@ -64,7 +72,7 @@
     $("offline-rows").replaceChildren(...rows);list("research-boundaries",off.boundaries,item=>node("li",item));
     $("design-implemented").textContent=d.implemented+" "+(research.preservation?.summary||research.standard_eval?.preservation_design||"");$("design-teacher").textContent=d.teacher;
     list("design-flow",d.steps,item=>{const el=node("li",undefined,"flow-item");el.append(pill(item.status),node("h3",item.title),node("p",item.detail));return el;});
-    list("module-rows",[...c.modules,...(research.standard_eval?.evaluation_modules||[]),...(research.preservation?.modules||[])],item=>{const tr=node("tr"),path=node("th"),state=node("td");path.scope="row";path.append(node("code",item.path));state.append(pill(item.status));tr.append(path,node("td",item.purpose),state);return tr;});
+    list("module-rows",[...c.modules,...(research.standard_eval?.evaluation_modules||[]),...(research.preservation?.modules||[]),...(research.robodojo?.modules||[])],item=>{const tr=node("tr"),path=node("th"),state=node("td");path.scope="row";path.append(node("code",item.path));state.append(pill(item.status));tr.append(path,node("td",item.purpose),state);return tr;});
     $("module-tests").textContent=c.mechanism_tests===null?"本轮模块测试回执尚未报告。":"本轮模块机制检查："+c.mechanism_tests+" 项通过；不等于任务收益或安全能力通过。";
     if(research.standard_eval?.evaluation_tests)$("module-tests").textContent+=" 标准评估组件："+research.standard_eval.evaluation_tests+" 项通过，另有实际运行入口的错误计数/恢复集成检查。";
     if(research.preservation)$("module-tests").textContent+=" 保持性 v2："+research.preservation.cpu_tests+" 项 CPU 合同检查通过。"+research.preservation.boundary;
@@ -74,6 +82,7 @@
     if(data.research&&(data.research.schema_version!==1||!data.research.offline||!data.research.closed_loop))throw new Error("research schema mismatch");
     if(data.research?.standard_eval&&data.research.standard_eval.schema!=="t987.standard-eval-public.v1")throw new Error("standard evaluation schema mismatch");
     if(data.research?.preservation&&data.research.preservation.schema!=="t990.implementation.v1")throw new Error("preservation schema mismatch");
+    if(data.research?.robodojo&&data.research.robodojo.schema!=="t993.robodojo.v1")throw new Error("RoboDojo schema mismatch");
     latest=data;const c=data.content,r=data.runtime||{};
     $("subtitle").textContent=c.subtitle;$("version").textContent=c.proposal_version;
     $("updated").textContent="快照 "+time(data.generated_utc);$("verdict").textContent=c.verdict;$("goal").textContent=c.goal;
@@ -98,9 +107,10 @@
     if(!latest)return true;
     if(latest.research?.standard_eval&&!data?.research?.standard_eval)return false;
     if(latest.research?.preservation&&!data?.research?.preservation)return false;
+    if(latest.research?.robodojo&&!data?.research?.robodojo)return false;
     const oldGenerated=Date.parse(latest.generated_utc),newGenerated=Date.parse(data?.generated_utc);
     if(Number.isFinite(oldGenerated)&&(!Number.isFinite(newGenerated)||newGenerated<oldGenerated))return false;
-    for(const key of ["closed_loop","standard_eval","preservation"]){
+    for(const key of ["closed_loop","standard_eval","preservation","robodojo"]){
       const oldObserved=Date.parse(latest.research?.[key]?.observed_utc),newObserved=Date.parse(data?.research?.[key]?.observed_utc);
       if(Number.isFinite(oldObserved)&&(!Number.isFinite(newObserved)||newObserved<oldObserved))return false;
     }

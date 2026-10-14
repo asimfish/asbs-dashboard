@@ -36,17 +36,24 @@
         <div class="verdict"><span class="label">当前判断</span><strong id="verdict"></strong><p id="goal"></p></div>
         <ul id="focus" class="focus"></ul>
       </header>
-      <section id="standard-eval" aria-labelledby="standard-title"><h2 id="standard-title"><span>EVALUATION</span>标准评估：计划规模与实际覆盖</h2>
+      <section id="robodojo" aria-labelledby="robodojo-title"><h2 id="robodojo-title"><span>NEXT</span>主评测 · RoboDojo</h2>
+        <p id="robodojo-observed" class="muted"></p><div id="robodojo-summary" class="notice"></div>
+        <p id="robodojo-boundary" class="research-boundaries"></p><p id="robodojo-retention" class="muted"></p>
+        <div class="table-wrap"><table><caption>逐步实验 · 计划规模与科学问题</caption><thead><tr><th scope="col">阶段</th><th scope="col">规模</th><th scope="col">要回答的问题</th><th scope="col">状态</th></tr></thead><tbody id="robodojo-stages"></tbody></table></div>
+        <ul id="robodojo-hypotheses" class="research-boundaries"></ul>
+        <p class="links"><a href="https://robodojo-benchmark.com/doc/usage/quick-evaluation/" rel="noreferrer">RoboDojo 官方评测协议 ↗</a></p>
+      </section>
+      <section id="standard-eval" aria-labelledby="standard-title"><h2 id="standard-title"><span>EVALUATION</span>历史基线 · LIBERO-Spatial</h2>
         <p id="standard-observed" class="muted">尚未取得标准评估回执。</p>
         <div id="standard-freshness" role="status" aria-live="polite"></div>
-        <h3>当前批次 · 原生 π0 / LIBERO-Spatial</h3>
+        <h3>已完成批次 · 原生 π0 / LIBERO-Spatial</h3>
         <div id="standard-status" class="notice">等待协议与回执。</div>
         <div id="standard-counts" class="evaluation-metrics"></div>
         <p id="standard-result" class="standard-result"></p>
         <p id="standard-boundary" class="research-boundaries"></p>
         <div class="table-wrap"><table><caption>当前基线逐任务回执 · 未完成批次不产出正式整体成功率</caption><thead><tr><th scope="col">任务</th><th scope="col">有效回合 / 目标</th><th scope="col">成功 / 有效回合</th><th scope="col">执行错误</th></tr></thead><tbody id="standard-task-rows"></tbody></table></div>
-        <h3>方法确认的完整评估计划 · 尚未完成</h3>
-        <div class="table-wrap"><table><caption>每一份冻结模型均评估以下四套件；表中数字是协议目标</caption><thead><tr><th scope="col">套件</th><th scope="col">任务数</th><th scope="col">初态 / 任务</th><th scope="col">回合 / 模型</th><th scope="col">步数上限</th></tr></thead><tbody id="standard-plan-rows"></tbody></table></div>
+        <h3>历史扩展计划 · 已停止，主评测转向 RoboDojo</h3>
+        <div class="table-wrap"><table><caption>保留原四套件计划用于追踪；不再执行此扩展计划</caption><thead><tr><th scope="col">套件</th><th scope="col">任务数</th><th scope="col">初态 / 任务</th><th scope="col">回合 / 模型</th><th scope="col">步数上限</th></tr></thead><tbody id="standard-plan-rows"></tbody></table></div>
         <p id="standard-seeds" class="muted"></p><p id="standard-settings" class="muted"></p>
         <p class="links"><a href="https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/main.py" rel="noreferrer">openpi 官方评估入口 ↗</a></p>
         <p id="standard-pilot" class="research-boundaries"></p>
