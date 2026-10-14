@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-09-15T20:19:09.467231+00:00",
+  "generated_utc": "2026-10-14T03:22:05.091308+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
-    "subtitle": "从外部纠错，到冻结 VLA 的自主恢复",
-    "goal": "形成可被独立验证的 ICLR 级贡献；录用不是当前已达成的结果。",
-    "proposal_version": "v2 · 2026-09-16",
-    "current_task": "T-661",
-    "verdict": "方案已明确；ASBS 的独立优势未验证",
+    "subtitle": "真实 π0 后训练 · 可复用实验组件 · 配对闭环验证",
+    "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
+    "proposal_version": "研究进展 · 2026-10-14",
+    "current_task": "T-985 / 当前闭环检查；T-984 / 已完成离线双实现试验",
+    "verdict": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
     "focus": [
-      "先验收 ASBS 数值与随机动作接口，不跳过已有负结果。",
-      "把一次动作后的真实后果与学生连续执行的价值分开。",
-      "同反馈、同预算对比加权回归、噪声 RL、AMDP 与 ASBS。"
+      "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
+      "T-985：协议已定义；尚无运行回执。",
+      "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
     ],
     "method": [
       {
@@ -45,25 +45,25 @@ window.ASBS_SNAPSHOT = {
         "id": "M1",
         "title": "数值采样",
         "status": "failed",
-        "summary": "原 AM/ASBS 端点门仍未通过。",
-        "boundary": "时间表示修正只是待检验假说。",
-        "evidence": "T-657 / MORNING_REVIEW §5–6"
+        "summary": "24组固定训练完成；对数时间＋末端分层最好，但困难上下文仅2/3种子过联合门。",
+        "boundary": "解析标签的标量诊断；尚未证明实际AM/CM或高维ASBS有效。",
+        "evidence": "T-668 / NUMERIC_AUDIT.json"
       },
       {
         "id": "M2",
         "title": "可用反馈",
         "status": "partial",
-        "summary": "同上下文后果有排序信号；原布局门未过。",
-        "boundary": "高 AUC 不是实际所选动作的风险或成功率。",
-        "evidence": "T-657 / MORNING_REVIEW §2"
+        "summary": "T-664纯策略Gibbs16终点+5.34pp，97.5%区间[+0.65,+10.03]pp。",
+        "boundary": "32布局单次干预筛查；非ASBS/VLA，也未证明优于重排16。",
+        "evidence": "T-665 / POLICY_SCREEN_VERDICT.md"
       },
       {
         "id": "M3",
         "title": "VLA 自主纠错",
-        "status": "planned",
-        "summary": "随机 VLA 接口、可恢复动作支持待验收。",
-        "boundary": "D3IL 诊断不能替代 VLA 证据。",
-        "evidence": "T-660 / PROPOSAL_V2 §7"
+        "status": "partial",
+        "summary": "单个自然失败布局的81次分叉，恢复0次；3次重复基线另作完整性检查。",
+        "boundary": "同运行时比较；旧动作不能跨进程严格复现。一个布局，无ASBS，不证明所有恢复动作不存在。",
+        "evidence": "T-669 / AUDIT_RUNTIME.json + TERMINAL_AUDIT.json"
       },
       {
         "id": "M4",
@@ -113,10 +113,10 @@ window.ASBS_SNAPSHOT = {
     ],
     "hypotheses": [
       {
-        "id": "H-time",
-        "question": "晚期时间表示是否限制真实 AM 场的拟合？",
-        "experiment": "函数不变初始化的 raw-time vs log-time 配对",
-        "falsifier": "仅 loss 改善、端点不改善，或三 seed 不一致。"
+        "id": "H-field",
+        "question": "补齐极末端时间覆盖和表示能否恢复正确分布？",
+        "experiment": "T-668执行匹配预算2×2：原/对数剩余时间 × 原/末端分层覆盖；每组2万更新",
+        "falsifier": "代价改善但KS未过门，或只在旧上下文/路径上有效。"
       },
       {
         "id": "H-feedback",
@@ -138,6 +138,71 @@ window.ASBS_SNAPSHOT = {
       }
     ],
     "decisions": [
+      {
+        "date": "2026-09-16",
+        "title": "环境异常与策略失败分开",
+        "detail": "两个任务关节状态一致但图像不同，定位到关节状态之外的固定物体位姿。保留失败预检，修复完整场景恢复后只补未跑回合；不放宽物理状态门，不算ASBS效果。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "最佳数值组合仍未过全种子门",
+        "detail": "固定24拟合均完成；对数时间＋末端分层在每个困难种子都优于原组合，但代价误差9.9%/15.8%/2.7%，只有2/3通过。保留10%门槛，不挑种子或据中報改参。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "固定协议后四卡并行",
+        "detail": "三卡各跑一个种子的8组数值训练，随后转机器人分片；另一卡先跑48回合。中途不改任务或参数，执行完成后自动复算原始记录。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "关闭短暂夹爪中断需求分支",
+        "detail": "新布局48/48成功，夹爪中断均实际触发。原策略能处理这个故障，不能据此证明额外学习有必要；不追加更强扰动寻找有利结果。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "原数值预测被数据推翻",
+        "detail": "原预测最后0.1%替换不足，实际三个宽模型均过门。进一步时间截断无效；直接终端梯度虽降代价但KS失败。保留预测与负结果，下一步改训练覆盖而非继续加宽。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "真实VLA名义闭环已完成",
+        "detail": "24/24回合成功，但每任务只有4个初始布局，另3次是噪声重复。原始记录审计确认执行动作来自官方预测前缀；仅解除运行接口障碍，不证明纠错需求或ASBS增益。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "分开积分误差和学习误差",
+        "detail": "固定检查点、目标与随机路径：解析场代价误差由512步33.9–35.6%降至8192步1.7–2.3%；加宽学习场8192步仍30.5–73.3%。停止盲目增加宽度或步数，先定位场误差。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "四GPU批次完成",
+        "detail": "12个固定终点拟合共24万次优化更新；宽网络6组误差均下降，但仅3组达到减半门槛，容量解释门未通过。VLA真实观测16/16通过同噪声重放；仍需端点分布与闭环验证。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "并行使用空闲GPU",
+        "detail": "Main四张空闲A100：三卡分种子跑采样场诊断，一卡验证真实观测π0.5。保留设备解析/测试输入失败，修正后新目录重启；不抢占其他作业。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "纯策略目标筛查通过",
+        "detail": "Gibbs16无接触成功85.16%→90.49%；重排16未过预设门。不能用一臂显著另一臂不显著推断两者差异显著。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "排除手工捷径",
+        "detail": "T-663完成32布局；109/126次安全选择落在预设减速上。T-664以新布局比较纯策略重排4/16和Gibbs16，固定减速单列。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "确认白盒能量接口",
+        "detail": "冻结后果cost经原策略噪声求导：预定方向检查32/32通过；更小差分步长仅23/32，保留数值限制。不是ASBS采样精度或VLA结果。"
+      },
+      {
+        "date": "2026-09-16",
+        "title": "诊断短视反馈",
+        "detail": "T-663 冻结候选和模型，只改变是否使用已有进展预测；追踪真实终点。不是新 ASBS 收益。"
+      },
       {
         "date": "2026-09-16",
         "title": "固定研究问题",
@@ -163,44 +228,188 @@ window.ASBS_SNAPSHOT = {
     ]
   },
   "runtime": {
-    "started_utc": "2026-09-15T20:09:02.456339+00:00",
-    "deadline_utc": "2026-09-16T04:09:02.456339+00:00",
-    "summary": "隔离队列运行中；累计有作业运行 0.17 小时；GPU研究作业0。",
-    "observed_utc": "2026-09-15T20:19:09.467231+00:00",
+    "started_utc": "2026-09-16T10:26:19.012467+00:00",
+    "deadline_utc": "2026-09-16T11:12:34.402887+00:00",
+    "summary": "当前计数是T-669三个分叉队列；每队列最多27回合，共享一个已观察到的失败布局，不是独立任务或ASBS实验。旧动作跨进程一致性失败另存；新比较限同一加载实例。",
+    "observed_utc": "2026-09-16T10:42:58.698979+00:00",
     "counts": {
-      "running": 5,
-      "succeeded": 39,
+      "running": 0,
+      "succeeded": 3,
       "error": 0,
-      "pending": 2016
+      "pending": 0
     },
     "jobs": [
       {
         "name": "时间表示配对 · 12臂",
         "question": "数值失败是否来自时间表示",
-        "status": "running",
-        "verdict": "执行完成 8；执行错误 0。INCOMPLETE"
+        "status": "succeeded",
+        "verdict": "执行完成 12；执行错误 0。CURRENT_TIME_FIX_NOT_SUPPORTED"
       },
       {
         "name": "新布局 · 五个冻结选择器",
         "question": "模型选出的动作是否真的更好",
-        "status": "running",
-        "verdict": "执行完成 31；执行错误 0。完整有效布局 26；只验证H16后果。"
+        "status": "partial",
+        "verdict": "T-661 已按硬截止停止；以已落地结果判读，未完成项不算通过。"
       },
       {
         "name": "随机 VLA / 完整 ASBS 对比",
         "question": "外部纠错能否沉淀为自主恢复",
         "status": "blocked",
         "verdict": "随机动作接口/检查点尚未验收；未把D3IL结果当VLA证据。"
+      },
+      {
+        "name": "随机 VLA 前置接口验收",
+        "question": "冻结真实 VLA 的采样噪声能否控制动作，能否求导",
+        "status": "partial",
+        "verdict": "真实检查点：固定噪声重放误差 0；换噪声7维动作 RMS 0.0581。前向梯度一致性通过；仅合成观测接口测试，不是闭环 ASBS 成功。"
+      },
+      {
+        "name": "T-663 长时任务反馈诊断",
+        "question": "短时少前进是有用绕行，还是目标遗漏？",
+        "status": "partial",
+        "verdict": "32/32 新布局完成，0 个并行布局；比较安全选择与进展感知选择的真实终点后果。单次局部干预诊断，不是 ASBS 或 VLA 成功率。"
+      },
+      {
+        "name": "T-664 纯策略候选终点筛查",
+        "question": "不使用人工修正时，冻结后果反馈仍能改善原策略候选吗？",
+        "status": "partial",
+        "verdict": "32/32 布局完成；0 个并行布局。比较原候选、重排4/16、Gibbs16及单列固定减速对照；不是ASBS训练结果。"
+      },
+      {
+        "name": "T-665 / GPU1 VLA接口",
+        "question": "真实LIBERO观测下的官方π0.5采样、动作变异与重放是否正确？",
+        "status": "partial",
+        "verdict": "16个观测完成；重放/变异接口通过。不是闭环控制结果。"
+      },
+      {
+        "name": "T-665 / GPU4 采样场诊断",
+        "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
+        "status": "partial",
+        "verdict": "种子0，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+      },
+      {
+        "name": "T-665 / GPU5 采样场诊断",
+        "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
+        "status": "partial",
+        "verdict": "种子1，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+      },
+      {
+        "name": "T-665 / GPU6 采样场诊断",
+        "question": "采样场误差来自拟合容量/训练预算，还是更深的目标与覆盖问题？",
+        "status": "partial",
+        "verdict": "种子2，4/4个正式拟合完成；两个上下文×两种容量。Oracle标签诊断，不是ASBS训练成功。"
+      },
+      {
+        "name": "T-666 / 固定检查点终点分布",
+        "question": "低拟合误差是否意味着正确采样？",
+        "status": "partial",
+        "verdict": "36/36组已复算；学习模型未通过全种子分布与代价门。不是机器人结果。"
+      },
+      {
+        "name": "T-666 / π0.5真实闭环",
+        "question": "官方冻结VLA能否在当前环境正常完成任务？",
+        "status": "partial",
+        "verdict": "任务0：12/12；任务4：12/12。每任务仅4个初始布局；不是适配收益。"
+      },
+      {
+        "name": "T-667 / 任务0抓取中断",
+        "question": "原VLA是否已能自行应对短暂夹爪未闭合？",
+        "status": "partial",
+        "verdict": "强制张开0步：8/8；强制张开10步：8/8；强制张开30步：8/8。每任务仅4布局；无ASBS干预。"
+      },
+      {
+        "name": "T-667 / 任务4抓取中断",
+        "question": "原VLA是否已能自行应对短暂夹爪未闭合？",
+        "status": "partial",
+        "verdict": "强制张开0步：8/8；强制张开10步：8/8；强制张开30步：8/8。每任务仅4布局；无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 队列1",
+        "question": "匹配训练预算的末端修复与全任务自然失败普查",
+        "status": "partial",
+        "verdict": "48/48自然回合；中报不改参；无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 队列2",
+        "question": "匹配训练预算的末端修复与全任务自然失败普查",
+        "status": "failed",
+        "verdict": "种子0：8/8拟合；0/48自然回合；中报不改参；无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 队列3",
+        "question": "匹配训练预算的末端修复与全任务自然失败普查",
+        "status": "partial",
+        "verdict": "种子1：8/8拟合；32/32自然回合；中报不改参；无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 队列4",
+        "question": "匹配训练预算的末端修复与全任务自然失败普查",
+        "status": "failed",
+        "verdict": "种子2：8/8拟合；0/32自然回合；中报不改参；无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 缺失分片补跑1",
+        "question": "补全环境固定物体状态后，保持原策略和回合预算能否完成任务？",
+        "status": "partial",
+        "verdict": "16/16回合；原重置失败保留，已完成回合不重复。无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 缺失分片补跑2",
+        "question": "补全环境固定物体状态后，保持原策略和回合预算能否完成任务？",
+        "status": "partial",
+        "verdict": "16/16回合；原重置失败保留，已完成回合不重复。无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 缺失分片补跑3",
+        "question": "补全环境固定物体状态后，保持原策略和回合预算能否完成任务？",
+        "status": "partial",
+        "verdict": "16/16回合；原重置失败保留，已完成回合不重复。无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 缺失分片补跑4",
+        "question": "补全环境固定物体状态后，保持原策略和回合预算能否完成任务？",
+        "status": "failed",
+        "verdict": "0/32回合；原重置失败保留，已完成回合不重复。无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 缺失分片补跑4 · 数值预检修订",
+        "question": "补全环境固定物体状态后，保持原策略和回合预算能否完成任务？",
+        "status": "failed",
+        "verdict": "0/32回合；原重置失败保留，已完成回合不重复。无ASBS干预。"
+      },
+      {
+        "name": "T-668 / 独立任务9补跑",
+        "question": "任务8阻塞是否不必阻塞独立任务9？",
+        "status": "partial",
+        "verdict": "16/16回合；保持严格重置图像和动作校验。"
+      },
+      {
+        "name": "T-669 / 第200步分叉",
+        "question": "只换原策略的一个五步动作前缀能否恢复关抽屉？",
+        "status": "partial",
+        "verdict": "27/27分叉回合已记录；同实例重放校验通过，探索性支持测试。"
+      },
+      {
+        "name": "T-669 / 第250步分叉",
+        "question": "只换原策略的一个五步动作前缀能否恢复关抽屉？",
+        "status": "partial",
+        "verdict": "27/27分叉回合已记录；同实例重放校验通过，探索性支持测试。"
+      },
+      {
+        "name": "T-669 / 第350步分叉",
+        "question": "只换原策略的一个五步动作前缀能否恢复关抽屉？",
+        "status": "partial",
+        "verdict": "27/27分叉回合已记录；同实例重放校验通过，探索性支持测试。"
       }
     ],
     "resources": [
       {
-        "name": "30109 · 本轮 CPU",
-        "summary": "最多4物理worker + 1数值worker；当前5个。无本机GPU分配。",
-        "observed_utc": "2026-09-15T20:19:09.337998+00:00"
+        "name": "T-661 历史快照 / 30109 · 本轮 CPU",
+        "summary": "最多4物理worker + 1数值worker；当前4个。无本机GPU分配。",
+        "observed_utc": "2026-09-16T04:08:57.243366+00:00"
       },
       {
-        "name": "Main · GPU",
+        "name": "T-661 历史快照 / Main · GPU",
         "summary": "GPU1的数值witness通过；尚未分配正式VLA作业。资源占用只代表此前观测，不声称当前空闲。",
         "observed_utc": "2026-09-15T18:20:00+00:00"
       }
@@ -208,7 +417,7 @@ window.ASBS_SNAPSHOT = {
   },
   "proposal_sha256": "61615fb81efe1571f3348d311625239f344017dd793dadfea55f854dacb81d4f",
   "findings": {
-    "observed_utc": "2026-09-15T20:18:00.869523+00:00",
+    "observed_utc": "2026-09-16T03:47:34.337840+00:00",
     "rows": [
       {
         "name": "asbs / job0",
@@ -229,35 +438,538 @@ window.ASBS_SNAPSHOT = {
         "status": "failed"
       },
       {
+        "name": "am / job3",
+        "result": "KS raw 0.7106 → log 0.6904；相对下降 2.8%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
+        "name": "asbs / job4",
+        "result": "KS raw 0.9210 → log 0.5359；相对下降 41.8%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "partial"
+      },
+      {
+        "name": "am / job5",
+        "result": "KS raw 0.6408 → log 0.6313；相对下降 1.5%",
+        "boundary": "冻结 collector 的 AM 续训；不是完整 ASBS 或机器人成功率。",
+        "status": "failed"
+      },
+      {
         "name": "prior",
-        "result": "26 新布局；H16 qualified 65.4%；相对prior +0.0%",
+        "result": "1773 新布局；H16 qualified 69.0%；相对prior +0.0%；布局CI [+0.0%, +0.0%]；目标方向进展 +0.00 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
         "status": "reference"
       },
       {
         "name": "nominal",
-        "result": "26 新布局；H16 qualified 73.2%；相对prior +7.9%",
+        "result": "1773 新布局；H16 qualified 75.5%；相对prior +6.5%；布局CI [+5.6%, +7.4%]；目标方向进展 -1.52 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s0",
-        "result": "26 新布局；H16 qualified 88.5%；相对prior +23.1%",
+        "result": "1773 新布局；H16 qualified 87.4%；相对prior +18.4%；布局CI [+17.2%, +19.6%]；目标方向进展 -3.14 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s1",
-        "result": "26 新布局；H16 qualified 88.0%；相对prior +22.6%",
+        "result": "1773 新布局；H16 qualified 87.3%；相对prior +18.3%；布局CI [+17.2%, +19.5%]；目标方向进展 -3.09 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
       },
       {
         "name": "model_s2",
-        "result": "26 新布局；H16 qualified 89.9%；相对prior +24.5%",
+        "result": "1773 新布局；H16 qualified 88.0%；相对prior +19.0%；布局CI [+17.9%, +20.2%]；目标方向进展 -2.61 cm",
         "boundary": "短时无接触且净空≥10mm，不是完整任务成功；中报仅探索性。",
-        "status": "insufficient"
+        "status": "failed"
+      },
+      {
+        "name": "T-663 / 出厂候选",
+        "result": "32/32 布局完成；条件终点无接触成功 80.9%；H16 进展 15.60 cm",
+        "boundary": "固定32布局已完成；新D3IL可达分支的一次干预，非ASBS/VLA结果。",
+        "status": "partial"
+      },
+      {
+        "name": "T-663 / 只看安全",
+        "result": "32/32 布局完成；条件终点无接触成功 90.2%；H16 进展 12.17 cm",
+        "boundary": "固定32布局已完成；新D3IL可达分支的一次干预，非ASBS/VLA结果。",
+        "status": "partial"
+      },
+      {
+        "name": "T-663 / 使用已有进展预测",
+        "result": "32/32 布局完成；条件终点无接触成功 89.1%；H16 进展 15.78 cm",
+        "boundary": "固定32布局已完成；新D3IL可达分支的一次干预，非ASBS/VLA结果。",
+        "status": "partial"
+      },
+      {
+        "name": "T-663 / 安全选择−原候选",
+        "result": "+9.38%；97.5%布局区间 [+1.17%, +18.36%]",
+        "boundary": "逐分支复算通过；混合候选含人工减速，不能全部归功于反馈学习或ASBS。",
+        "status": "partial"
+      },
+      {
+        "name": "T-663 / 进展guard−安全选择",
+        "result": "-1.17%；97.5%布局区间 [-6.25%, +4.30%]",
+        "boundary": "逐分支复算通过；混合候选含人工减速，不能全部归功于反馈学习或ASBS。",
+        "status": "failed"
+      },
+      {
+        "name": "T-664 / 原候选",
+        "result": "32/32 布局；条件终点无接触成功 85.2%",
+        "boundary": "固定面板完成；须按预注册主比较判读。有限候选目标筛查，非ASBS/VLA；各臂部署计算量不同。",
+        "status": "partial"
+      },
+      {
+        "name": "T-664 / 纯策略重排4",
+        "result": "32/32 布局；条件终点无接触成功 88.9%",
+        "boundary": "固定面板完成；须按预注册主比较判读。有限候选目标筛查，非ASBS/VLA；各臂部署计算量不同。",
+        "status": "partial"
+      },
+      {
+        "name": "T-664 / 纯策略重排16",
+        "result": "32/32 布局；条件终点无接触成功 89.7%",
+        "boundary": "固定面板完成；须按预注册主比较判读。有限候选目标筛查，非ASBS/VLA；各臂部署计算量不同。",
+        "status": "partial"
+      },
+      {
+        "name": "T-664 / 纯策略Gibbs16",
+        "result": "32/32 布局；条件终点无接触成功 90.5%",
+        "boundary": "固定面板完成；须按预注册主比较判读。有限候选目标筛查，非ASBS/VLA；各臂部署计算量不同。",
+        "status": "partial"
+      },
+      {
+        "name": "T-664 / 单列固定减速对照",
+        "result": "32/32 布局；条件终点无接触成功 85.3%",
+        "boundary": "固定面板完成；须按预注册主比较判读。有限候选目标筛查，非ASBS/VLA；各臂部署计算量不同。",
+        "status": "partial"
+      },
+      {
+        "name": "T-664 / 纯策略重排16−原候选",
+        "result": "+4.6%；97.5%布局区间 [-0.3%, +9.8%]",
+        "boundary": "通过筛查不代表ASBS有必要，也不是最终方法验证。",
+        "status": "failed"
+      },
+      {
+        "name": "T-664 / 纯策略Gibbs16−原候选",
+        "result": "+5.3%；97.5%布局区间 [+0.7%, +10.0%]",
+        "boundary": "通过筛查不代表ASBS有必要，也不是最终方法验证。",
+        "status": "partial"
+      },
+      {
+        "name": "T-666 / 解析参考场细网格",
+        "result": "3种子；KS 0.018–0.023；平均代价相对误差 1.7%–2.3%",
+        "boundary": "同目标、同随机路径的标量诊断。解析场过门不等于ASBS学会该场；8192步不代表部署效率。",
+        "status": "partial"
+      },
+      {
+        "name": "T-666 / 原容量模型细网格",
+        "result": "3种子；KS 0.051–0.102；平均代价相对误差 46.1%–226.8%",
+        "boundary": "同目标、同随机路径的标量诊断。解析场过门不等于ASBS学会该场；8192步不代表部署效率。",
+        "status": "failed"
+      },
+      {
+        "name": "T-666 / 加宽模型细网格",
+        "result": "3种子；KS 0.041–0.053；平均代价相对误差 30.5%–73.3%",
+        "boundary": "同目标、同随机路径的标量诊断。解析场过门不等于ASBS学会该场；8192步不代表部署效率。",
+        "status": "failed"
+      },
+      {
+        "name": "T-667 / 末端误差定位",
+        "result": "仅最后约0.1%时间换解析场：三种子消除95.8%–98.9%多余代价，联合门通过。",
+        "boundary": "固定加宽模型的标量诊断；解析场非部署方法。与运行前预测相反，未改原门槛。",
+        "status": "partial"
+      },
+      {
+        "name": "T-667 / 可用边界替代检查",
+        "result": "时间截断联合门：未通过；直接终端梯度联合门：未通过",
+        "boundary": "降代价不等于恢复正确分布；尚未得到可部署ASBS修复。",
+        "status": "failed"
+      },
+      {
+        "name": "T-668 / raw_old",
+        "result": "困难上下文联合门 0/3种子；KS 0.041, 0.055, 0.023；代价误差 90.5%, 116.1%, 67.0%",
+        "boundary": "24个拟合已复算；解析标签标量诊断，不是实际ASBS训练或VLA收益。",
+        "status": "failed"
+      },
+      {
+        "name": "T-668 / raw_stratified",
+        "result": "困难上下文联合门 1/3种子；KS 0.044, 0.107, 0.032；代价误差 33.9%, 235.8%, 6.0%",
+        "boundary": "24个拟合已复算；解析标签标量诊断，不是实际ASBS训练或VLA收益。",
+        "status": "failed"
+      },
+      {
+        "name": "T-668 / log_old",
+        "result": "困难上下文联合门 0/3种子；KS 0.048, 0.037, 0.031；代价误差 103.7%, 60.6%, 74.4%",
+        "boundary": "24个拟合已复算；解析标签标量诊断，不是实际ASBS训练或VLA收益。",
+        "status": "failed"
+      },
+      {
+        "name": "T-668 / log_stratified",
+        "result": "困难上下文联合门 2/3种子；KS 0.018, 0.050, 0.013；代价误差 9.9%, 15.8%, 2.7%",
+        "boundary": "24个拟合已复算；解析标签标量诊断，不是实际ASBS训练或VLA收益。",
+        "status": "failed"
+      },
+      {
+        "name": "T-668 / 部分自然失败普查（未全完）",
+        "result": "144/160计划回合已审计，其中143成功、1失败。",
+        "boundary": "任务8重置动作一致性失败，缺失不是策略失败；场景恢复修订已记录，无ASBS干预。",
+        "status": "partial"
+      },
+      {
+        "name": "T-669 / 第200步同噪声续执行",
+        "result": "原前缀0/1成功；替代前缀0/8成功。",
+        "boundary": "单个事后选定失败布局；仅检验采样动作支持，未训练ASBS或反馈模型。",
+        "status": "partial"
+      },
+      {
+        "name": "T-669 / 第250步同噪声续执行",
+        "result": "原前缀0/1成功；替代前缀0/8成功。",
+        "boundary": "单个事后选定失败布局；仅检验采样动作支持，未训练ASBS或反馈模型。",
+        "status": "partial"
+      },
+      {
+        "name": "T-669 / 第350步同噪声续执行",
+        "result": "原前缀0/1成功；替代前缀0/8成功。",
+        "boundary": "单个事后选定失败布局；仅检验采样动作支持，未训练ASBS或反馈模型。",
+        "status": "partial"
       }
+    ]
+  },
+  "research": {
+    "schema_version": 1,
+    "offline": {
+      "status": "succeeded",
+      "observed_utc": "2026-10-13T18:06:15.059222+00:00",
+      "task_count": 4,
+      "train_states": 24,
+      "validation_states": 8,
+      "unique_states": 32,
+      "revisions": [
+        {
+          "version": "v5",
+          "per_task": [
+            {
+              "task": 10,
+              "sampler": {
+                "native": 0.0004049020353704691,
+                "asbs": 0.0006387889734469354,
+                "gaussian": 3.0249491373979254e-06,
+                "rwr": 0.00018087041098624468,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0002441894612275064,
+                "head_native_fit_energy": 0.00024166596995200962,
+                "head_asbs_fit_energy": 0.0002813881728798151
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.41610169410705566
+            },
+            {
+              "task": 11,
+              "sampler": {
+                "native": 0.00012041816080454737,
+                "asbs": 4.777219510287978e-05,
+                "gaussian": 9.805444278754294e-05,
+                "rwr": 8.910497126635164e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 6.957137520657852e-05,
+                "head_native_fit_energy": 1.8226619431516156e-05,
+                "head_asbs_fit_energy": 1.03517304523848e-05
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.4935702234506607
+            },
+            {
+              "task": 14,
+              "sampler": {
+                "native": 9.793945355340838e-05,
+                "asbs": 7.978467328939587e-05,
+                "gaussian": 0.0004816371656488627,
+                "rwr": 0.00022551027359440923,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.00013827419024892151,
+                "head_native_fit_energy": 0.00017318558820988983,
+                "head_asbs_fit_energy": 0.00010402931366115808
+              },
+              "verified_train_targets": 4,
+              "proxy_concordance": 0.5889830589294434
+            },
+            {
+              "task": 19,
+              "sampler": {
+                "native": 0.0,
+                "asbs": 0.0,
+                "gaussian": 0.0,
+                "rwr": 1.0068655683426186e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0,
+                "head_native_fit_energy": 0.0,
+                "head_asbs_fit_energy": 0.0
+              },
+              "verified_train_targets": 0,
+              "proxy_concordance": 0.5
+            }
+          ],
+          "sampler": {
+            "native": 0.0001558149124321062,
+            "asbs": 0.00019158646045980277,
+            "gaussian": 0.0001456791393934509,
+            "rwr": 0.00012638857788260793,
+            "direct_clip_reference": 0.0
+          },
+          "heads": {
+            "head_original_energy": 0.00011300875667075161,
+            "head_native_fit_energy": 0.0001082695443983539,
+            "head_asbs_fit_energy": 9.89423042483395e-05
+          },
+          "verified_train_targets": 6
+        },
+        {
+          "version": "v6",
+          "per_task": [
+            {
+              "task": 10,
+              "sampler": {
+                "native": 0.0004049020353704691,
+                "asbs": 0.0005960508715361357,
+                "gaussian": 3.606303835113067e-06,
+                "rwr": 0.00012627222167793661,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0002441894612275064,
+                "head_native_fit_energy": 0.00024166596995200962,
+                "head_asbs_fit_energy": 0.0002837596694007516
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.41610169410705566
+            },
+            {
+              "task": 11,
+              "sampler": {
+                "native": 0.00012041816080454737,
+                "asbs": 4.833415005123243e-05,
+                "gaussian": 0.0001088832359528169,
+                "rwr": 9.433382365386933e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 6.957137520657852e-05,
+                "head_native_fit_energy": 1.8226619431516156e-05,
+                "head_asbs_fit_energy": 1.0357049177400768e-05
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.4935702234506607
+            },
+            {
+              "task": 14,
+              "sampler": {
+                "native": 9.793945355340838e-05,
+                "asbs": 8.565249299863353e-05,
+                "gaussian": 0.0005071614286862314,
+                "rwr": 0.0001846562372520566,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.00013827419024892151,
+                "head_native_fit_energy": 0.00017318558820988983,
+                "head_asbs_fit_energy": 0.00010488941916264594
+              },
+              "verified_train_targets": 4,
+              "proxy_concordance": 0.5889830589294434
+            },
+            {
+              "task": 19,
+              "sampler": {
+                "native": 0.0,
+                "asbs": 0.0,
+                "gaussian": 0.0,
+                "rwr": 1.0068655683426186e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0,
+                "head_native_fit_energy": 0.0,
+                "head_asbs_fit_energy": 0.0
+              },
+              "verified_train_targets": 0,
+              "proxy_concordance": 0.5
+            }
+          ],
+          "sampler": {
+            "native": 0.0001558149124321062,
+            "asbs": 0.0001825093786465004,
+            "gaussian": 0.00015491274211854034,
+            "rwr": 0.00010383273456682218,
+            "direct_clip_reference": 0.0
+          },
+          "heads": {
+            "head_original_energy": 0.00011300875667075161,
+            "head_native_fit_energy": 0.0001082695443983539,
+            "head_asbs_fit_energy": 9.975153443519957e-05
+          },
+          "verified_train_targets": 6
+        }
+      ],
+      "latest_revision": "v6",
+      "head_trainable_parameters": 32800,
+      "relative_changes": {
+        "sampler_vs_native": 0.17132163923030075,
+        "head_vs_original": -0.11731145997983716,
+        "head_vs_native_fit": -0.07867410923808993
+      },
+      "conclusion": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
+      "boundaries": [
+        "指标仅为首个动作计划的命令幅度惩罚，越低越好；不是物理速度、碰撞、安全率或任务成功率。",
+        "v5 与 v6 复用全部 32 个开发状态。v6 修正能量尺度与额外径向惩罚；不是独立验证。",
+        "只有 6/24 个训练状态提供更低能量的纠错目标，其余回退原生动作；代理在验证状态上的排序信号较弱。",
+        "高斯与 RWR 使用同一真实反馈库，但代理梯度预算不同；直接裁剪可让该指标归零，尚无任务保持保证。",
+        "本轮没有闭环任务回合，也没有语义 System 2 调用；不能推导教师介入减少。"
+      ],
+      "source": "paper_iclr2027/experiments/dual_route_20261014/RESULTS.json"
+    },
+    "closed_loop": {
+      "expected_episodes": 32,
+      "task_count": 4,
+      "paired_starts": 8,
+      "horizon": 400,
+      "replan_steps": 5,
+      "status": "planned",
+      "observed_utc": "2026-10-14T03:18:10.533425+00:00",
+      "completed_episodes": null,
+      "summary": "协议已定义；尚无运行回执。",
+      "per_arm": [
+        {
+          "arm": "native",
+          "label": "原生 π0",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "native_head",
+          "label": "原生目标微调对照",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "asbs_head",
+          "label": "ASBS 目标动作头",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "clip",
+          "label": "直接裁剪参照",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        }
+      ],
+      "paired_summary": [],
+      "modules": [
+        {
+          "name": "contracts",
+          "path": "src/embodied_asbs/post_training/contracts.py",
+          "purpose": "观测、动作、反馈与配对评估的数据契约",
+          "status": "planned"
+        },
+        {
+          "name": "energies",
+          "path": "src/embodied_asbs/post_training/energies.py",
+          "purpose": "可替换能量函数；当前仅命令幅度惩罚",
+          "status": "planned"
+        },
+        {
+          "name": "sampling",
+          "path": "src/embodied_asbs/post_training/sampling.py",
+          "purpose": "条件 ASBS 与高斯 / RWR 对照",
+          "status": "planned"
+        },
+        {
+          "name": "surrogate",
+          "path": "src/embodied_asbs/post_training/surrogate.py",
+          "purpose": "仅用训练集拟合可微能量代理",
+          "status": "planned"
+        },
+        {
+          "name": "pi0_head",
+          "path": "src/embodied_asbs/post_training/pi0_head.py",
+          "purpose": "原始动作输出投影的冻结、微调与恢复",
+          "status": "planned"
+        },
+        {
+          "name": "inference",
+          "path": "src/embodied_asbs/post_training/inference.py",
+          "purpose": "共享推理与闭环策略接口",
+          "status": "planned"
+        },
+        {
+          "name": "init_states",
+          "path": "src/embodied_asbs/post_training/init_states.py",
+          "purpose": "受限初始状态读取与状态一致性检查",
+          "status": "planned"
+        }
+      ],
+      "mechanism_tests": null,
+      "boundary": "4 个任务 × 2 个既有开发初态 × 4 臂；每回合最多 400 步，每 5 步重规划。沿用既有动作头，不做新训练。仅 8 对初态，结果用于检查任务保持，不能作为独立泛化或完整安全证明。",
+      "source": "paper_iclr2027/experiments/closed_loop_20261014/PUBLIC_PROGRESS.json"
+    },
+    "design": {
+      "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
+      "implemented": "已有两种底座实现：冻结 π0 的条件 ASBS 噪声适配器；以筛选后的 ASBS 动作为目标，仅微调原 action_out_proj（32,800 参数）。",
+      "teacher": "当前监督来自解析命令能量。语义 System 2 教师、介入策略与调用减少指标尚未实现。",
+      "steps": [
+        {
+          "title": "观测与任务",
+          "detail": "冻结 π0 的视觉 / 语言特征，加本体状态；上下文 2,056 维。",
+          "status": "tested"
+        },
+        {
+          "title": "可替换反馈接口",
+          "detail": "当前为解析命令能量及可微代理；语义 System 2 是待接入扩展。",
+          "status": "implemented"
+        },
+        {
+          "title": "条件 ASBS",
+          "detail": "Dirac 起点，经条件漂移生成噪声，再送入冻结动作生成器；高斯与 RWR 并列对照。",
+          "status": "tested"
+        },
+        {
+          "title": "原动作头蒸馏",
+          "detail": "8 个候选中选能量更低动作，否则回退原生；原生目标微调作为控制。",
+          "status": "tested"
+        },
+        {
+          "title": "闭环任务保持",
+          "detail": "对同初态、同噪声比较原生、两种动作头与裁剪；以实际回合回执报告结果。",
+          "status": "planned"
+        }
+      ]
+    }
+  },
+  "historical_content": {
+    "verdict": "81次固定分叉均未恢复，3次基线复测一致；此案例的短前缀纠错未显示支持，ASBS收益仍未建立",
+    "current_task": "T-669（自然失败的严格重放与动作支持测试）",
+    "focus": [
+      "数值线：对数时间＋末端分层的困难上下文代价误差9.9%/15.8%/2.7%，改善明显但未过三种子联合门。",
+      "固定同运行时分叉：0/81恢复；原基线与替代前缀完整列出。旧输出跨进程一致性仍未解决。",
+      "静态接触检查发现碗倾斜并接触中层把手；下一步区分放置预防与连续重新摆正，不把零成功标签交给ASBS。"
     ]
   }
 }

@@ -17,8 +17,9 @@
       <div class="brand">ASBS<span>RESEARCH BOARD</span></div>
       <nav aria-label="主板导航">
         <a href="paper-figures.html">论文图稿 / 历史版本 ↗</a>
-        <a href="#overview">01 / 当前判断</a><a href="#method">02 / 方案与作用</a>
-        <a href="#campaign">03 / 今晚验证</a><a href="#milestones">04 / 证据门槛</a>
+        <a href="#overview">01 / 当前判断</a><a href="#research">02 / 最新实验</a>
+        <a href="#model-design">03 / 模型设计</a><a href="#code-structure">04 / 可复用代码</a>
+        <a href="#campaign">历史 / 验证窗口</a><a href="#milestones">历史 / 证据门槛</a>
         <a href="#evidence">05 / 已有结果</a><a href="#hypotheses">06 / 待反驳假说</a>
         <a href="#decisions">07 / 决策记录</a><a href="#maintenance">08 / 维护契约</a>
       </nav>
@@ -32,18 +33,43 @@
         <div class="verdict"><span class="label">当前判断</span><strong id="verdict"></strong><p id="goal"></p></div>
         <ul id="focus" class="focus"></ul>
       </header>
-      <section id="method"><h2><span>02</span>方案与 ASBS 的位置</h2>
+      <section id="research" aria-labelledby="research-title"><h2 id="research-title"><span>LIVE</span>最新实验与负结果</h2>
+        <p id="research-observed" class="muted">尚未取得当前研究回执。</p>
+        <div id="research-freshness" role="status" aria-live="polite"></div>
+        <h3>T-985 · 配对闭环任务保持检查</h3>
+        <div id="closed-loop-status" class="notice">等待协议与回执；不显示推测进度。</div>
+        <p id="closed-loop-boundary" class="muted"></p>
+        <div class="table-wrap"><table><caption>闭环四臂：缺失指标显示“未报告”，成功分母仅含完整回合</caption><thead><tr><th scope="col">策略</th><th scope="col">完整回合</th><th scope="col">任务成功</th><th scope="col">命令能量均值</th><th scope="col">回合步数均值</th></tr></thead><tbody id="closed-loop-rows"></tbody></table></div>
+        <div id="paired-results" class="muted"></div>
+        <h3>T-984 · 已完成的离线 π0 试验</h3>
+        <p id="offline-scope"></p><div id="offline-summary" class="research-metrics"></div>
+        <div class="table-wrap"><table><caption>同一开发面板的两次实现修订 · 命令幅度惩罚，越低越好</caption><thead><tr><th scope="col">修订 / 任务</th><th scope="col">原生采样</th><th scope="col">ASBS 适配器</th><th scope="col">高斯</th><th scope="col">RWR</th><th scope="col">原动作头</th><th scope="col">原生目标微调</th><th scope="col">ASBS 目标微调</th></tr></thead><tbody id="offline-rows"></tbody></table></div>
+        <ul id="research-boundaries" class="research-boundaries"></ul>
+      </section>
+      <section id="model-design"><h2><span>DESIGN</span>最新模型设计与验证边界</h2>
+        <p id="design-implemented"></p><p id="design-teacher" class="notice"></p>
+        <ol id="design-flow" class="design-flow" aria-label="从观测、反馈到采样与蒸馏的模型流程"></ol>
+      </section>
+      <section id="code-structure"><h2><span>CODE</span>可复用代码结构</h2>
+        <p>公共组件承载数据契约、能量、采样、推理和动作头训练；日期实验目录保留冻结协议与回执。扩展新的约束或教师时，通过接口替换反馈与能量。</p>
+        <div class="table-wrap"><table><caption>模块状态由本轮回执提供；“已测试”只指机制或接口检查</caption><thead><tr><th scope="col">相对代码路径</th><th scope="col">职责</th><th scope="col">状态</th></tr></thead><tbody id="module-rows"></tbody></table></div>
+        <p id="module-tests" class="muted"></p>
+        <p class="muted">实验：<code>paper_iclr2027/experiments/closed_loop_20261014/</code><br>历史输入：<code>paper_iclr2027/experiments/dual_route_20261014/</code><br>发布投影：<code>docs/asbs-dashboard/t985_projection.py</code></p>
+      </section>
+      <section id="method"><h2><span>ARCHIVE</span>历史方案与 ASBS 的位置</h2>
+        <p class="archive-label">以下保留早期方案与科学记录，不表示本轮任务状态。</p>
         <p>学习时把经过真实后果验证的反馈转成动作倾向；熟悉任务执行时撤去局部教师和 Q 查询。</p>
         <div id="flow" class="flow"></div>
         <p class="links"><a href="proposal.html">阅读完整方案 v2 ↗</a><span id="proposal-hash"></span></p>
       </section>
-      <section id="campaign"><h2><span>03</span>8 小时验证窗口</h2>
+      <section id="campaign"><h2><span>ARCHIVE</span>历史 8 小时验证窗口</h2>
+        <p class="archive-label">历史回执与计数；旧“运行中”标签仅描述当时快照，不表示进程现在仍在运行。</p>
         <div id="campaign-meta" class="notice">尚未取得运行快照，不能判断实验已启动。</div>
         <div id="counters" class="counter-grid"></div>
         <div class="table-wrap"><table><caption>实验队列：执行状态与科学判定分开</caption><thead><tr><th>实验</th><th>要回答的问题</th><th>执行</th><th>科学判定 / 进展</th></tr></thead><tbody id="jobs"></tbody></table></div>
-        <h3>本轮指标：只统计完整任务</h3><p id="findings-time" class="muted">尚无正式结果</p><div id="findings" class="milestone-grid"></div>
-        <h3>资源快照</h3><div id="resources" class="resource-grid"></div>
-        <p class="muted">只展示本轮登记任务。未分配的卡可能有其他项目，不能据此判断空闲或终止其进程。</p>
+        <h3>历史指标：只统计完整任务</h3><p id="findings-time" class="muted">尚无正式结果</p><div id="findings" class="milestone-grid"></div>
+        <h3>历史资源快照</h3><div id="resources" class="resource-grid"></div>
+        <p class="muted">只展示历史批次登记任务，不代表当前资源可用性。</p>
       </section>
       <section id="milestones"><h2><span>04</span>证据门槛</h2><div id="milestone-grid" class="milestone-grid"></div></section>
       <section id="evidence"><h2><span>05</span>已有结果，不混作新实验</h2>
