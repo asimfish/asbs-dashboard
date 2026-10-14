@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T03:30:21.619212+00:00",
+  "generated_utc": "2026-10-14T03:31:20.064077+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -844,7 +844,7 @@
       "horizon": 400,
       "replan_steps": 5,
       "status": "running",
-      "observed_utc": "2026-10-14T03:30:21.574799+00:00",
+      "observed_utc": "2026-10-14T03:31:19.976033+00:00",
       "completed_episodes": 0,
       "summary": "正在采集配对闭环结果；中报只供运行检查。",
       "per_arm": [
