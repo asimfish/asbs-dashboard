@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T18:26:30.047725+00:00",
+  "generated_utc": "2026-10-14T18:39:57.086909+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-995 / RoboDojo 原生闭环与可复用回合记录",
+    "current_task": "T-995 / RoboDojo 原生闭环；T-997 初始化诊断",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
       "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
-      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。",
+      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：RUNNING，完成 0/4 次，执行错误 0；不增加任务回合数。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。",
       "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。"
     ],
     "method": [
@@ -1184,10 +1184,10 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T18:13:16.922024+00:00",
+      "observed_utc": "2026-10-14T18:38:37.360600+00:00",
       "status": "succeeded",
       "summary": "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：RUNNING，完成 0/4 次，执行错误 0；不增加任务回合数。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。",
       "retention": "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。",
       "stages": [
         {
@@ -1201,6 +1201,12 @@
           "scale": "5 维各 1 回合；完成 5 / 错误 0 / 待返回 0",
           "question": "官方观测、动作和结果是否接通？",
           "status": "succeeded"
+        },
+        {
+          "name": "诊断 · 初始化可重复性",
+          "scale": "0/4 次，0任务动作",
+          "question": "变化来自布局、指令、物理状态还是相机？",
+          "status": "running"
         },
         {
           "name": "R1/R2 · 在线纠错与搜索对照",
@@ -1274,9 +1280,14 @@
           "path": "src/embodied_asbs/benchmarks/robodojo/capture.py",
           "purpose": "可重放的策略可见输入/噪声/动作；6项CPU检查与独立真实采集验证",
           "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/reset_probe.py",
+          "purpose": "分别比较指令、本体状态、图像及可读取物理字段；不冒充完整状态恢复",
+          "status": "tested"
         }
       ],
-      "observation_label": "真实模型、RTX 相机与 RoboDojo R0 回执",
+      "observation_label": "原生结果、数据重放与初始化诊断回执",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -1302,6 +1313,19 @@
         "cpu_checks": 6,
         "actual_captured_episodes": 2,
         "in_current_r0": false
+      },
+      "reset_diagnostic": {
+        "schema": "t997.reset.v1",
+        "platform_status": "RUNNING",
+        "observed_utc": "2026-10-14T18:38:37.360600+00:00",
+        "reset_probes": 0,
+        "expected_probes": 4,
+        "execution_errors": 0,
+        "cpu_checks": 7,
+        "policy_calls": 0,
+        "task_commands": 0,
+        "completed_episodes": 0,
+        "comparisons": []
       }
     }
   },
