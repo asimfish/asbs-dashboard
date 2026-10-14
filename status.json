@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T03:44:58.075784+00:00",
+  "generated_utc": "2026-10-14T03:52:15.131873+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -8,10 +8,10 @@
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
     "current_task": "T-985 / 当前闭环检查；T-984 / 已完成离线双实现试验",
-    "verdict": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
+    "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
-      "T-985：平台已结束作业，但回合日志尚未取回；结果待核验，不能据此判定实验成功。",
+      "T-985：32 个闭环回合已核验；最新闭环证据优先于较早离线指标。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
     ],
     "method": [
@@ -843,65 +843,65 @@
       "paired_starts": 8,
       "horizon": 400,
       "replan_steps": 5,
-      "status": "verification_pending",
-      "observed_utc": "2026-10-14T03:44:34.730189+00:00",
-      "completed_episodes": 0,
-      "summary": "平台已结束作业，但回合日志尚未取回；结果待核验，不能据此判定实验成功。",
+      "status": "succeeded",
+      "observed_utc": "2026-10-14T03:48:48.089124+00:00",
+      "completed_episodes": 32,
+      "summary": "登记回合已完成；执行完成与科学结论分别判读。",
       "per_arm": [
         {
           "arm": "native",
           "label": "原生 π0",
-          "completed": 0,
-          "successes": 0,
-          "mean_command_energy": null,
-          "mean_episode_steps": null
+          "completed": 8,
+          "successes": 5,
+          "mean_command_energy": 0.008476487404728075,
+          "mean_episode_steps": 269.625
         },
         {
           "arm": "native_head",
           "label": "原生目标微调对照",
-          "completed": 0,
-          "successes": 0,
-          "mean_command_energy": null,
-          "mean_episode_steps": null
+          "completed": 8,
+          "successes": 2,
+          "mean_command_energy": 0.009428694437570337,
+          "mean_episode_steps": 334.375
         },
         {
           "arm": "asbs_head",
           "label": "ASBS 目标动作头",
-          "completed": 0,
-          "successes": 0,
-          "mean_command_energy": null,
-          "mean_episode_steps": null
+          "completed": 8,
+          "successes": 1,
+          "mean_command_energy": 0.009330399883986288,
+          "mean_episode_steps": 364.75
         },
         {
           "arm": "clip",
           "label": "直接裁剪参照",
-          "completed": 0,
-          "successes": 0,
-          "mean_command_energy": null,
-          "mean_episode_steps": null
+          "completed": 8,
+          "successes": 2,
+          "mean_command_energy": 0.0,
+          "mean_episode_steps": 336.25
         }
       ],
       "paired_summary": [
         {
           "arm": "native_head",
           "label": "原生目标微调对照",
-          "pairs": 0,
-          "success_delta": null,
-          "mean_command_energy_delta": null
+          "pairs": 8,
+          "success_delta": -0.375,
+          "mean_command_energy_delta": 0.0009522070328422608
         },
         {
           "arm": "asbs_head",
           "label": "ASBS 目标动作头",
-          "pairs": 0,
-          "success_delta": null,
-          "mean_command_energy_delta": null
+          "pairs": 8,
+          "success_delta": -0.5,
+          "mean_command_energy_delta": 0.0008539124792582129
         },
         {
           "arm": "clip",
           "label": "直接裁剪参照",
-          "pairs": 0,
-          "success_delta": null,
-          "mean_command_energy_delta": null
+          "pairs": 8,
+          "success_delta": -0.375,
+          "mean_command_energy_delta": -0.008476487404728075
         }
       ],
       "modules": [
@@ -962,7 +962,13 @@
       ],
       "mechanism_tests": 12,
       "boundary": "4 个任务 × 2 个既有开发初态 × 4 臂；每回合最多 400 步，每 5 步重规划。沿用既有动作头，不做新训练。仅 8 对初态，结果用于检查任务保持，不能作为独立泛化或完整安全证明。",
-      "source": "paper_iclr2027/experiments/closed_loop_20261014/PUBLIC_PROGRESS.json"
+      "source": "paper_iclr2027/experiments/closed_loop_20261014/PUBLIC_PROGRESS.json",
+      "conclusion": {
+        "status": "failed",
+        "success_difference": -4,
+        "energy_relative_change": 0.10073895453226434,
+        "text": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。"
+      }
     },
     "design": {
       "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
@@ -992,7 +998,7 @@
         {
           "title": "闭环任务保持",
           "detail": "对同初态、同噪声比较原生、两种动作头与裁剪；以实际回合回执报告结果。",
-          "status": "verification_pending"
+          "status": "succeeded"
         }
       ]
     }

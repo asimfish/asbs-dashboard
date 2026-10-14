@@ -31,6 +31,7 @@
     const off=research.offline,c=research.closed_loop,d=research.design;
     $("research-observed").textContent="闭环回执 "+time(c.observed_utc)+" · 离线结果 "+time(off.observed_utc)+"；快照生成时间不替代实验观测时间。";
     const state=$("closed-loop-status");state.replaceChildren(pill(c.status),node("strong"," "+count(c.completed_episodes)+" / "+c.expected_episodes+" 回合"),node("p",c.summary));
+    $("closed-loop-conclusion").textContent=c.conclusion?.text||"";
     $("closed-loop-boundary").textContent=c.boundary;
     list("closed-loop-rows",c.per_arm,row=>{const tr=node("tr");tr.append(node("th",row.label),node("td",count(row.completed)+" / 8"),node("td",row.successes===null?"未报告":count(row.successes)+" / "+count(row.completed)),node("td",metric(row.mean_command_energy)),node("td",row.mean_episode_steps===null?"未报告":row.mean_episode_steps.toFixed(1)));tr.firstChild.scope="row";return tr;});
     $("paired-results").replaceChildren(...(c.paired_summary.length?c.paired_summary.map(row=>node("p",row.label+" − 原生："+row.pairs+" 对初态，成功率差 "+percent(row.success_delta)+"；命令能量差 "+metric(row.mean_command_energy_delta)+"。")):[node("p","尚无完整配对对比；缺失结果不填零。") ]));
