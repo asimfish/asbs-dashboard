@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T06:41:52.084174+00:00",
+  "generated_utc": "2026-10-14T06:42:54.581103+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -1013,8 +1013,8 @@
       "expected_episodes": 500,
       "eval_repeats": 1,
       "training_seeds": 0,
-      "status": "running",
-      "observed_utc": "2026-10-14T06:41:52.037355+00:00",
+      "status": "failed",
+      "observed_utc": "2026-10-14T06:42:54.535267+00:00",
       "completed_episodes": 0,
       "successes": 0,
       "errors": 0,
@@ -1086,7 +1086,7 @@
       ],
       "complete": false,
       "success_rate": null,
-      "summary": "原生基线已有运行状态，尚无完整回合回执；实际模型执行仍须日志确认，不作正式成功率。",
+      "summary": "本轮执行未完成；有效回合和执行错误分别保留，不作正式成功率或方法比较。",
       "boundary": "固定预训练 π0 一份，所有任务使用同一 checkpoint；本轮新增训练种子为 0。历史暴露情况未知，不能称为无泄漏的新留出集。只评估任务完成，不代表物理安全。",
       "pilot_boundary": "此前是 4 个任务 × 每任务 2 个初态 = 8 个开发初态；4 个策略合计 32 回合。属于工程诊断，不能据此给出正式 benchmark 成功率。",
       "checkpoint_boundary": "T-984 / T-985 的动作头按 4 个任务分别微调，并非统一模型。后续方法评估须冻结一个 checkpoint，再在全部任务上评估；禁止逐任务挑选最优动作头。",
