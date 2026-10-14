@@ -62,16 +62,18 @@
     list("offline-summary",[["ASBS 适配器 vs 原生",off.relative_changes.sampler_vs_native],["ASBS 动作头 vs 原模型",off.relative_changes.head_vs_original],["ASBS 动作头 vs 原生目标微调",off.relative_changes.head_vs_native_fit]],item=>{const el=node("article",undefined,"card");el.append(node("h3",item[0]),node("strong",percent(item[1]),item[1]>0?"negative-result":""),node("p","v6 的任务宏平均命令能量相对变化"));return el;});
     const rows=[];for(const rev of off.revisions){for(const row of [...rev.per_task,{task:"宏平均",sampler:rev.sampler,heads:rev.heads}]){const tr=node("tr");tr.append(node("th",rev.version+" / "+row.task));tr.firstChild.scope="row";for(const value of [row.sampler.native,row.sampler.asbs,row.sampler.gaussian,row.sampler.rwr,row.heads.head_original_energy,row.heads.head_native_fit_energy,row.heads.head_asbs_fit_energy])tr.append(node("td",metric(value)));rows.push(tr);}}
     $("offline-rows").replaceChildren(...rows);list("research-boundaries",off.boundaries,item=>node("li",item));
-    $("design-implemented").textContent=d.implemented+(research.standard_eval?.preservation_design?" "+research.standard_eval.preservation_design:"");$("design-teacher").textContent=d.teacher;
+    $("design-implemented").textContent=d.implemented+" "+(research.preservation?.summary||research.standard_eval?.preservation_design||"");$("design-teacher").textContent=d.teacher;
     list("design-flow",d.steps,item=>{const el=node("li",undefined,"flow-item");el.append(pill(item.status),node("h3",item.title),node("p",item.detail));return el;});
-    list("module-rows",[...c.modules,...(research.standard_eval?.evaluation_modules||[])],item=>{const tr=node("tr"),path=node("th"),state=node("td");path.scope="row";path.append(node("code",item.path));state.append(pill(item.status));tr.append(path,node("td",item.purpose),state);return tr;});
+    list("module-rows",[...c.modules,...(research.standard_eval?.evaluation_modules||[]),...(research.preservation?.modules||[])],item=>{const tr=node("tr"),path=node("th"),state=node("td");path.scope="row";path.append(node("code",item.path));state.append(pill(item.status));tr.append(path,node("td",item.purpose),state);return tr;});
     $("module-tests").textContent=c.mechanism_tests===null?"本轮模块测试回执尚未报告。":"本轮模块机制检查："+c.mechanism_tests+" 项通过；不等于任务收益或安全能力通过。";
     if(research.standard_eval?.evaluation_tests)$("module-tests").textContent+=" 标准评估组件："+research.standard_eval.evaluation_tests+" 项通过，另有实际运行入口的错误计数/恢复集成检查。";
+    if(research.preservation)$("module-tests").textContent+=" 保持性 v2："+research.preservation.cpu_tests+" 项 CPU 合同检查通过。"+research.preservation.boundary;
   }
   function render(data){
     if(!data||data.schema_version!==1||!data.content)throw new Error("snapshot schema mismatch");
     if(data.research&&(data.research.schema_version!==1||!data.research.offline||!data.research.closed_loop))throw new Error("research schema mismatch");
     if(data.research?.standard_eval&&data.research.standard_eval.schema!=="t987.standard-eval-public.v1")throw new Error("standard evaluation schema mismatch");
+    if(data.research?.preservation&&data.research.preservation.schema!=="t990.implementation.v1")throw new Error("preservation schema mismatch");
     latest=data;const c=data.content,r=data.runtime||{};
     $("subtitle").textContent=c.subtitle;$("version").textContent=c.proposal_version;
     $("updated").textContent="快照 "+time(data.generated_utc);$("verdict").textContent=c.verdict;$("goal").textContent=c.goal;
@@ -95,9 +97,10 @@
   function newerSnapshot(data){
     if(!latest)return true;
     if(latest.research?.standard_eval&&!data?.research?.standard_eval)return false;
+    if(latest.research?.preservation&&!data?.research?.preservation)return false;
     const oldGenerated=Date.parse(latest.generated_utc),newGenerated=Date.parse(data?.generated_utc);
     if(Number.isFinite(oldGenerated)&&(!Number.isFinite(newGenerated)||newGenerated<oldGenerated))return false;
-    for(const key of ["closed_loop","standard_eval"]){
+    for(const key of ["closed_loop","standard_eval","preservation"]){
       const oldObserved=Date.parse(latest.research?.[key]?.observed_utc),newObserved=Date.parse(data?.research?.[key]?.observed_utc);
       if(Number.isFinite(oldObserved)&&(!Number.isFinite(newObserved)||newObserved<oldObserved))return false;
     }

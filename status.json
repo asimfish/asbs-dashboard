@@ -1,16 +1,17 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T06:43:11.827550+00:00",
+  "generated_utc": "2026-10-14T11:26:53.026739+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-987 / 标准套件评估；T-985 / 已完成小样本负结果",
+    "current_task": "T-990 / 保持性实现 CPU 验证；T-987 / 500 回合基线已完成",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 0 / 500 回合。",
+      "当前推进：验证原生能力保持，再做任务后果纠错和统一模型训练；语义 System2 蒸馏待接入。",
+      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 500 / 500 回合。",
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
       "T-985：32 个闭环回合已核验；最新闭环证据优先于较早离线指标。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
@@ -1013,80 +1014,80 @@
       "expected_episodes": 500,
       "eval_repeats": 1,
       "training_seeds": 0,
-      "status": "failed",
-      "observed_utc": "2026-10-14T06:42:54.535267+00:00",
-      "completed_episodes": 0,
-      "successes": 0,
+      "status": "succeeded",
+      "observed_utc": "2026-10-14T08:10:27.591214+00:00",
+      "completed_episodes": 500,
+      "successes": 487,
       "errors": 0,
       "coverage": {
-        "observed_tasks": 0,
-        "observed_unique_starts": 0
+        "observed_tasks": 10,
+        "observed_unique_starts": 500
       },
       "per_task": [
         {
           "task_id": 0,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 49,
           "errors": 0
         },
         {
           "task_id": 1,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 50,
           "errors": 0
         },
         {
           "task_id": 2,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 50,
           "errors": 0
         },
         {
           "task_id": 3,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 50,
           "errors": 0
         },
         {
           "task_id": 4,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 47,
           "errors": 0
         },
         {
           "task_id": 5,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 47,
           "errors": 0
         },
         {
           "task_id": 6,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 50,
           "errors": 0
         },
         {
           "task_id": 7,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 50,
           "errors": 0
         },
         {
           "task_id": 8,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 48,
           "errors": 0
         },
         {
           "task_id": 9,
-          "completed": 0,
-          "successes": 0,
+          "completed": 50,
+          "successes": 46,
           "errors": 0
         }
       ],
-      "complete": false,
-      "success_rate": null,
-      "summary": "本轮执行未完成；有效回合和执行错误分别保留，不作正式成功率或方法比较。",
+      "complete": true,
+      "success_rate": 0.974,
+      "summary": "原生 π0 的 10 个 Spatial 任务、500 个回合已完整核验；这是基线复现结果，尚无 ASBS 效益结论。",
       "boundary": "固定预训练 π0 一份，所有任务使用同一 checkpoint；本轮新增训练种子为 0。历史暴露情况未知，不能称为无泄漏的新留出集。只评估任务完成，不代表物理安全。",
       "pilot_boundary": "此前是 4 个任务 × 每任务 2 个初态 = 8 个开发初态；4 个策略合计 32 回合。属于工程诊断，不能据此给出正式 benchmark 成功率。",
       "checkpoint_boundary": "T-984 / T-985 的动作头按 4 个任务分别微调，并非统一模型。后续方法评估须冻结一个 checkpoint，再在全部任务上评估；禁止逐任务挑选最优动作头。",
@@ -1120,7 +1121,7 @@
           "starts_per_task": 50,
           "episodes_per_model": 500,
           "horizon": 220,
-          "status": "planned"
+          "status": "succeeded"
         },
         {
           "suite": "libero_object",
@@ -1153,6 +1154,35 @@
       "seed_plan": "后续方法确认计划：每种方法 3 个独立训练种子，每个模型完整评估 4 套件，共 2,000 回合 / 模型。该计划尚未完成，不计入当前证据；重复评估不增加独立初态数。",
       "settings": "openpi 参照：每任务 50 个 trials、每次执行 5 步动作、初始化等待 10 步；各套件时长上限分别为 220 / 280 / 300 / 520 步。",
       "source_url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/examples/libero/main.py"
+    },
+    "preservation": {
+      "schema": "t990.implementation.v1",
+      "status": "tested",
+      "observed_utc": "2026-10-14T11:23:52.252089+00:00",
+      "cpu_tests": 11,
+      "legacy_tests": 12,
+      "summary": "保持性训练 v2 已实现并通过 CPU 合同检查：零合格纠错直接保留原模型；保持目标使用冻结原速度场；跨任务共用一个动作头，按任务和初态平衡回放。实际 π0 同噪声输出与闭环保持性尚未验证；尚无语义 System2 提供器。",
+      "boundary": "测试使用真实 Torch 和合成策略接口；没有新增预训练模型微调、仿真回合或安全收益证据。",
+      "modules": [
+        {
+          "name": "contracts",
+          "path": "src/embodied_asbs/post_training_v2/contracts.py",
+          "purpose": "绑定纠错来源、上下文与配对续执行回执；排除仅能量下降的标签",
+          "status": "tested"
+        },
+        {
+          "name": "cache",
+          "path": "src/embodied_asbs/post_training_v2/cache.py",
+          "purpose": "缓存同一前向特征上的冻结原模型输出与纠错目标",
+          "status": "tested"
+        },
+        {
+          "name": "fitter",
+          "path": "src/embodied_asbs/post_training_v2/fitter.py",
+          "purpose": "零纠错不更新；全局动作头、均衡保持与失败时保留原参数",
+          "status": "tested"
+        }
+      ]
     }
   },
   "historical_content": {
