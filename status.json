@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-09-16T10:45:12.583495+00:00",
+  "generated_utc": "2026-10-14T03:24:45.717254+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
-    "subtitle": "从外部纠错，到冻结 VLA 的自主恢复",
-    "goal": "形成可被独立验证的 ICLR 级贡献；录用不是当前已达成的结果。",
-    "proposal_version": "v2 · 2026-09-16",
-    "current_task": "T-669（自然失败的严格重放与动作支持测试）",
-    "verdict": "81次固定分叉均未恢复，3次基线复测一致；此案例的短前缀纠错未显示支持，ASBS收益仍未建立",
+    "subtitle": "真实 π0 后训练 · 可复用实验组件 · 配对闭环验证",
+    "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
+    "proposal_version": "研究进展 · 2026-10-14",
+    "current_task": "T-985 / 当前闭环检查；T-984 / 已完成离线双实现试验",
+    "verdict": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
     "focus": [
-      "数值线：对数时间＋末端分层的困难上下文代价误差9.9%/15.8%/2.7%，改善明显但未过三种子联合门。",
-      "固定同运行时分叉：0/81恢复；原基线与替代前缀完整列出。旧输出跨进程一致性仍未解决。",
-      "静态接触检查发现碗倾斜并接触中层把手；下一步区分放置预防与连续重新摆正，不把零成功标签交给ASBS。"
+      "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
+      "T-985：协议已定义；尚无运行回执。",
+      "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
     ],
     "method": [
       {
@@ -635,6 +635,341 @@
         "boundary": "单个事后选定失败布局；仅检验采样动作支持，未训练ASBS或反馈模型。",
         "status": "partial"
       }
+    ]
+  },
+  "research": {
+    "schema_version": 1,
+    "offline": {
+      "status": "succeeded",
+      "observed_utc": "2026-10-13T18:06:15.059222+00:00",
+      "task_count": 4,
+      "train_states": 24,
+      "validation_states": 8,
+      "unique_states": 32,
+      "revisions": [
+        {
+          "version": "v5",
+          "per_task": [
+            {
+              "task": 10,
+              "sampler": {
+                "native": 0.0004049020353704691,
+                "asbs": 0.0006387889734469354,
+                "gaussian": 3.0249491373979254e-06,
+                "rwr": 0.00018087041098624468,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0002441894612275064,
+                "head_native_fit_energy": 0.00024166596995200962,
+                "head_asbs_fit_energy": 0.0002813881728798151
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.41610169410705566
+            },
+            {
+              "task": 11,
+              "sampler": {
+                "native": 0.00012041816080454737,
+                "asbs": 4.777219510287978e-05,
+                "gaussian": 9.805444278754294e-05,
+                "rwr": 8.910497126635164e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 6.957137520657852e-05,
+                "head_native_fit_energy": 1.8226619431516156e-05,
+                "head_asbs_fit_energy": 1.03517304523848e-05
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.4935702234506607
+            },
+            {
+              "task": 14,
+              "sampler": {
+                "native": 9.793945355340838e-05,
+                "asbs": 7.978467328939587e-05,
+                "gaussian": 0.0004816371656488627,
+                "rwr": 0.00022551027359440923,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.00013827419024892151,
+                "head_native_fit_energy": 0.00017318558820988983,
+                "head_asbs_fit_energy": 0.00010402931366115808
+              },
+              "verified_train_targets": 4,
+              "proxy_concordance": 0.5889830589294434
+            },
+            {
+              "task": 19,
+              "sampler": {
+                "native": 0.0,
+                "asbs": 0.0,
+                "gaussian": 0.0,
+                "rwr": 1.0068655683426186e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0,
+                "head_native_fit_energy": 0.0,
+                "head_asbs_fit_energy": 0.0
+              },
+              "verified_train_targets": 0,
+              "proxy_concordance": 0.5
+            }
+          ],
+          "sampler": {
+            "native": 0.0001558149124321062,
+            "asbs": 0.00019158646045980277,
+            "gaussian": 0.0001456791393934509,
+            "rwr": 0.00012638857788260793,
+            "direct_clip_reference": 0.0
+          },
+          "heads": {
+            "head_original_energy": 0.00011300875667075161,
+            "head_native_fit_energy": 0.0001082695443983539,
+            "head_asbs_fit_energy": 9.89423042483395e-05
+          },
+          "verified_train_targets": 6
+        },
+        {
+          "version": "v6",
+          "per_task": [
+            {
+              "task": 10,
+              "sampler": {
+                "native": 0.0004049020353704691,
+                "asbs": 0.0005960508715361357,
+                "gaussian": 3.606303835113067e-06,
+                "rwr": 0.00012627222167793661,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0002441894612275064,
+                "head_native_fit_energy": 0.00024166596995200962,
+                "head_asbs_fit_energy": 0.0002837596694007516
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.41610169410705566
+            },
+            {
+              "task": 11,
+              "sampler": {
+                "native": 0.00012041816080454737,
+                "asbs": 4.833415005123243e-05,
+                "gaussian": 0.0001088832359528169,
+                "rwr": 9.433382365386933e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 6.957137520657852e-05,
+                "head_native_fit_energy": 1.8226619431516156e-05,
+                "head_asbs_fit_energy": 1.0357049177400768e-05
+              },
+              "verified_train_targets": 1,
+              "proxy_concordance": 0.4935702234506607
+            },
+            {
+              "task": 14,
+              "sampler": {
+                "native": 9.793945355340838e-05,
+                "asbs": 8.565249299863353e-05,
+                "gaussian": 0.0005071614286862314,
+                "rwr": 0.0001846562372520566,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.00013827419024892151,
+                "head_native_fit_energy": 0.00017318558820988983,
+                "head_asbs_fit_energy": 0.00010488941916264594
+              },
+              "verified_train_targets": 4,
+              "proxy_concordance": 0.5889830589294434
+            },
+            {
+              "task": 19,
+              "sampler": {
+                "native": 0.0,
+                "asbs": 0.0,
+                "gaussian": 0.0,
+                "rwr": 1.0068655683426186e-05,
+                "direct_clip_reference": 0.0
+              },
+              "heads": {
+                "head_original_energy": 0.0,
+                "head_native_fit_energy": 0.0,
+                "head_asbs_fit_energy": 0.0
+              },
+              "verified_train_targets": 0,
+              "proxy_concordance": 0.5
+            }
+          ],
+          "sampler": {
+            "native": 0.0001558149124321062,
+            "asbs": 0.0001825093786465004,
+            "gaussian": 0.00015491274211854034,
+            "rwr": 0.00010383273456682218,
+            "direct_clip_reference": 0.0
+          },
+          "heads": {
+            "head_original_energy": 0.00011300875667075161,
+            "head_native_fit_energy": 0.0001082695443983539,
+            "head_asbs_fit_energy": 9.975153443519957e-05
+          },
+          "verified_train_targets": 6
+        }
+      ],
+      "latest_revision": "v6",
+      "head_trainable_parameters": 32800,
+      "relative_changes": {
+        "sampler_vs_native": 0.17132163923030075,
+        "head_vs_original": -0.11731145997983716,
+        "head_vs_native_fit": -0.07867410923808993
+      },
+      "conclusion": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
+      "boundaries": [
+        "指标仅为首个动作计划的命令幅度惩罚，越低越好；不是物理速度、碰撞、安全率或任务成功率。",
+        "v5 与 v6 复用全部 32 个开发状态。v6 修正能量尺度与额外径向惩罚；不是独立验证。",
+        "只有 6/24 个训练状态提供更低能量的纠错目标，其余回退原生动作；代理在验证状态上的排序信号较弱。",
+        "高斯与 RWR 使用同一真实反馈库，但代理梯度预算不同；直接裁剪可让该指标归零，尚无任务保持保证。",
+        "本轮没有闭环任务回合，也没有语义 System 2 调用；不能推导教师介入减少。"
+      ],
+      "source": "paper_iclr2027/experiments/dual_route_20261014/RESULTS.json"
+    },
+    "closed_loop": {
+      "expected_episodes": 32,
+      "task_count": 4,
+      "paired_starts": 8,
+      "horizon": 400,
+      "replan_steps": 5,
+      "status": "planned",
+      "observed_utc": "2026-10-14T03:18:10.533425+00:00",
+      "completed_episodes": null,
+      "summary": "协议已定义；尚无运行回执。",
+      "per_arm": [
+        {
+          "arm": "native",
+          "label": "原生 π0",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "native_head",
+          "label": "原生目标微调对照",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "asbs_head",
+          "label": "ASBS 目标动作头",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        },
+        {
+          "arm": "clip",
+          "label": "直接裁剪参照",
+          "completed": null,
+          "successes": null,
+          "mean_command_energy": null,
+          "mean_episode_steps": null
+        }
+      ],
+      "paired_summary": [],
+      "modules": [
+        {
+          "name": "contracts",
+          "path": "src/embodied_asbs/post_training/contracts.py",
+          "purpose": "观测、动作、反馈与配对评估的数据契约",
+          "status": "tested"
+        },
+        {
+          "name": "energies",
+          "path": "src/embodied_asbs/post_training/energies.py",
+          "purpose": "可替换能量函数；当前仅命令幅度惩罚",
+          "status": "tested"
+        },
+        {
+          "name": "sampling",
+          "path": "src/embodied_asbs/post_training/sampling.py",
+          "purpose": "条件 ASBS 与高斯 / RWR 对照",
+          "status": "tested"
+        },
+        {
+          "name": "surrogate",
+          "path": "src/embodied_asbs/post_training/surrogate.py",
+          "purpose": "仅用训练集拟合可微能量代理",
+          "status": "tested"
+        },
+        {
+          "name": "pi0_head",
+          "path": "src/embodied_asbs/post_training/pi0_head.py",
+          "purpose": "原始动作输出投影的冻结、微调与恢复",
+          "status": "tested"
+        },
+        {
+          "name": "inference",
+          "path": "src/embodied_asbs/post_training/inference.py",
+          "purpose": "共享推理与闭环策略接口",
+          "status": "tested"
+        },
+        {
+          "name": "init_states",
+          "path": "src/embodied_asbs/post_training/init_states.py",
+          "purpose": "受限初始状态读取与状态一致性检查",
+          "status": "tested"
+        }
+      ],
+      "mechanism_tests": 12,
+      "boundary": "4 个任务 × 2 个既有开发初态 × 4 臂；每回合最多 400 步，每 5 步重规划。沿用既有动作头，不做新训练。仅 8 对初态，结果用于检查任务保持，不能作为独立泛化或完整安全证明。",
+      "source": "paper_iclr2027/experiments/closed_loop_20261014/PUBLIC_PROGRESS.json"
+    },
+    "design": {
+      "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
+      "implemented": "已有两种底座实现：冻结 π0 的条件 ASBS 噪声适配器；以筛选后的 ASBS 动作为目标，仅微调原 action_out_proj（32,800 参数）。",
+      "teacher": "当前监督来自解析命令能量。语义 System 2 教师、介入策略与调用减少指标尚未实现。",
+      "steps": [
+        {
+          "title": "观测与任务",
+          "detail": "冻结 π0 的视觉 / 语言特征，加本体状态；上下文 2,056 维。",
+          "status": "tested"
+        },
+        {
+          "title": "可替换反馈接口",
+          "detail": "当前为解析命令能量及可微代理；语义 System 2 是待接入扩展。",
+          "status": "implemented"
+        },
+        {
+          "title": "条件 ASBS",
+          "detail": "Dirac 起点，经条件漂移生成噪声，再送入冻结动作生成器；高斯与 RWR 并列对照。",
+          "status": "tested"
+        },
+        {
+          "title": "原动作头蒸馏",
+          "detail": "8 个候选中选能量更低动作，否则回退原生；原生目标微调作为控制。",
+          "status": "tested"
+        },
+        {
+          "title": "闭环任务保持",
+          "detail": "对同初态、同噪声比较原生、两种动作头与裁剪；以实际回合回执报告结果。",
+          "status": "planned"
+        }
+      ]
+    }
+  },
+  "historical_content": {
+    "verdict": "81次固定分叉均未恢复，3次基线复测一致；此案例的短前缀纠错未显示支持，ASBS收益仍未建立",
+    "current_task": "T-669（自然失败的严格重放与动作支持测试）",
+    "focus": [
+      "数值线：对数时间＋末端分层的困难上下文代价误差9.9%/15.8%/2.7%，改善明显但未过三种子联合门。",
+      "固定同运行时分叉：0/81恢复；原基线与替代前缀完整列出。旧输出跨进程一致性仍未解决。",
+      "静态接触检查发现碗倾斜并接触中层把手；下一步区分放置预防与连续重新摆正，不把零成功标签交给ASBS。"
     ]
   }
 }
