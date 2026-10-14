@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="snapshot-api-source" content="https://api.github.com/repos/asimfish/asbs-dashboard/contents/status.json?ref=data">
   <meta name="snapshot-source" content="https://raw.githubusercontent.com/asimfish/asbs-dashboard/data/status.json">
   <meta name="referrer" content="no-referrer">
   <title>ASBS 研究主板</title>
@@ -29,6 +30,7 @@
       <header id="overview"><div class="eyebrow">FROZEN VLA · FEEDBACK · ASBS</div>
         <h1>ASBS 研究主板</h1><p id="subtitle" class="subtitle"></p>
         <div class="meta"><span id="version"></span><span id="updated"></span><button id="refresh" type="button">刷新快照</button></div>
+        <p id="refresh-note" class="muted" role="status" aria-live="polite"></p>
         <div id="freshness" role="status" aria-live="polite"></div>
         <div class="verdict"><span class="label">当前判断</span><strong id="verdict"></strong><p id="goal"></p></div>
         <ul id="focus" class="focus"></ul>

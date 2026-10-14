@@ -6,22 +6,23 @@
   const pill=status=>node("span",labels[status]||"未知",`pill ${Object.hasOwn(labels,status)?status:"planned"}`);
   const list=(id,rows,render)=>$(id).replaceChildren(...rows.map(render));
   const time=iso=>{if(!iso)return "未记录";const date=new Date(iso);return Number.isFinite(date.getTime())?date.toLocaleString("zh-CN",{timeZone:"Asia/Shanghai",hour12:false})+" UTC+8":"未记录";};
-  let latest=null,fetchFailed=false;
+  let latest=null,fetchFailed=false,sourceDegraded=false,refreshing=false,nextAttempt=0,apiRetryAt=0;
+  const refreshInterval=90000;
   const metric=value=>typeof value==="number"&&Number.isFinite(value)?(value===0?"0":value.toExponential(3)):"未报告";
   const count=value=>typeof value==="number"&&Number.isFinite(value)?String(value):"未报告";
   const percent=value=>typeof value==="number"&&Number.isFinite(value)?(value>0?"+":"")+(value*100).toFixed(1)+"%":"未报告";
   function researchFreshness(failed){
     const research=latest?.research;if(!research)return;
     const c=research.closed_loop,age=Date.now()-Date.parse(c.observed_utc);
-    const active=["running","queued"].includes(c.status),stale=failed||!Number.isFinite(age)||age< -120000||(active&&age>600000);
+    const active=["running","queued"].includes(c.status),stale=failed||sourceDegraded||!Number.isFinite(age)||age< -120000||(active&&age>600000);
     $("research-freshness").className=stale?"stale":"";
-    $("research-freshness").textContent=stale?"当前回执缺失、过期或读取失败：保留最后已知值，不推断任务仍在运行。":active?"运行进度来自最近回执；页面每 60 秒读取一次公开快照。":"显示最近一次实验回执；后续实验状态以新的回执为准。";
+    $("research-freshness").textContent=stale?"当前回执缺失、过期或更新渠道异常：保留最后已知值，不推断任务仍在运行。":active?"运行进度来自最近回执；页面每 90 秒查询公开数据接口，接口缓存可能带来额外延迟。":"显示最近一次实验回执；后续实验状态以新的回执为准。";
   }
   function freshness(failed=fetchFailed){
     const age=latest?Date.now()-Date.parse(latest.generated_utc):Infinity;
-    const stale=failed||!Number.isFinite(age)||age>600000||age< -120000;
+    const stale=failed||sourceDegraded||!Number.isFinite(age)||age>600000||age< -120000;
     $("freshness").className=stale?"stale":"";
-    $("freshness").textContent=stale?"快照过期或更新不可达：以下是最后已知状态，不代表进程仍在运行。":"快照新鲜；仍须以任务回执和科学指标判断结果。";
+    $("freshness").textContent=sourceDegraded?"主要更新接口不可达或受限：当前保留备用或最后已知快照，不能保证最新。":stale?"快照过期或更新不可达：以下是最后已知状态，不代表进程仍在运行。":"快照在有效时间范围内；仍须以回执时间和科学指标判断结果。";
     researchFreshness(failed);
   }
   function renderResearch(research){
@@ -65,8 +66,49 @@
     list("resources",r.resources||[],x=>{const el=node("article",undefined,"resource");el.append(node("b",x.name),node("p",x.summary),node("p","采集时间："+time(x.observed_utc)));return el;});
     renderResearch(data.research);freshness();
   }
-  async function refresh(){try{const endpoint=document.querySelector('meta[name="snapshot-source"]')?.content||"status.json";const response=await fetch(endpoint+"?v="+Date.now(),{cache:"no-store"});if(!response.ok)throw new Error("snapshot unavailable");const data=await response.json();render(data);fetchFailed=false;freshness();}catch(_){if(!latest&&window.ASBS_SNAPSHOT)render(window.ASBS_SNAPSHOT);fetchFailed=location.protocol!=="file:";freshness();}}
+  function newerSnapshot(data){
+    if(!latest)return true;
+    const oldGenerated=Date.parse(latest.generated_utc),newGenerated=Date.parse(data?.generated_utc);
+    if(Number.isFinite(oldGenerated)&&(!Number.isFinite(newGenerated)||newGenerated<oldGenerated))return false;
+    const oldObserved=Date.parse(latest.research?.closed_loop?.observed_utc),newObserved=Date.parse(data?.research?.closed_loop?.observed_utc);
+    return !Number.isFinite(oldObserved)||(Number.isFinite(newObserved)&&newObserved>=oldObserved);
+  }
+  async function fetchSnapshot(endpoint,api=false){
+    const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+    try{
+      const response=await fetch(endpoint+(endpoint.includes("?")?"&":"?")+"v="+Date.now(),{cache:"no-store",signal:controller.signal,...(api?{headers:{Accept:"application/vnd.github.raw+json"}}:{})});
+      if(!response.ok){
+        if(api&&(response.status===403||response.status===429)){
+          const reset=Number(response.headers.get("X-RateLimit-Reset"))*1000,retry=Number(response.headers.get("Retry-After"))*1000;
+          apiRetryAt=Math.max(Date.now()+refreshInterval,Number.isFinite(reset)?reset:0,Number.isFinite(retry)?Date.now()+retry:0);
+        }
+        throw new Error("snapshot unavailable");
+      }
+      const data=await response.json();
+      if(!newerSnapshot(data))throw new Error("snapshot observation regressed");
+      render(data);return true;
+    }finally{clearTimeout(timeout);}
+  }
+  async function refresh(){
+    if(refreshing)return;
+    if(Date.now()<nextAttempt){$("refresh-note").textContent="每 90 秒更新；避免重复消耗公开接口额度。下一次可查询约在 "+Math.ceil((nextAttempt-Date.now())/1000)+" 秒后。";return;}
+    refreshing=true;nextAttempt=Date.now()+refreshInterval-1000;
+    const api=document.querySelector('meta[name="snapshot-api-source"]')?.content;
+    const fallback=document.querySelector('meta[name="snapshot-source"]')?.content||"status.json";
+    try{
+      if(api&&Date.now()>=apiRetryAt){
+        try{await fetchSnapshot(api,true);sourceDegraded=false;fetchFailed=false;$("refresh-note").textContent="通过公开数据接口更新 · 每 90 秒查询 · 不使用账户凭据。";return;}
+        catch(_){sourceDegraded=true;}
+      }else if(api){sourceDegraded=true;}
+      await fetchSnapshot(fallback);fetchFailed=false;
+      $("refresh-note").textContent=api?"备用快照可能受 CDN 缓存影响；已保留回执时间，较旧数据不会覆盖较新结果。":"每 90 秒读取快照。";
+    }catch(_){
+      if(!latest&&window.ASBS_SNAPSHOT)render(window.ASBS_SNAPSHOT);
+      fetchFailed=location.protocol!=="file:";
+      $("refresh-note").textContent="更新暂不可达，或返回数据早于已显示的回执；已保留最后已知结果。";
+    }finally{refreshing=false;freshness();}
+  }
   $("refresh").addEventListener("click",refresh);
   if(window.ASBS_SNAPSHOT)render(window.ASBS_SNAPSHOT);
-  refresh();setInterval(refresh,60000);setInterval(()=>freshness(),30000);
+  refresh();setInterval(refresh,refreshInterval);setInterval(()=>freshness(),30000);
 })();
