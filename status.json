@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T07:59:48.830789+00:00",
+  "generated_utc": "2026-10-14T08:00:49.202696+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -10,7 +10,7 @@
     "current_task": "T-987 / 标准套件评估；T-985 / 已完成小样本负结果",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 468 / 500 回合。",
+      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 473 / 500 回合。",
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
       "T-985：32 个闭环回合已核验；最新闭环证据优先于较早离线指标。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
@@ -1014,13 +1014,13 @@
       "eval_repeats": 1,
       "training_seeds": 0,
       "status": "running",
-      "observed_utc": "2026-10-14T07:59:17.885552+00:00",
-      "completed_episodes": 468,
-      "successes": 459,
+      "observed_utc": "2026-10-14T08:00:04.152930+00:00",
+      "completed_episodes": 473,
+      "successes": 464,
       "errors": 0,
       "coverage": {
         "observed_tasks": 10,
-        "observed_unique_starts": 468
+        "observed_unique_starts": 473
       },
       "per_task": [
         {
@@ -1073,14 +1073,14 @@
         },
         {
           "task_id": 8,
-          "completed": 39,
-          "successes": 39,
+          "completed": 42,
+          "successes": 42,
           "errors": 0
         },
         {
           "task_id": 9,
-          "completed": 29,
-          "successes": 27,
+          "completed": 31,
+          "successes": 29,
           "errors": 0
         }
       ],
