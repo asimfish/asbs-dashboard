@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T18:17:47.568179+00:00",
+  "generated_utc": "2026-10-14T18:19:01.184030+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -1282,7 +1282,7 @@
         "execution_errors": 0,
         "expected_episodes": 2,
         "platform_status": "RUNNING",
-        "observed_utc": "2026-10-14T18:17:04.967193+00:00",
+        "observed_utc": "2026-10-14T18:18:15.417504+00:00",
         "cpu_checks": 6,
         "actual_captured_episodes": 0,
         "in_current_r0": false
