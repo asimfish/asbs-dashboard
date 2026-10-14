@@ -1,15 +1,16 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T03:52:15.131873+00:00",
+  "generated_utc": "2026-10-14T06:38:28.031908+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
-    "subtitle": "真实 π0 后训练 · 可复用实验组件 · 配对闭环验证",
+    "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-985 / 当前闭环检查；T-984 / 已完成离线双实现试验",
+    "current_task": "T-987 / 标准套件评估；T-985 / 已完成小样本负结果",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
+      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 未报告 / 500 回合。",
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
       "T-985：32 个闭环回合已核验；最新闭环证据优先于较早离线指标。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
@@ -1001,6 +1002,135 @@ window.ASBS_SNAPSHOT = {
           "status": "succeeded"
         }
       ]
+    },
+    "standard_eval": {
+      "schema": "t987.standard-eval-public.v1",
+      "suite": "libero_spatial",
+      "model": "pi0_libero",
+      "task_count": 10,
+      "init_per_task": 50,
+      "unique_starts": 500,
+      "expected_episodes": 500,
+      "eval_repeats": 1,
+      "training_seeds": 0,
+      "status": "planned",
+      "observed_utc": null,
+      "completed_episodes": null,
+      "successes": null,
+      "errors": null,
+      "coverage": {
+        "observed_tasks": null,
+        "observed_unique_starts": null
+      },
+      "per_task": [
+        {
+          "task_id": 0,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 1,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 2,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 3,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 4,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 5,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 6,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 7,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 8,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        },
+        {
+          "task_id": 9,
+          "completed": null,
+          "successes": null,
+          "errors": null
+        }
+      ],
+      "complete": false,
+      "success_rate": null,
+      "summary": "计划复现原生 π0 的完整 Spatial 套件；500 是目标回合数，尚不代表已完成。",
+      "boundary": "固定预训练 π0 一份，所有任务使用同一 checkpoint；本轮新增训练种子为 0。历史暴露情况未知，不能称为无泄漏的新留出集。只评估任务完成，不代表物理安全。",
+      "pilot_boundary": "此前是 4 个任务 × 每任务 2 个初态 = 8 个开发初态；4 个策略合计 32 回合。属于工程诊断，不能据此给出正式 benchmark 成功率。",
+      "checkpoint_boundary": "T-984 / T-985 的动作头按 4 个任务分别微调，并非统一模型。后续方法评估须冻结一个 checkpoint，再在全部任务上评估；禁止逐任务挑选最优动作头。",
+      "standard_plan": [
+        {
+          "suite": "libero_spatial",
+          "label": "Spatial",
+          "tasks": 10,
+          "starts_per_task": 50,
+          "episodes_per_model": 500,
+          "horizon": 220,
+          "status": "planned"
+        },
+        {
+          "suite": "libero_object",
+          "label": "Object",
+          "tasks": 10,
+          "starts_per_task": 50,
+          "episodes_per_model": 500,
+          "horizon": 280,
+          "status": "planned"
+        },
+        {
+          "suite": "libero_goal",
+          "label": "Goal",
+          "tasks": 10,
+          "starts_per_task": 50,
+          "episodes_per_model": 500,
+          "horizon": 300,
+          "status": "planned"
+        },
+        {
+          "suite": "libero_10",
+          "label": "Long / LIBERO-10",
+          "tasks": 10,
+          "starts_per_task": 50,
+          "episodes_per_model": 500,
+          "horizon": 520,
+          "status": "planned"
+        }
+      ],
+      "seed_plan": "后续方法确认计划：每种方法 3 个独立训练种子，每个模型完整评估 4 套件，共 2,000 回合 / 模型。该计划尚未完成，不计入当前证据；重复评估不增加独立初态数。",
+      "settings": "openpi 参照：每任务 50 个 trials、每次执行 5 步动作、初始化等待 10 步；各套件时长上限分别为 220 / 280 / 300 / 520 步。",
+      "source_url": "https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/main.py"
     }
   },
   "historical_content": {

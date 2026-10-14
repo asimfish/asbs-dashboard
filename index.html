@@ -19,6 +19,7 @@
       <nav aria-label="主板导航">
         <a href="paper-figures.html">论文图稿 / 历史版本 ↗</a>
         <a href="#overview">01 / 当前判断</a><a href="#research">02 / 最新实验</a>
+        <a href="#standard-eval">标准评估 / 覆盖与协议</a>
         <a href="#model-design">03 / 模型设计</a><a href="#code-structure">04 / 可复用代码</a>
         <a href="#campaign">历史 / 验证窗口</a><a href="#milestones">历史 / 证据门槛</a>
         <a href="#evidence">05 / 已有结果</a><a href="#hypotheses">06 / 待反驳假说</a>
@@ -35,10 +36,26 @@
         <div class="verdict"><span class="label">当前判断</span><strong id="verdict"></strong><p id="goal"></p></div>
         <ul id="focus" class="focus"></ul>
       </header>
-      <section id="research" aria-labelledby="research-title"><h2 id="research-title"><span>LIVE</span>最新实验与负结果</h2>
+      <section id="standard-eval" aria-labelledby="standard-title"><h2 id="standard-title"><span>EVALUATION</span>标准评估：计划规模与实际覆盖</h2>
+        <p id="standard-observed" class="muted">尚未取得标准评估回执。</p>
+        <div id="standard-freshness" role="status" aria-live="polite"></div>
+        <h3>当前批次 · 原生 π0 / LIBERO-Spatial</h3>
+        <div id="standard-status" class="notice">等待协议与回执。</div>
+        <div id="standard-counts" class="evaluation-metrics"></div>
+        <p id="standard-result" class="standard-result"></p>
+        <p id="standard-boundary" class="research-boundaries"></p>
+        <div class="table-wrap"><table><caption>当前基线逐任务回执 · 未完成批次不产出正式整体成功率</caption><thead><tr><th scope="col">任务</th><th scope="col">有效回合 / 目标</th><th scope="col">成功 / 有效回合</th><th scope="col">执行错误</th></tr></thead><tbody id="standard-task-rows"></tbody></table></div>
+        <h3>方法确认的完整评估计划 · 尚未完成</h3>
+        <div class="table-wrap"><table><caption>每一份冻结模型均评估以下四套件；表中数字是协议目标</caption><thead><tr><th scope="col">套件</th><th scope="col">任务数</th><th scope="col">初态 / 任务</th><th scope="col">回合 / 模型</th><th scope="col">步数上限</th></tr></thead><tbody id="standard-plan-rows"></tbody></table></div>
+        <p id="standard-seeds" class="muted"></p><p id="standard-settings" class="muted"></p>
+        <p class="links"><a href="https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/main.py" rel="noreferrer">openpi 官方评估入口 ↗</a></p>
+        <p id="standard-pilot" class="research-boundaries"></p>
+        <p id="standard-checkpoint" class="research-boundaries"></p>
+      </section>
+      <section id="research" aria-labelledby="research-title"><h2 id="research-title"><span>EVIDENCE</span>已完成的工程诊断与负结果</h2>
         <p id="research-observed" class="muted">尚未取得当前研究回执。</p>
         <div id="research-freshness" role="status" aria-live="polite"></div>
-        <h3>T-985 · 配对闭环任务保持检查</h3>
+        <h3>T-985 · 4 任务 × 2 初态的配对工程诊断</h3>
         <div id="closed-loop-status" class="notice">等待协议与回执；不显示推测进度。</div>
         <p id="closed-loop-conclusion" class="research-boundaries"></p>
         <p id="closed-loop-boundary" class="muted"></p>
@@ -51,12 +68,14 @@
       </section>
       <section id="model-design"><h2><span>DESIGN</span>最新模型设计与验证边界</h2>
         <p id="design-implemented"></p><p id="design-teacher" class="notice"></p>
+        <p class="research-boundaries">标准方法比较采用统一 checkpoint：同一模型覆盖全部任务。旧试验的动作头按任务分别训练，仅保留为机制与退化诊断。</p>
         <ol id="design-flow" class="design-flow" aria-label="从观测、反馈到采样与蒸馏的模型流程"></ol>
       </section>
       <section id="code-structure"><h2><span>CODE</span>可复用代码结构</h2>
         <p>公共组件承载数据契约、能量、采样、推理和动作头训练；日期实验目录保留冻结协议与回执。扩展新的约束或教师时，通过接口替换反馈与能量。</p>
         <ul class="research-boundaries">
           <li><code>src/</code>：可复用算法与模型组件，供不同实验入口调用。</li>
+          <li><code>src/embodied_asbs/evaluation/</code>：标准评估的任务队列、统计与断点回执；独立于具体训练方法。</li>
           <li><code>paper_iclr2027/experiments/</code>：分次冻结的配置、运行入口、协议与结果回执。</li>
           <li><code>docs/</code>：模型与接口设计，以及公开网页和经过筛选的结果投影。</li>
         </ul>

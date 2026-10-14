@@ -17,6 +17,13 @@
     const active=["running","queued"].includes(c.status),stale=failed||sourceDegraded||!Number.isFinite(age)||age< -120000||(active&&age>600000);
     $("research-freshness").className=stale?"stale":"";
     $("research-freshness").textContent=stale?"当前回执缺失、过期或更新渠道异常：保留最后已知值，不推断任务仍在运行。":active?"运行进度来自最近回执；页面每 90 秒查询公开数据接口，接口缓存可能带来额外延迟。":"显示最近一次实验回执；后续实验状态以新的回执为准。";
+    const standard=research.standard_eval;
+    if(standard){
+      const elapsed=Date.now()-Date.parse(standard.observed_utc),running=standard.status==="running";
+      const outdated=failed||sourceDegraded||!Number.isFinite(elapsed)||elapsed< -120000||(running&&elapsed>600000);
+      $("standard-freshness").className=outdated?"stale":"";
+      $("standard-freshness").textContent=outdated?"标准评估回执缺失、过期或更新渠道异常：保留最后已知值；不据此推断仍在运行。":running?"标准评估按最近回执更新，页面每 90 秒查询；缓存可能带来额外延迟。":"显示最近一次标准评估回执；计划数与观测数分别列出。";
+    }
   }
   function freshness(failed=fetchFailed){
     const age=latest?Date.now()-Date.parse(latest.generated_utc):Infinity;
@@ -25,10 +32,26 @@
     $("freshness").textContent=sourceDegraded?"主要更新接口不可达或受限：当前保留备用或最后已知快照，不能保证最新。":stale?"快照过期或更新不可达：以下是最后已知状态，不代表进程仍在运行。":"快照在有效时间范围内；仍须以回执时间和科学指标判断结果。";
     researchFreshness(failed);
   }
+  function renderStandard(s){
+    if(!s){$("standard-status").textContent="尚无标准评估协议与回执。";return;}
+    $("standard-observed").textContent="标准评估回执 "+time(s.observed_utc)+"；与早期小样本试验分别记录。";
+    $("standard-status").replaceChildren(pill(s.status),node("p",s.summary));
+    const values=[["已观测任务 / 计划任务",count(s.coverage.observed_tasks)+" / "+s.task_count],
+      ["已观测独立初态 / 计划初态",count(s.coverage.observed_unique_starts)+" / "+s.unique_starts],
+      ["有效回合 / 计划回合",count(s.completed_episodes)+" / "+s.expected_episodes],
+      ["执行错误（单列）",count(s.errors)],["评估重复次数（协议）",s.eval_repeats],["本轮新增训练种子",s.training_seeds]];
+    list("standard-counts",values,item=>{const el=node("article",undefined,"card");el.append(node("p",item[0]),node("strong",item[1]));return el;});
+    $("standard-result").textContent=s.complete&&s.success_rate!==null?"完整 Spatial 基线成功率："+(s.success_rate*100).toFixed(1)+"%（"+s.successes+" / "+s.completed_episodes+"；10 任务等权）。尚无 ASBS 对照结果。":"完整套件成功率：未报告；当前批次未完整核验，不将部分回合升级为正式结果。";
+    $("standard-boundary").textContent=s.boundary;
+    list("standard-task-rows",s.per_task,row=>{const tr=node("tr");tr.append(node("th","Spatial / "+row.task_id),node("td",count(row.completed)+" / "+s.init_per_task),node("td",row.successes===null?"未报告":count(row.successes)+" / "+count(row.completed)),node("td",count(row.errors)));tr.firstChild.scope="row";return tr;});
+    list("standard-plan-rows",s.standard_plan,row=>{const tr=node("tr");tr.append(node("th",row.label),node("td",row.tasks),node("td",row.starts_per_task),node("td",row.episodes_per_model),node("td",row.horizon));tr.firstChild.scope="row";return tr;});
+    for(const [id,key] of [["standard-seeds","seed_plan"],["standard-settings","settings"],["standard-pilot","pilot_boundary"],["standard-checkpoint","checkpoint_boundary"]])$(id).textContent=s[key];
+  }
   function renderResearch(research){
     if(!research)return;
     if(research.schema_version!==1||!research.offline||!research.closed_loop)throw new Error("research schema mismatch");
     const off=research.offline,c=research.closed_loop,d=research.design;
+    renderStandard(research.standard_eval);
     $("research-observed").textContent="闭环回执 "+time(c.observed_utc)+" · 离线结果 "+time(off.observed_utc)+"；快照生成时间不替代实验观测时间。";
     const state=$("closed-loop-status");state.replaceChildren(pill(c.status),node("strong"," "+count(c.completed_episodes)+" / "+c.expected_episodes+" 回合"),node("p",c.summary));
     $("closed-loop-conclusion").textContent=c.conclusion?.text||"";
@@ -47,6 +70,7 @@
   function render(data){
     if(!data||data.schema_version!==1||!data.content)throw new Error("snapshot schema mismatch");
     if(data.research&&(data.research.schema_version!==1||!data.research.offline||!data.research.closed_loop))throw new Error("research schema mismatch");
+    if(data.research?.standard_eval&&data.research.standard_eval.schema!=="t987.standard-eval-public.v1")throw new Error("standard evaluation schema mismatch");
     latest=data;const c=data.content,r=data.runtime||{};
     $("subtitle").textContent=c.subtitle;$("version").textContent=c.proposal_version;
     $("updated").textContent="快照 "+time(data.generated_utc);$("verdict").textContent=c.verdict;$("goal").textContent=c.goal;
@@ -69,10 +93,14 @@
   }
   function newerSnapshot(data){
     if(!latest)return true;
+    if(latest.research?.standard_eval&&!data?.research?.standard_eval)return false;
     const oldGenerated=Date.parse(latest.generated_utc),newGenerated=Date.parse(data?.generated_utc);
     if(Number.isFinite(oldGenerated)&&(!Number.isFinite(newGenerated)||newGenerated<oldGenerated))return false;
-    const oldObserved=Date.parse(latest.research?.closed_loop?.observed_utc),newObserved=Date.parse(data?.research?.closed_loop?.observed_utc);
-    return !Number.isFinite(oldObserved)||(Number.isFinite(newObserved)&&newObserved>=oldObserved);
+    for(const key of ["closed_loop","standard_eval"]){
+      const oldObserved=Date.parse(latest.research?.[key]?.observed_utc),newObserved=Date.parse(data?.research?.[key]?.observed_utc);
+      if(Number.isFinite(oldObserved)&&(!Number.isFinite(newObserved)||newObserved<oldObserved))return false;
+    }
+    return true;
   }
   async function fetchSnapshot(endpoint,api=false){
     const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
