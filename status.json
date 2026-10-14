@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T18:12:31.131673+00:00",
+  "generated_utc": "2026-10-14T18:17:47.568179+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -10,8 +10,8 @@
     "current_task": "T-995 / RoboDojo 原生闭环与可复用回合记录",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "RoboDojo r0_remaining_v2：完成 3/5，成功 1，执行错误 0，待返回 2。这批仅检查完整闭环，不发布正式成功率。",
-      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：RUNNING。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 可复用采集/重放模块通过6项CPU检查；真实采集与预训练重放待验证。",
+      "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
+      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：RUNNING，已核验 0/2 回合、0 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 真实采集与预训练重放待验证。",
       "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。"
     ],
     "method": [
@@ -1184,10 +1184,10 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T18:11:37.176024+00:00",
-      "status": "running",
-      "summary": "RoboDojo r0_remaining_v2：完成 3/5，成功 1，执行错误 0，待返回 2。这批仅检查完整闭环，不发布正式成功率。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：RUNNING。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 可复用采集/重放模块通过6项CPU检查；真实采集与预训练重放待验证。",
+      "observed_utc": "2026-10-14T18:13:16.922024+00:00",
+      "status": "succeeded",
+      "summary": "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：RUNNING，已核验 0/2 回合、0 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 真实采集与预训练重放待验证。",
       "retention": "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。",
       "stages": [
         {
@@ -1198,9 +1198,9 @@
         },
         {
           "name": "R0 · 接线与原生身份",
-          "scale": "5 维各 1 回合；完成 3 / 错误 0 / 待返回 2",
+          "scale": "5 维各 1 回合；完成 5 / 错误 0 / 待返回 0",
           "question": "官方观测、动作和结果是否接通？",
-          "status": "running"
+          "status": "succeeded"
         },
         {
           "name": "R1/R2 · 在线纠错与搜索对照",
@@ -1272,11 +1272,21 @@
         },
         {
           "path": "src/embodied_asbs/benchmarks/robodojo/capture.py",
-          "purpose": "可重放的策略可见输入/噪声/动作；6项CPU检查通过，尚未接入本轮R0",
+          "purpose": "可重放的策略可见输入/噪声/动作；6项CPU检查与独立真实采集验证",
           "status": "tested"
         }
       ],
-      "observation_label": "真实模型、RTX 相机与 RoboDojo R0 回执"
+      "observation_label": "真实模型、RTX 相机与 RoboDojo R0 回执",
+      "capture_component": {
+        "replay_verified_chunks": 0,
+        "execution_errors": 0,
+        "expected_episodes": 2,
+        "platform_status": "RUNNING",
+        "observed_utc": "2026-10-14T18:17:04.967193+00:00",
+        "cpu_checks": 6,
+        "actual_captured_episodes": 0,
+        "in_current_r0": false
+      }
     }
   },
   "historical_content": {
