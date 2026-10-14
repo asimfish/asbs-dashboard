@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T14:57:26.410505+00:00",
+  "generated_utc": "2026-10-14T16:45:22.792646+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-993 / RoboDojo 主评测迁移；T-992 / 保持性准入修复",
+    "current_task": "T-994 / RoboDojo 真实运行接入与增量实验",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "主评测转向 RoboDojo，停止扩展 LIBERO。已固定 42 基础任务、54 配置的官方清单；完整评测为每模型 6,300 回合，当前 RoboDojo 仿真回合为 0。",
-      "源码协议和统计检查已通过；Isaac 环境、官方双臂动作接口及全局 checkpoint 尚待接通。官方成功率与 Score 分别报告；安全事件需要独立测量，部分任务默认关闭自碰撞。",
-      "保持性 v2 的 CPU 检查保留为历史证据。T991发现非法参数在拒绝前触发前向；T992负责独立修复，尚未据此认定真实模型保持性通过。"
+      "主评测已转向 RoboDojo。新增下载校验、官方动作接口和原始结果导入模块；24 项 CPU 检查通过。真实 RoboDojo 回合仍为 0。",
+      "准备作业：平台显示运行中；已返回校验的权重文件 22/22，字节数 12,014,378,491。仿真资源已核验 9,133/15,365 个文件。失败分支：仿真安装；正在依据日志修复。修复分支执行完毕；任务闭环待验证。真实模型合成观测检查已通过；Isaac 实际任务、保持性训练和算法收益仍待验证。",
+      "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T14:56:59.067359+00:00",
-      "status": "planned",
-      "summary": "主评测转向 RoboDojo，停止扩展 LIBERO。已固定 42 基础任务、54 配置的官方清单；完整评测为每模型 6,300 回合，当前 RoboDojo 仿真回合为 0。",
-      "boundary": "源码协议和统计检查已通过；Isaac 环境、官方双臂动作接口及全局 checkpoint 尚待接通。官方成功率与 Score 分别报告；安全事件需要独立测量，部分任务默认关闭自碰撞。",
-      "retention": "保持性 v2 的 CPU 检查保留为历史证据。T991发现非法参数在拒绝前触发前向；T992负责独立修复，尚未据此认定真实模型保持性通过。",
+      "observed_utc": "2026-10-14T16:44:40.216797+00:00",
+      "status": "partial",
+      "summary": "主评测已转向 RoboDojo。新增下载校验、官方动作接口和原始结果导入模块；24 项 CPU 检查通过。真实 RoboDojo 回合仍为 0。",
+      "boundary": "准备作业：平台显示运行中；已返回校验的权重文件 22/22，字节数 12,014,378,491。仿真资源已核验 9,133/15,365 个文件。失败分支：仿真安装；正在依据日志修复。修复分支执行完毕；任务闭环待验证。真实模型合成观测检查已通过；Isaac 实际任务、保持性训练和算法收益仍待验证。",
+      "retention": "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。",
       "stages": [
+        {
+          "name": "准备 · 固定源码与推理权重",
+          "scale": "4 卡项目资源；22 个权重文件，约 12 GB",
+          "question": "运行环境和模型输入是否完整、可重复？不是算法实验。",
+          "status": "partial"
+        },
         {
           "name": "R0 · 接线与原生身份",
           "scale": "5 维各 1 回合",
@@ -1215,9 +1221,9 @@ window.ASBS_SNAPSHOT = {
           "status": "planned"
         },
         {
-          "name": "R5 · 完整确认",
-          "scale": "54 配置 × 原生回合数 × 3 评估种子 = 6,300",
-          "question": "冻结方法在完整五维覆盖上是否仍有效？",
+          "name": "R5 · 冻结后确认与完整报告",
+          "scale": "布局集 1/2 确认 4,200 回合；完整 0/1/2 报告 6,300",
+          "question": "未用于方法开发的布局上是否仍有效？完整报告标注开发暴露。",
           "status": "planned"
         }
       ],
@@ -1225,15 +1231,37 @@ window.ASBS_SNAPSHOT = {
         "ASBS 优势需由同反馈预算的 Gaussian / RWR / 直接约束对照证明，不能归因于更多查询。",
         "只巩固后果验证通过的纠错，并检验普通 BC、冻结场保持和接受机制的独立作用。",
         "记忆任务增加学生可见的历史状态；单帧动作头无法恢复未观察到的信息。",
-        "评估种子不等于训练种子；3 个独立拟合模型的完整确认是每方法 18,900 回合，尚未运行。"
+        "评估种子不等于训练种子；3 个独立拟合模型的完整确认是每方法 18,900 回合，尚未运行。",
+        "官方资源仅发布布局目录 0/1/2，旧 100/101 草案已更正；仍须核验实际布局内容是否重复。"
       ],
       "modules": [
         {
           "path": "src/embodied_asbs/benchmarks/robodojo/protocol.py",
           "purpose": "官方原生回合清单、单模型绑定、变体合并及缺失/错误分母",
           "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/staging.py",
+          "purpose": "独立数据盘、逐文件 SHA256、冲突保留及缓存路径",
+          "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/native.py",
+          "purpose": "官方三相机/双臂变换、显式噪声及观测动作记录；真实模型待验证",
+          "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/results.py",
+          "purpose": "实际布局绑定、Score 尺度、错误分母；拒绝 latest 替换",
+          "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/layouts.py",
+          "purpose": "固定官方 0/1/2 布局目录；布局集 0 开发，1/2 冻结后确认",
+          "status": "tested"
         }
-      ]
+      ],
+      "observation_label": "运行准备与代码检查回执"
     }
   },
   "historical_content": {

@@ -49,7 +49,7 @@
   }
   function renderRoboDojo(r){
     if(!r){$("robodojo-summary").textContent="尚无迁移协议回执。";return;}
-    $("robodojo-observed").textContent="协议检查回执 "+time(r.observed_utc)+"；不代表仿真已运行。";
+    $("robodojo-observed").textContent=(r.observation_label||"协议检查回执")+" "+time(r.observed_utc)+"；仿真完成量以回合记录为准。";
     for(const key of ["summary","boundary","retention"])$("robodojo-"+key).textContent=r[key];
     list("robodojo-stages",r.stages,row=>{const tr=node("tr"),state=node("td");state.append(pill(row.status));tr.append(node("th",row.name),node("td",row.scale),node("td",row.question),state);tr.firstChild.scope="row";return tr;});
     list("robodojo-hypotheses",r.hypotheses,item=>node("li",item));
