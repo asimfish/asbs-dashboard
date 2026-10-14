@@ -54,6 +54,11 @@
       </section>
       <section id="code-structure"><h2><span>CODE</span>可复用代码结构</h2>
         <p>公共组件承载数据契约、能量、采样、推理和动作头训练；日期实验目录保留冻结协议与回执。扩展新的约束或教师时，通过接口替换反馈与能量。</p>
+        <ul class="research-boundaries">
+          <li><code>src/</code>：可复用算法与模型组件，供不同实验入口调用。</li>
+          <li><code>paper_iclr2027/experiments/</code>：分次冻结的配置、运行入口、协议与结果回执。</li>
+          <li><code>docs/</code>：模型与接口设计，以及公开网页和经过筛选的结果投影。</li>
+        </ul>
         <div class="table-wrap"><table><caption>模块状态由本轮回执提供；“已测试”只指机制或接口检查</caption><thead><tr><th scope="col">相对代码路径</th><th scope="col">职责</th><th scope="col">状态</th></tr></thead><tbody id="module-rows"></tbody></table></div>
         <p id="module-tests" class="muted"></p>
         <p class="muted">实验：<code>paper_iclr2027/experiments/closed_loop_20261014/</code><br>历史输入：<code>paper_iclr2027/experiments/dual_route_20261014/</code><br>发布投影：<code>docs/asbs-dashboard/t985_projection.py</code></p>

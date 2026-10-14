@@ -1,6 +1,6 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T03:34:23.944857+00:00",
+  "generated_utc": "2026-10-14T03:44:58.075784+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -11,7 +11,7 @@ window.ASBS_SNAPSHOT = {
     "verdict": "ASBS 的稳定优势尚未建立。两种实现均为 2 个任务改善、1 个退化、1 个持平；动作头平均值有局部改善信号。",
     "focus": [
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
-      "T-985：正在采集配对闭环结果；中报只供运行检查。",
+      "T-985：平台已结束作业，但回合日志尚未取回；结果待核验，不能据此判定实验成功。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
     ],
     "method": [
@@ -843,10 +843,10 @@ window.ASBS_SNAPSHOT = {
       "paired_starts": 8,
       "horizon": 400,
       "replan_steps": 5,
-      "status": "running",
-      "observed_utc": "2026-10-14T03:34:23.899539+00:00",
+      "status": "verification_pending",
+      "observed_utc": "2026-10-14T03:44:34.730189+00:00",
       "completed_episodes": 0,
-      "summary": "正在采集配对闭环结果；中报只供运行检查。",
+      "summary": "平台已结束作业，但回合日志尚未取回；结果待核验，不能据此判定实验成功。",
       "per_arm": [
         {
           "arm": "native",
@@ -936,6 +936,12 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         },
         {
+          "name": "targets",
+          "path": "src/embodied_asbs/post_training/targets.py",
+          "purpose": "验证纠错目标是否改善能量，否则回退原生动作",
+          "status": "tested"
+        },
+        {
           "name": "inference",
           "path": "src/embodied_asbs/post_training/inference.py",
           "purpose": "共享推理与闭环策略接口",
@@ -945,6 +951,12 @@ window.ASBS_SNAPSHOT = {
           "name": "init_states",
           "path": "src/embodied_asbs/post_training/init_states.py",
           "purpose": "受限初始状态读取与状态一致性检查",
+          "status": "tested"
+        },
+        {
+          "name": "artifacts",
+          "path": "src/embodied_asbs/post_training/artifacts.py",
+          "purpose": "有大小上限的工件读取、哈希验证与规范 JSON",
           "status": "tested"
         }
       ],
@@ -980,7 +992,7 @@ window.ASBS_SNAPSHOT = {
         {
           "title": "闭环任务保持",
           "detail": "对同初态、同噪声比较原生、两种动作头与裁剪；以实际回合回执报告结果。",
-          "status": "running"
+          "status": "verification_pending"
         }
       ]
     }
