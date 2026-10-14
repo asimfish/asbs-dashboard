@@ -1,6 +1,6 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T06:38:28.031908+00:00",
+  "generated_utc": "2026-10-14T06:43:11.827550+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -10,7 +10,7 @@ window.ASBS_SNAPSHOT = {
     "current_task": "T-987 / 标准套件评估；T-985 / 已完成小样本负结果",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 未报告 / 500 回合。",
+      "T-987：10 个任务 × 50 个初态的原生基线；当前完成 0 / 500 回合。",
       "T-984：真实 π0、4 个任务、24 个训练状态与 8 个开发验证状态；v5/v6 复用同一数据。",
       "T-985：32 个闭环回合已核验；最新闭环证据优先于较早离线指标。",
       "模块实现、机制测试、任务收益分别记录；System 2 能力蒸馏仍需接入真实教师。"
@@ -1013,83 +1013,105 @@ window.ASBS_SNAPSHOT = {
       "expected_episodes": 500,
       "eval_repeats": 1,
       "training_seeds": 0,
-      "status": "planned",
-      "observed_utc": null,
-      "completed_episodes": null,
-      "successes": null,
-      "errors": null,
+      "status": "failed",
+      "observed_utc": "2026-10-14T06:42:54.535267+00:00",
+      "completed_episodes": 0,
+      "successes": 0,
+      "errors": 0,
       "coverage": {
-        "observed_tasks": null,
-        "observed_unique_starts": null
+        "observed_tasks": 0,
+        "observed_unique_starts": 0
       },
       "per_task": [
         {
           "task_id": 0,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 1,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 2,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 3,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 4,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 5,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 6,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 7,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 8,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         },
         {
           "task_id": 9,
-          "completed": null,
-          "successes": null,
-          "errors": null
+          "completed": 0,
+          "successes": 0,
+          "errors": 0
         }
       ],
       "complete": false,
       "success_rate": null,
-      "summary": "计划复现原生 π0 的完整 Spatial 套件；500 是目标回合数，尚不代表已完成。",
+      "summary": "本轮执行未完成；有效回合和执行错误分别保留，不作正式成功率或方法比较。",
       "boundary": "固定预训练 π0 一份，所有任务使用同一 checkpoint；本轮新增训练种子为 0。历史暴露情况未知，不能称为无泄漏的新留出集。只评估任务完成，不代表物理安全。",
       "pilot_boundary": "此前是 4 个任务 × 每任务 2 个初态 = 8 个开发初态；4 个策略合计 32 回合。属于工程诊断，不能据此给出正式 benchmark 成功率。",
       "checkpoint_boundary": "T-984 / T-985 的动作头按 4 个任务分别微调，并非统一模型。后续方法评估须冻结一个 checkpoint，再在全部任务上评估；禁止逐任务挑选最优动作头。",
+      "evaluation_modules": [
+        {
+          "name": "cohort",
+          "path": "src/embodied_asbs/evaluation/cohort.py",
+          "purpose": "冻结任务/初态/模型/运行配置身份",
+          "status": "tested"
+        },
+        {
+          "name": "statistics",
+          "path": "src/embodied_asbs/evaluation/statistics.py",
+          "purpose": "完整覆盖、逐任务统计与任务簇配对差异",
+          "status": "tested"
+        },
+        {
+          "name": "journal",
+          "path": "src/embodied_asbs/evaluation/journal.py",
+          "purpose": "带校验的持久记录、冲突拒绝与断点恢复",
+          "status": "tested"
+        }
+      ],
+      "evaluation_tests": 21,
+      "preservation_design": "保持性设计修订：旧原生目标重新拟合端点，真实记录中原参数梯度非零；这不是原函数保持。下一版零纠错跳过更新，保持项对齐冻结原模型在相同中间状态的输出。该修订尚未完成真实模型/闭环验证，不能称为已修复。",
       "standard_plan": [
         {
           "suite": "libero_spatial",
@@ -1130,7 +1152,7 @@ window.ASBS_SNAPSHOT = {
       ],
       "seed_plan": "后续方法确认计划：每种方法 3 个独立训练种子，每个模型完整评估 4 套件，共 2,000 回合 / 模型。该计划尚未完成，不计入当前证据；重复评估不增加独立初态数。",
       "settings": "openpi 参照：每任务 50 个 trials、每次执行 5 步动作、初始化等待 10 步；各套件时长上限分别为 220 / 280 / 300 / 520 步。",
-      "source_url": "https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/main.py"
+      "source_url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/examples/libero/main.py"
     }
   },
   "historical_content": {
