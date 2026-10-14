@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T17:08:03.120416+00:00",
+  "generated_utc": "2026-10-14T17:36:17.418460+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-994 / RoboDojo 真实运行接入与增量实验",
+    "current_task": "T-995 / RoboDojo 原生闭环与可复用回合记录",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "主评测已转向 RoboDojo。新增下载校验、官方动作接口和原始结果导入模块；24 项 CPU 检查通过。真实 RoboDojo 回合仍为 0。",
-      "准备作业：平台显示运行中；已返回校验的权重文件 22/22，字节数 12,014,378,491。仿真资源已核验 15,250/15,365 个文件。失败分支：仿真安装；正在依据日志修复。修复分支执行完毕；任务闭环待验证。真实模型合成观测检查已通过；Isaac 实际任务、保持性训练和算法收益仍待验证。",
+      "RoboDojo r0_v4：完成 0/5，成功 0，执行错误 1，待返回 4。这批仅检查完整闭环，不发布正式成功率。",
+      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。8 项回合记录/结果绑定检查通过。R0 平台状态：RUNNING。先前版本保留执行错误 3。stack_bowls：执行错误。ASBS 训练、真实 System2 和算法收益尚未验证。",
       "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。"
     ],
     "method": [
@@ -1184,23 +1184,23 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T17:06:46.600064+00:00",
-      "status": "partial",
-      "summary": "主评测已转向 RoboDojo。新增下载校验、官方动作接口和原始结果导入模块；24 项 CPU 检查通过。真实 RoboDojo 回合仍为 0。",
-      "boundary": "准备作业：平台显示运行中；已返回校验的权重文件 22/22，字节数 12,014,378,491。仿真资源已核验 15,250/15,365 个文件。失败分支：仿真安装；正在依据日志修复。修复分支执行完毕；任务闭环待验证。真实模型合成观测检查已通过；Isaac 实际任务、保持性训练和算法收益仍待验证。",
+      "observed_utc": "2026-10-14T17:35:42.093015+00:00",
+      "status": "failed",
+      "summary": "RoboDojo r0_v4：完成 0/5，成功 0，执行错误 1，待返回 4。这批仅检查完整闭环，不发布正式成功率。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。8 项回合记录/结果绑定检查通过。R0 平台状态：RUNNING。先前版本保留执行错误 3。stack_bowls：执行错误。ASBS 训练、真实 System2 和算法收益尚未验证。",
       "retention": "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。",
       "stages": [
         {
           "name": "准备 · 固定源码与推理权重",
           "scale": "4 卡项目资源；22 个权重文件，约 12 GB",
-          "question": "运行环境和模型输入是否完整、可重复？不是算法实验。",
-          "status": "partial"
+          "question": "权重、资源、真实模型推理与 RTX 渲染检查；不代表任务效果。",
+          "status": "succeeded"
         },
         {
           "name": "R0 · 接线与原生身份",
-          "scale": "5 维各 1 回合",
+          "scale": "5 维各 1 回合；完成 0 / 错误 1 / 待返回 4",
           "question": "官方观测、动作和结果是否接通？",
-          "status": "planned"
+          "status": "failed"
         },
         {
           "name": "R1/R2 · 在线纠错与搜索对照",
@@ -1247,7 +1247,7 @@
         },
         {
           "path": "src/embodied_asbs/benchmarks/robodojo/native.py",
-          "purpose": "官方三相机/双臂变换、显式噪声及观测动作记录；真实模型待验证",
+          "purpose": "官方三相机/双臂变换、配对噪声；真实模型合成观测推理通过",
           "status": "tested"
         },
         {
@@ -1259,9 +1259,14 @@
           "path": "src/embodied_asbs/benchmarks/robodojo/layouts.py",
           "purpose": "固定官方 0/1/2 布局目录；布局集 0 开发，1/2 冻结后确认",
           "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/benchmarks/robodojo/recording.py",
+          "purpose": "逐回合布局与模型绑定、连续动作日志、禁止错误后换布局",
+          "status": "tested"
         }
       ],
-      "observation_label": "运行准备与代码检查回执"
+      "observation_label": "真实模型、RTX 相机与 RoboDojo R0 回执"
     }
   },
   "historical_content": {
