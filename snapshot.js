@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T21:21:29.907938+00:00",
+  "generated_utc": "2026-10-15T21:41:49.839910+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1005 / 单次几何接触资格",
+    "current_task": "T-1006 / 轨迹诊断与CPU后继",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T1005单次接触资格：lift_or_co_motion_failed；局部抓取NOT_PASSED，两碗原语NOT_PASSED。不是完整任务/学生恢复/ASBS结果。",
-      "只左臂bowl1→bowl2；未抬升/随动不得运输，无自动重试/换候选。",
-      "T1003失败和T1004离线示教成果保留；20内容组/11未释放验证组不变，训练关闭。"
+      "T1006重放118控制：旧114/115帧高度不足，116首次越过24mm；持姿验证实际0控制。T1005未通过，后继物理NOT_RUN。",
+      "不改抓点/方向/51mm抬升/24mm阈值；新持姿观测尚未采集。",
+      "11/81attempt、8/57session不变；验证/拟合/学生恢复/ASBS未释放。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T21:20:23.862827+00:00",
+      "observed_utc": "2026-10-15T21:41:48.167555+00:00",
       "status": "succeeded",
-      "summary": "T1005单次接触资格：lift_or_co_motion_failed；局部抓取NOT_PASSED，两碗原语NOT_PASSED。不是完整任务/学生恢复/ASBS结果。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。",
+      "summary": "T1006重放118控制：旧114/115帧高度不足，116首次越过24mm；持姿验证实际0控制。T1005未通过，后继物理NOT_RUN。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。 根高度/OBB间隙不证明可靠夹持；CPU门通过不代表抓取修复。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P1 · 已有轨迹诊断与CPU后继",
+          "scale": "1纯CPU回收作业/0新物理控制",
+          "question": "旧窗口为何拒绝，能否用可重算证据分离运动与到达后稳定？",
+          "status": "succeeded"
+        },
         {
           "name": "P1 · 单次左臂接触资格",
           "scale": "至多1attempt/1session/800控制，无VLA",
@@ -1355,7 +1361,7 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         }
       ],
-      "observation_label": "T1005现有机器人几何驱动的单次仿真资格回执",
+      "observation_label": "已有轨迹只读诊断/CPU后继，未新增物理",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -3127,6 +3133,98 @@ window.ASBS_SNAPSHOT = {
         "evidence_boundary": "Remote parent verified real journals; compact receipt and hashes returned, not local full-journal replay",
         "source_bundle_sha256": "e83f6190b397802465df4eb222afdb56eeb8da7817fadc4d5edd5808f25e5af8",
         "protocol_sha256": "e2cfc0ea932c0845c5a35a4e670346084905a9070d28ba5f85c4018bcb64dc5b"
+      },
+      "p1_contact_diagnosis": {
+        "schema": "t1006.diagnosis.v1",
+        "observed_utc": "2026-10-15T21:41:48.167555+00:00",
+        "status": "PASS_V1_REPLAY_NOT_GRASP",
+        "original_status": "lift_or_co_motion_failed",
+        "controls_verified": 118,
+        "phase_costs": [
+          {
+            "phase": "approach",
+            "controls": 63,
+            "first_control": 1,
+            "last_control": 63,
+            "physical_seconds": 2.52
+          },
+          {
+            "phase": "descend",
+            "controls": 17,
+            "first_control": 64,
+            "last_control": 80,
+            "physical_seconds": 0.68
+          },
+          {
+            "phase": "close",
+            "controls": 25,
+            "first_control": 81,
+            "last_control": 105,
+            "physical_seconds": 1.0
+          },
+          {
+            "phase": "lift",
+            "controls": 13,
+            "first_control": 106,
+            "last_control": 118,
+            "physical_seconds": 0.52
+          },
+          {
+            "phase": "lift_verify",
+            "controls": 0,
+            "first_control": null,
+            "last_control": null,
+            "explanation": "v1 next_action transitioned and judged old lift samples before any hold control"
+          }
+        ],
+        "actual_control_dt_s": 0.04,
+        "initial_z_m": 0.7948155403137207,
+        "min_lift_m": 0.024,
+        "old_window_ids": [
+          114,
+          115,
+          116,
+          117,
+          118
+        ],
+        "rejecting_control_ids": [
+          114,
+          115
+        ],
+        "first_threshold_control": 116,
+        "old_grasp_replay": {
+          "kind": "OBSERVED_THIS_GRASP",
+          "window": 5,
+          "lifted": false,
+          "stable": true,
+          "position_residual_m": 0.000767033802261514,
+          "angle_residual_rad": 0.017673519616094042,
+          "co_motion": true,
+          "scope": "this instance and grasp only;not general calibration"
+        },
+        "lift_endpoint_error": {
+          "position_m": 0.0001420493700078124,
+          "orientation_rad": 0.000559072189230605
+        },
+        "source_bytes_read": 480064,
+        "successor_physical_status": "NOT_RUN",
+        "global_attempts": 11,
+        "global_teacher_sessions": 8,
+        "content_groups": 20,
+        "candidate_validation_groups": 11,
+        "recovery_job_status": "SUCCEEDED",
+        "platform_lifetime_seconds": 63.455,
+        "file_read_hash_seconds": 0.005389635916799307,
+        "allocated_gpus": 4,
+        "GPU_computation": 0,
+        "successful_return_bytes": 644321,
+        "new_physics": 0,
+        "new_ik": 0,
+        "new_fk": 0,
+        "new_VLA": 0,
+        "new_fit": 0,
+        "new_provider": 0,
+        "boundary": "T1005 remains NOT_PASSED; no measured hold window, root/OBB not force/contact proof; CPU successor NOT_RUN physically"
       }
     }
   },
