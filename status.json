@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T18:35:57.767964+00:00",
+  "generated_utc": "2026-10-15T19:39:01.427927+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1001 / RoboDojo P0剩余四项",
+    "current_task": "T-1002 / P1真实解析纠错首批",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "P0修复版：PASS_V2_RECORDING；layout1完整验收4/4，基础设施错误0。 官方任务成功0/4，Score0.100。 原计划仍含v1两次记录缺陷、两次中断，不能写成8/8完整通过。",
-      "未重跑layout0、未补seed、未扩量原生；无新增训练/S2。",
-      "下一阶段验证解析纠错后学生续执行；尚无方法收益结论。"
+      "P1解析纠错：PARTIAL_MECHANISM_PILOT；已验收7/9，执行错误2，已启动9/81预算。 布局编号24仅20个内容组，选择/验证重叠；验证门关闭。",
+      "原生、教师→学生、教师→教师分别报告；教师期间已完成不算学生能力。",
+      "内容hash发现重复/跨选择验证重叠；不替换数据，不进入锁定验证或拟合。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T18:33:48.936436+00:00",
+      "observed_utc": "2026-10-15T19:36:00.479996+00:00",
       "status": "succeeded",
-      "summary": "P0修复版：PASS_V2_RECORDING；layout1完整验收4/4，基础设施错误0。 官方任务成功0/4，Score0.100。 原计划仍含v1两次记录缺陷、两次中断，不能写成8/8完整通过。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。",
+      "summary": "P1解析纠错：PARTIAL_MECHANISM_PILOT；已验收7/9，执行错误2，已启动9/81预算。 布局编号24仅20个内容组，选择/验证重叠；验证门关闭。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P1 · 解析纠错首批三臂",
+          "scale": "7/9有效，0验证/0拟合",
+          "question": "教师是否真能纠错？任务仍活着交回学生后能否独立继续？",
+          "status": "succeeded"
+        },
         {
           "name": "P0 · 修复版剩余四项",
           "scale": "4/4完整；总尝试8/8",
@@ -1331,7 +1337,7 @@
           "status": "tested"
         }
       ],
-      "observation_label": "v2完整记录与v1失败历史分列",
+      "observation_label": "P1真实策略组合回执；原工程失败与内容分组冲突保留",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -1748,6 +1754,473 @@
           "original_plan_status": "PARTIAL_WITH_V1_RECORDING_ERRORS_AND_INTERRUPTS"
         },
         "boundary": "Repaired recording acceptance only; exposed development diagnostic. Original plan is not8/8valid; RNG comparisons are descriptive, not causal."
+      },
+      "p1_correction": {
+        "schema": "asbs.robodojo.p1-summary.v1",
+        "status": "PARTIAL_MECHANISM_PILOT",
+        "platform_status": "SUCCEEDED",
+        "job_id": "job-hbvbr953e03l",
+        "observed_utc": "2026-10-15T19:36:00.479996+00:00",
+        "source_bundle_sha256": "8aae16d49be393d86974be36d1a021f93225f7651aa95a3a77c18d773f5e75e3",
+        "worker_observed_utc": "2026-10-15T19:32:51.062578+00:00",
+        "platform_updated_at": 1792092860260,
+        "teacher_source_sha256": "57f2ee5042f26cfdf3117f3eacdd58e16db64033d117797240520355f21b357e",
+        "protocol_sha256": "00d4b9a9ffaf8c1443bcc764ffd5f2b98d6a3a2bb3636b8feed9cdbf5a89025d",
+        "attempted": 9,
+        "valid": 7,
+        "errors": 2,
+        "missing": 0,
+        "first_batch_maximum": 9,
+        "global_attempt_cap": 81,
+        "remaining_global_attempt_cap": 72,
+        "successful_by_arm": {
+          "native": {
+            "successes": 0,
+            "valid": 1,
+            "registered": 3
+          },
+          "teacher_teacher": {
+            "successes": 0,
+            "valid": 3,
+            "registered": 3
+          },
+          "teacher_student": {
+            "successes": 0,
+            "valid": 3,
+            "registered": 3
+          }
+        },
+        "cases": [
+          {
+            "task": "cover_blocks",
+            "arm": "teacher_teacher",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": false,
+            "controls": 800,
+            "model_forwards": 2,
+            "student_after_controls": 0,
+            "student_after_forwards": 0,
+            "teacher_controls": 700,
+            "teacher_sessions": 1,
+            "ik_requests": 13,
+            "teacher_status": {
+              "failed": true,
+              "failure": "unreachable_ik",
+              "ik_requests": 13,
+              "controls": 700,
+              "phase": "transport",
+              "maximum_object_displacement": 0.013143225086630139,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 92
+            }
+          },
+          {
+            "task": "cover_blocks",
+            "arm": "teacher_student",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.15,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": true,
+            "controls": 800,
+            "model_forwards": 14,
+            "student_after_controls": 600,
+            "student_after_forwards": 12,
+            "teacher_controls": 100,
+            "teacher_sessions": 1,
+            "ik_requests": 10,
+            "teacher_status": {
+              "failed": false,
+              "failure": null,
+              "ik_requests": 10,
+              "controls": 100,
+              "phase": "descend",
+              "maximum_object_displacement": 0.10276243078413727,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 479
+            }
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "teacher_teacher",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": false,
+            "controls": 800,
+            "model_forwards": 2,
+            "student_after_controls": 0,
+            "student_after_forwards": 0,
+            "teacher_controls": 700,
+            "teacher_sessions": 1,
+            "ik_requests": 1,
+            "teacher_status": {
+              "failed": true,
+              "failure": "unreachable_ik",
+              "ik_requests": 1,
+              "controls": 700,
+              "phase": "approach",
+              "maximum_object_displacement": 0.03636472352599747,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 92
+            }
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "teacher_student",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": true,
+            "controls": 800,
+            "model_forwards": 14,
+            "student_after_controls": 600,
+            "student_after_forwards": 12,
+            "teacher_controls": 100,
+            "teacher_sessions": 1,
+            "ik_requests": 1,
+            "teacher_status": {
+              "failed": true,
+              "failure": "unreachable_ik",
+              "ik_requests": 1,
+              "controls": 100,
+              "phase": "approach",
+              "maximum_object_displacement": 0.0482788475815737,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 443
+            }
+          },
+          {
+            "task": "fill_pen_holder",
+            "arm": "native",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.1,
+            "handoff_category": "native_no_teacher",
+            "student_continuation_eligible": false,
+            "controls": 1100,
+            "model_forwards": 22,
+            "student_after_controls": 0,
+            "student_after_forwards": 0,
+            "teacher_controls": 0,
+            "teacher_sessions": 0,
+            "ik_requests": 0,
+            "teacher_status": null,
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": null,
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 393
+            }
+          },
+          {
+            "task": "fill_pen_holder",
+            "arm": "teacher_teacher",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": false,
+            "controls": 1100,
+            "model_forwards": 2,
+            "student_after_controls": 0,
+            "student_after_forwards": 0,
+            "teacher_controls": 1000,
+            "teacher_sessions": 1,
+            "ik_requests": 5,
+            "teacher_status": {
+              "failed": true,
+              "failure": "unreachable_ik",
+              "ik_requests": 5,
+              "controls": 1000,
+              "phase": "transport",
+              "maximum_object_displacement": 0.005843378345941579,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 89
+            }
+          },
+          {
+            "task": "fill_pen_holder",
+            "arm": "teacher_student",
+            "layout_id": 2,
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "handoff_category": "handoff_live",
+            "student_continuation_eligible": true,
+            "controls": 1100,
+            "model_forwards": 20,
+            "student_after_controls": 900,
+            "student_after_forwards": 18,
+            "teacher_controls": 100,
+            "teacher_sessions": 1,
+            "ik_requests": 5,
+            "teacher_status": {
+              "failed": true,
+              "failure": "unreachable_ik",
+              "ik_requests": 5,
+              "controls": 100,
+              "phase": "transport",
+              "maximum_object_displacement": 0.5146987857319232,
+              "observed_dropped_labels": []
+            },
+            "safety": {
+              "amplitude_is_safety": false,
+              "collision_events": "UNKNOWN",
+              "dropped_labels": [],
+              "forbidden_space_events": "UNKNOWN",
+              "normalized_gripper_out_of_range": 566
+            }
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "native",
+            "layout_id": 2,
+            "status": "error",
+            "success": null,
+            "score": null,
+            "handoff_category": "UNKNOWN_OR_NOT_REACHED",
+            "student_continuation_eligible": false,
+            "controls": null,
+            "model_forwards": 0,
+            "student_after_controls": null,
+            "student_after_forwards": null,
+            "teacher_controls": null,
+            "teacher_sessions": null,
+            "ik_requests": null,
+            "teacher_status": null,
+            "safety": {
+              "collision_events": "UNKNOWN",
+              "forbidden_space_events": "UNKNOWN"
+            },
+            "error_type": "FileNotFoundError"
+          },
+          {
+            "task": "cover_blocks",
+            "arm": "native",
+            "layout_id": 2,
+            "status": "error",
+            "success": null,
+            "score": null,
+            "handoff_category": "UNKNOWN_OR_NOT_REACHED",
+            "student_continuation_eligible": false,
+            "controls": null,
+            "model_forwards": 0,
+            "student_after_controls": null,
+            "student_after_forwards": null,
+            "teacher_controls": null,
+            "teacher_sessions": null,
+            "ik_requests": null,
+            "teacher_status": null,
+            "safety": {
+              "collision_events": "UNKNOWN",
+              "forbidden_space_events": "UNKNOWN"
+            },
+            "error_type": "FileNotFoundError"
+          }
+        ],
+        "reset_comparisons": [
+          {
+            "task": "cover_blocks",
+            "initial_observation_sha256": {
+              "teacher_teacher": "af3786a5f0f91ac061a205dc5c89abd2a1f4b26feff8f04fded4b3db5f32d173",
+              "teacher_student": "81f8cf8366a1b7470e8427c815b5f27126fb6586cffd423075e8f252c9c08ed7"
+            },
+            "teacher_prefix_sha256": {
+              "teacher_teacher": "56399c3f1852b7ba1d79a336a1498abc426fabd04e746e4081705ca769e20a36",
+              "teacher_student": "d4205a8bb6e063d1c9ec5bd4d1f9205c420c1a57e8254ccf65789408be26aa07"
+            },
+            "teacher_arms_initial_hash_equal": false,
+            "teacher_prefix_equal": false,
+            "same_state_counterfactual": false
+          },
+          {
+            "task": "stack_bowls",
+            "initial_observation_sha256": {
+              "teacher_teacher": "1357dd09fa103aae134a2c84983f766c3aee33923fbb1c36f1d30d53af50e485",
+              "teacher_student": "2c042d01b19b14fdd724cdd74e3f0486759ef9140c1762d18026bee12a390a2d"
+            },
+            "teacher_prefix_sha256": {
+              "teacher_teacher": "2dae03a3dcd70d34466c70045fd4239e5da15e42e73b01654e1bce4d75657e9f",
+              "teacher_student": "a8318a649ca24eac08628fe325f2d1a8811d42df215e14c37a4c8c860a223028"
+            },
+            "teacher_arms_initial_hash_equal": false,
+            "teacher_prefix_equal": false,
+            "same_state_counterfactual": false
+          },
+          {
+            "task": "fill_pen_holder",
+            "initial_observation_sha256": {
+              "native": "76c7b4450c5e90fddb89e91a359b9c54ebeee4a08821fc342774563af467b44e",
+              "teacher_teacher": "58a0074866a1cf6e26538a249a4fbaf9ed5bb4ed760e4d34044fef4738550238",
+              "teacher_student": "2dc7bf0739550c133127ee7ef6626fed0df696eb36c8850dabac2a588026b4cb"
+            },
+            "teacher_prefix_sha256": {
+              "teacher_teacher": "a784319bcd888d1037474f5aae3cd7c107dcdfa08e73431a847aceaa73a200bf",
+              "teacher_student": "2ba22b5eaec9c257a0ce59bf9f7aed2ccf8e3678edfd3ab5158a52b2ae1c51b8"
+            },
+            "teacher_arms_initial_hash_equal": false,
+            "teacher_prefix_equal": false,
+            "same_state_counterfactual": false
+          }
+        ],
+        "teacher_feasibility": [
+          {
+            "task": "fill_pen_holder",
+            "teacher_positive": false,
+            "meaning": "declared descriptive feasibility gate, not matched-state causal effect"
+          }
+        ],
+        "teacher_positive_tasks": 0,
+        "teacher_comparison_missing_tasks": [
+          "cover_blocks",
+          "stack_bowls"
+        ],
+        "known_teacher_failed_sessions": 5,
+        "locked_validation_started": 0,
+        "layout_content_audit": {
+          "nominal_sources": 24,
+          "actual_content_groups": 20,
+          "nominal_selection": 9,
+          "nominal_validation": 15,
+          "selection_content_groups": 8,
+          "validation_content_groups": 13,
+          "selection_validation_overlaps": [
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+              "layout_ids": [
+                2,
+                4,
+                5,
+                6
+              ],
+              "splits": [
+                "development_validation",
+                "selection"
+              ]
+            }
+          ],
+          "duplicates": [
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+              "layout_ids": [
+                2,
+                4,
+                5,
+                6
+              ],
+              "splits": [
+                "development_validation",
+                "selection"
+              ]
+            },
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+              "layout_ids": [
+                8,
+                9
+              ],
+              "splits": [
+                "development_validation"
+              ]
+            }
+          ],
+          "locked_validation_admissible": false,
+          "boundary": "No outcome-dependent replacement; actual hash grouping required. Firstlayout2pilot may continue; future split-role change requires method decision."
+        },
+        "training_admissible": false,
+        "student_value_accepted": false,
+        "known_valid_costs": {
+          "controls": 6500,
+          "model_forwards": 76,
+          "teacher_controls": 2700,
+          "teacher_sessions": 6,
+          "ik_requests": 35
+        },
+        "actual_total_costs": null,
+        "worker_execution_seconds": 1559.5779295819812,
+        "platform_lifetime_seconds": 1658.336,
+        "queue_time_seconds": null,
+        "runtime_calls": {
+          "training_fits": 0,
+          "semantic_provider_calls": 0
+        },
+        "boundary": "Independent-reset development pilot; live-student subset is descriptive/selected. No causal Q labels, training, ASBS, safety or semantic-transfer gain established. Original2native observation failures remain consumed/null, not rerun; onlyfill_pen_holder can provide all3arms. Layout-content overlap closes future validation; no source replacement.",
+        "v2_status": "COMPLETE_SEVEN",
+        "actual_v2_costs": {
+          "controls": 6500,
+          "model_forwards": 76,
+          "teacher_controls": 2700,
+          "teacher_sessions": 6,
+          "ik_requests": 35
+        },
+        "execution_history": [
+          {
+            "job_id": "job-viuq4704us14",
+            "platform_status": "FAILED",
+            "attempted": 2,
+            "errors": 2,
+            "validated": 0,
+            "platform_lifetime_seconds": 270.157,
+            "worker_execution_seconds": 199.17121907509863,
+            "model_forwards": 0,
+            "recorded_controls": 0,
+            "total_controls": null
+          },
+          {
+            "job_id": "job-hbvbr953e03l",
+            "platform_status": "SUCCEEDED",
+            "validated": 7,
+            "errors": 0,
+            "platform_lifetime_seconds": 1658.336,
+            "worker_execution_seconds": 1559.5779295819812
+          }
+        ]
       }
     }
   },
