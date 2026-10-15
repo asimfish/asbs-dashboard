@@ -53,6 +53,7 @@
     for(const key of ["summary","boundary","retention"])$("robodojo-"+key).textContent=r[key];
     list("robodojo-pilot-rows",r.native_pilot?.per_task||[],row=>{const tr=node("tr");tr.append(node("th",row.task),node("td",row.completed+" / 2"),node("td",row.successes+" / "+row.completed),node("td",Number(row.mean_score).toFixed(3)));tr.firstChild.scope="row";return tr;});
     list("robodojo-p0-rows",r.p0_diagnostic?.per_task_arm||[],row=>{const tr=node("tr");tr.append(node("th",row.task+" / "+row.arm),node("td",row.completed+" / 2"),node("td",row.successes==null?"未回收":row.successes+" / "+row.completed),node("td",row.mean_score==null?"—":Number(row.mean_score).toFixed(3)));tr.firstChild.scope="row";return tr;});
+    list("robodojo-p0-v2-rows",r.p0_successor?.per_case||[],row=>{const tr=node("tr");tr.append(node("th",row.task+" / "+row.arm),node("td",row.validated?"PASS":"ERROR"),node("td",row.success==null?"未回收":String(row.success)+" / "+Number(row.score).toFixed(3)),node("td",row.controls==null?"—":row.controls+" / "+row.model_calls));tr.firstChild.scope="row";return tr;});
     list("robodojo-stages",r.stages,row=>{const tr=node("tr"),state=node("td");state.append(pill(row.status));tr.append(node("th",row.name),node("td",row.scale),node("td",row.question),state);tr.firstChild.scope="row";return tr;});
     list("robodojo-hypotheses",r.hypotheses,item=>node("li",item));
   }

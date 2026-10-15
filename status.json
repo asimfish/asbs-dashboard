@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T18:00:47.068233+00:00",
+  "generated_utc": "2026-10-15T18:35:57.767964+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1000 / RoboDojo P0官方接口诊断",
+    "current_task": "T-1001 / RoboDojo P0剩余四项",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "P0官方接口/执行诊断：BLOCKED；已回收官方结果2/8，执行异常0，记录缺陷2，尚无回执6。 观察到成功0/2，Score0.100。 同输入/同噪声官方facade影子对照8/8；独立重置，不是同状态反事实。",
-      "仅固定两个开发任务、set0两布局、两种RNG，最多8回合；未扩量或训练。",
-      "先验证可靠纠错收益，再比较同预算求解器和学生固化。"
+      "P0修复版：PASS_V2_RECORDING；layout1完整验收4/4，基础设施错误0。 官方任务成功0/4，Score0.100。 原计划仍含v1两次记录缺陷、两次中断，不能写成8/8完整通过。",
+      "未重跑layout0、未补seed、未扩量原生；无新增训练/S2。",
+      "下一阶段验证解析纠错后学生续执行；尚无方法收益结论。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T18:00:46.775724+00:00",
+      "observed_utc": "2026-10-15T18:33:48.936436+00:00",
       "status": "succeeded",
-      "summary": "P0官方接口/执行诊断：BLOCKED；已回收官方结果2/8，执行异常0，记录缺陷2，尚无回执6。 观察到成功0/2，Score0.100。 同输入/同噪声官方facade影子对照8/8；独立重置，不是同状态反事实。 旧T999原生0/20及T998零纠错保持结果继续保留。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。",
+      "summary": "P0修复版：PASS_V2_RECORDING；layout1完整验收4/4，基础设施错误0。 官方任务成功0/4，Score0.100。 原计划仍含v1两次记录缺陷、两次中断，不能写成8/8完整通过。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P0 · 修复版剩余四项",
+          "scale": "4/4完整；总尝试8/8",
+          "question": "末步遥测是否完整，是否在本地验收后才开始后继？",
+          "status": "succeeded"
+        },
         {
           "name": "P0 · 官方Model/执行诊断",
           "scale": "2/8官方结果；8/8影子输入",
@@ -1325,7 +1331,7 @@
           "status": "tested"
         }
       ],
-      "observation_label": "P0诊断回执；非方法比较",
+      "observation_label": "v2完整记录与v1失败历史分列",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -1650,6 +1656,98 @@
         "source_bundle_sha256": "0348e7585364a34dcefea7269de7c31d5123c953996594cb5b1d8510ee0e05a6",
         "elapsed_job_seconds": 537.093,
         "claim_boundary": "Exposed development diagnostic, independent resets, not a same-state causal or ASBS/S2 efficacy result."
+      },
+      "p0_successor": {
+        "schema": "t1001.p0-successor.v1",
+        "status": "PASS_V2_RECORDING",
+        "platform_status": "SUCCEEDED",
+        "observed_utc": "2026-10-15T18:33:48.936436+00:00",
+        "maximum_new_attempts": 4,
+        "attempted": 4,
+        "validated": 4,
+        "errors": 0,
+        "missing": 0,
+        "successes": 0,
+        "mean_score": 0.1,
+        "controls": 3200,
+        "model_calls": 64,
+        "new_shadow_calls": 0,
+        "new_fits": 0,
+        "system2_calls": 0,
+        "per_case": [
+          {
+            "task": "cover_blocks",
+            "arm": "official_default",
+            "layout_id": 1,
+            "status": "completed",
+            "success": false,
+            "score": 0.05,
+            "controls": 800,
+            "model_calls": 16,
+            "initial_counter": 0,
+            "final_counter": 800,
+            "final_post_state_sha256": "77d8192bd7ef01e8625a32a363d8320dbd1feb133d0f41c63a558153781fa032",
+            "validated": true
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "official_default",
+            "layout_id": 1,
+            "status": "completed",
+            "success": false,
+            "score": 0.15,
+            "controls": 800,
+            "model_calls": 16,
+            "initial_counter": 0,
+            "final_counter": 800,
+            "final_post_state_sha256": "5ee20af97f47987ad9a8d71461ee9f4d9c24642a3ba011be911648f107f2ca12",
+            "validated": true
+          },
+          {
+            "task": "cover_blocks",
+            "arm": "official_explicit",
+            "layout_id": 1,
+            "status": "completed",
+            "success": false,
+            "score": 0.05,
+            "controls": 800,
+            "model_calls": 16,
+            "initial_counter": 0,
+            "final_counter": 800,
+            "final_post_state_sha256": "d00cde476ba2e890bf0a80c844bb0c79e6adc87130ca6bc26024c96daf86bd34",
+            "validated": true
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "official_explicit",
+            "layout_id": 1,
+            "status": "completed",
+            "success": false,
+            "score": 0.15,
+            "controls": 800,
+            "model_calls": 16,
+            "initial_counter": 0,
+            "final_counter": 800,
+            "final_post_state_sha256": "d28121fd53772df967cec10ea28981d3227ab8e596885d132f45e52a318ec83a",
+            "validated": true
+          }
+        ],
+        "source_bundle_sha256": "19abe0df31bba45c74f88244fe8f79d8e86a5db25cee500a097caa302886d2e0",
+        "telemetry_source_sha256": "09ecd97769d6fdffab5f63fe087484cf213bab19c78ff4601d304748c5bfd9ff",
+        "platform_lifetime_seconds": 885.439,
+        "worker_execution_seconds": 860.4421155438758,
+        "queue_time_seconds": null,
+        "budget": {
+          "maximum_total_started": 8,
+          "original_started": 4,
+          "new_started": 4,
+          "total_started": 8,
+          "original_completed_with_recording_defect": 2,
+          "original_interrupted": 2,
+          "v2_valid": 4,
+          "original_plan_status": "PARTIAL_WITH_V1_RECORDING_ERRORS_AND_INTERRUPTS"
+        },
+        "boundary": "Repaired recording acceptance only; exposed development diagnostic. Original plan is not8/8valid; RNG comparisons are descriptive, not causal."
       }
     }
   },
