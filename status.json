@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T21:56:38.570115+00:00",
+  "generated_utc": "2026-10-15T22:04:19.746242+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -10,7 +10,7 @@
     "current_task": "T-1007 / observation-v2 实例资格",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T1007 NOT_STARTED / NOT_STARTED；实例观测门 False，两碗原语 False。",
+      "T1007 COMPLETED / path_planner_not_success:home；实例观测门 True，两碗原语 NOT_REACHED_FINAL_STABILITY。",
       "保留T1005未通过和T1006只读诊断；同几何、真实新增10控制持姿。",
       "学生接管/验证/拟合/ASBS仍关闭。"
     ],
@@ -1184,9 +1184,9 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T21:56:26.365142+00:00",
+      "observed_utc": "2026-10-15T22:04:03.479321+00:00",
       "status": "succeeded",
-      "summary": "T1007 NOT_STARTED / NOT_STARTED；实例观测门 False，两碗原语 False。",
+      "summary": "T1007 COMPLETED / path_planner_not_success:home；实例观测门 True，两碗原语 NOT_REACHED_FINAL_STABILITY。",
       "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。 根高度/OBB间隙不证明可靠夹持；CPU门通过不代表抓取修复。 新reset非同状态反事实；新增OBB/持姿观测合同，不是学生/ASBS收益。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
@@ -1194,7 +1194,7 @@
           "name": "P1 · observation-v2 实例资格",
           "scale": "最多1attempt/800controls/0VLA",
           "question": "原候选是否维持真实持姿观测并形成两碗原语？",
-          "status": "planned"
+          "status": "partial"
         },
         {
           "name": "P1 · 已有轨迹诊断与CPU后继",
@@ -3234,33 +3234,59 @@
       },
       "p1_contact_observation": {
         "schema": "t1007.observation.summary.v1",
-        "observed_utc": "2026-10-15T21:56:26.365142+00:00",
-        "phase": "NOT_STARTED",
-        "status": "NOT_STARTED",
-        "platform_status": "NOT_SUBMITTED",
-        "job_id": null,
+        "observed_utc": "2026-10-15T22:04:03.479321+00:00",
+        "phase": "COMPLETED",
+        "status": "path_planner_not_success:home",
+        "platform_status": "SUCCEEDED",
+        "job_id": "job-2kyfg1h4w91e",
         "source_bundle_sha256": "f26bbc85d2e7aaee06b52ed28264c1bbcd9cff78c5dd6bf16f8a2016ee8b41f7",
         "protocol_sha256": "f5b8312da554a2b446a1a6ede6ae0a80bab163752bdbbb7100c7e0e6ce668a0f",
         "actual_costs": {
-          "attempts": 0,
-          "sessions": 0,
-          "controls": 0,
-          "explicit": null
+          "attempts": 1,
+          "sessions": 1,
+          "controls": 236,
+          "explicit": {
+            "attempts": 1,
+            "controls": 236,
+            "fk_calls": 52,
+            "fk_poses": 52,
+            "ik": 7,
+            "paths": 7,
+            "sessions": 1
+          }
         },
-        "local_observation_pass": false,
+        "local_observation_pass": true,
         "two_bowl_primitive": false,
+        "two_bowl_primitive_status": "NOT_REACHED_FINAL_STABILITY",
         "official_success": null,
         "official_score": null,
         "official_outcome_complete": false,
-        "moving_ids": [],
-        "hold_ids": [],
-        "moving_pass": null,
-        "settled_pass": null,
-        "rejection": null,
-        "consumed_attempts": 11,
-        "consumed_sessions": 8,
-        "worker_execution_seconds": null,
-        "platform_lifetime_seconds": null,
+        "moving_ids": [
+          114,
+          115,
+          116,
+          117,
+          118
+        ],
+        "hold_ids": [
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128
+        ],
+        "moving_pass": true,
+        "settled_pass": true,
+        "rejection": "path_planner_not_success:home",
+        "consumed_attempts": 12,
+        "consumed_sessions": 9,
+        "worker_execution_seconds": 162.93436631932855,
+        "platform_lifetime_seconds": 207.657,
         "queue_seconds": null,
         "GPU_busy_seconds": null,
         "content_groups": 20,
@@ -3272,7 +3298,7 @@
           "training": 0,
           "provider": 0,
           "student_controls": 0,
-          "platform_jobs": 0
+          "platform_jobs": 1
         },
         "ASBS_gain": null,
         "student_value_accepted": false,

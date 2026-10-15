@@ -60,7 +60,7 @@
     $("robodojo-demo-plan-summary").textContent=r.p1_demo_plan?"T1004 示教依据与规划规格准备：3条官方开发示教、24条SPEC_ONLY候选、0条已标定可执行。新增物理/模型/IK/GPU作业均0；下一资格协议未放行，教师能力仍未合格。":"尚无新的示教规划回执。";
     $("robodojo-contact-summary").textContent=r.p1_contact?"T1005 当前几何接触资格："+r.p1_contact.status+"；局部抓取 "+r.p1_contact.local_grasp_status+"，两碗原语 "+r.p1_contact.two_bowl_primitive_status+"。"+(r.p1_contact.grasp_evidence?"共动："+r.p1_contact.grasp_evidence.co_motion_passed+"，相对稳定："+r.p1_contact.grasp_evidence.relative_stability_passed+"，抬升窗口："+r.p1_contact.grasp_evidence.lift_height_window_passed+"；变换资格："+r.p1_contact.grasp_evidence.accepted_grasp+"。":"")+"VLA/训练/provider为0，提前诊断退出没有官方最终Success/Score。":"尚无单次接触资格回执。";
     $("robodojo-contact-diagnosis").textContent=r.p1_contact_diagnosis?"T1006 已有118控制轨迹诊断：旧窗114–118中114/115高度不足，116首次达标；真实持姿验证0控制。仅CPU文件回收/时序测试，后继物理NOT_RUN，T1005仍未通过；没有学生/ASBS结论。":"尚无完整轨迹诊断回执。";
-    $("robodojo-contact-observation").textContent=r.p1_contact_observation?"T1007 observation-v2："+r.p1_contact_observation.phase+" / "+r.p1_contact_observation.status+"；实例观测门 "+r.p1_contact_observation.local_observation_pass+"，两碗原语 "+r.p1_contact_observation.two_bowl_primitive+"。新reset、新OBB/持姿合同；不是同状态因果比较或学生/ASBS结果。":"单次observation-v2尚无回执。";
+    $("robodojo-contact-observation").textContent=r.p1_contact_observation?"T1007 observation-v2："+r.p1_contact_observation.phase+" / "+r.p1_contact_observation.status+"；实例观测门 "+r.p1_contact_observation.local_observation_pass+"，两碗原语 "+(r.p1_contact_observation.two_bowl_primitive_status||"NOT_YET_VERIFIED")+"。新reset、新OBB/持姿合同；不是同状态因果比较或学生/ASBS结果。":"单次observation-v2尚无回执。";
     list("robodojo-hypotheses",r.hypotheses,item=>node("li",item));
   }
   function renderResearch(research){
