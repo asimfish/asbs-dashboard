@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T23:07:23.079463+00:00",
+  "generated_utc": "2026-10-15T23:38:34.453528+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1009 / A/B只读轨迹诊断",
+    "current_task": "T-1010 / 单次prepared-state时限诊断D",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T1009：1590控制/27次输入匹配；A无三碗几何，B725..790几何满足，790官方成功。",
-      "A原根层次关系保持至800，姿态资格间歇失去；不是只差home。",
-      "下一对照仅草案NOT_RUN；验证/拟合/ASBS未放行。"
+      "T1010 COMPLETED；新reset、256精确资格交接、最多800学生控制；旧A/B不变。",
+      "800为普通截面，801保持同chunk；不复活旧episode、不改任务谓词。",
+      "20内容组/11候选验证组不变；拟合/ASBS/provider未放行。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T23:07:22.400238+00:00",
+      "observed_utc": "2026-10-15T23:37:02.566886+00:00",
       "status": "succeeded",
-      "summary": "T1009：1590控制/27次输入匹配；A无三碗几何，B725..790几何满足，790官方成功。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。 根高度/OBB间隙不证明可靠夹持；CPU门通过不代表抓取修复。 新reset非同状态反事实；新增OBB/持姿观测合同，不是学生/ASBS收益。 不是学生前缀恢复或同状态因果Q；cached transition score不是当前稳定证据。 同序号RNG一致，未保存noise字节；latest-only输入不支持历史丢失解释。时长与交接状态因果仍未知。",
+      "summary": "T1010 COMPLETED；新reset、256精确资格交接、最多800学生控制；旧A/B不变。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。 根高度/OBB间隙不证明可靠夹持；CPU门通过不代表抓取修复。 新reset非同状态反事实；新增OBB/持姿观测合同，不是学生/ASBS收益。 不是学生前缀恢复或同状态因果Q；cached transition score不是当前稳定证据。 同序号RNG一致，未保存noise字节；latest-only输入不支持历史丢失解释。时长与交接状态因果仍未知。 D benchmark_eligible=false；诊断成功不计benchmark/800预算收益或因果时长效应。W已否决，不运行。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P1 · prepared-state时限诊断D",
+          "scale": "1attempt/1056总控制/16forward上限",
+          "question": "新准备实例在800学生控制内能否满足原完整任务谓词？",
+          "status": "partial"
+        },
         {
           "name": "P1 · prepared-state轨迹诊断",
           "scale": "已有1590控制/6固定预览；新增physics0",
@@ -1379,7 +1385,7 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         }
       ],
-      "observation_label": "T1008 A/B 轨迹只读诊断；没有新物理实验",
+      "observation_label": "D：预先固定1056时限的单次诊断（非benchmark）",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -3715,6 +3721,42 @@ window.ASBS_SNAPSHOT = {
           "source_semantics": "1fdf9547b1ad1dff865fd0b123d35cde7f5ffceee6675618d1b6bcaffc0a027e",
           "report": "1b4f362bb5b624bb258bf04093d0973012ed58216fbfb90b2cfbe466fbccbe58"
         }
+      },
+      "prepared_horizon_diagnostic": {
+        "schema": "t1010.prepared-horizon.summary.v1",
+        "observed_utc": "2026-10-15T23:37:02.566886+00:00",
+        "phase": "COMPLETED",
+        "job_id": "job-4pl51c6j3kyp",
+        "platform_status": "SUCCEEDED",
+        "benchmark_eligible": false,
+        "benchmark_success": null,
+        "benchmark_score": null,
+        "upstream_horizon": 800,
+        "diagnostic_horizon": 1056,
+        "diagnostic_success": false,
+        "diagnostic_terminal": true,
+        "controls": 1056,
+        "teacher_controls": 256,
+        "student_controls": 800,
+        "success_at_or_below_original800": null,
+        "actual_attempts": 1,
+        "actual_teacher_sessions": 1,
+        "known_attempt_lower_bound": 1,
+        "known_session_lower_bound": 1,
+        "global_attempts": 15,
+        "global_sessions": 11,
+        "fits": 0,
+        "ASBS_gain": null,
+        "provider": 0,
+        "content_groups": 20,
+        "candidate_validation_groups": 11,
+        "source_bundle_sha256": "89f5915bb784435d9abd712d7a1647f3b5cd0088b513913680d0e2b96bf55370",
+        "protocol_sha256": "e22778823e28b03d8eca87fa201205c6d696d1bde2782dc2f979c245afd9ea2e",
+        "worker_execution_seconds": 343.74893826106563,
+        "platform_lifetime_seconds": 417.339,
+        "queue_seconds": null,
+        "GPU_busy_seconds": null,
+        "interpretation": "one new1056 diagnostic,not originalA revival/benchmark/causal time effect/rategain;W not run"
       }
     }
   },
