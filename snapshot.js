@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T20:50:11.454062+00:00",
+  "generated_utc": "2026-10-15T21:21:29.907938+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1004 / 示教依据与离线规划规格准备",
+    "current_task": "T-1005 / 单次几何接触资格",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "示教依据与规划规格准备：3条官方开发示教已审查，24条离线候选、0条已标定可执行；无新增物理实验。教师资格仍失败。",
-      "三条示教均呈现中央底座、右先左后；精确物体—工具变换和机器人兼容仍UNKNOWN。",
-      "下一物理资格协议只是草案，未放行；旧T1003失败及10/81尝试、7/57会话账保留。"
+      "T1005单次接触资格：lift_or_co_motion_failed；局部抓取NOT_PASSED，两碗原语NOT_PASSED。不是完整任务/学生恢复/ASBS结果。",
+      "只左臂bowl1→bowl2；未抬升/随动不得运输，无自动重试/换候选。",
+      "T1003失败和T1004离线示教成果保留；20内容组/11未释放验证组不变，训练关闭。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T20:50:11.227173+00:00",
+      "observed_utc": "2026-10-15T21:20:23.862827+00:00",
       "status": "succeeded",
-      "summary": "示教依据与规划规格准备：3条官方开发示教已审查，24条离线候选、0条已标定可执行；无新增物理实验。教师资格仍失败。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。",
+      "summary": "T1005单次接触资格：lift_or_co_motion_failed；局部抓取NOT_PASSED，两碗原语NOT_PASSED。不是完整任务/学生恢复/ASBS结果。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P1 · 单次左臂接触资格",
+          "scale": "至多1attempt/1session/800控制，无VLA",
+          "question": "当前X5能否真实抓起一碗，再用实测抓取变换放置到中央底座？",
+          "status": "failed"
+        },
         {
           "name": "P1 · 示教依据/规划规格",
           "scale": "3条开发参考；24 SPEC_ONLY候选；0物理新增",
@@ -1349,7 +1355,7 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         }
       ],
-      "observation_label": "T1004示教/纯CPU规格回执，非物理结果",
+      "observation_label": "T1005现有机器人几何驱动的单次仿真资格回执",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -3052,6 +3058,75 @@ window.ASBS_SNAPSHOT = {
           "platform_jobs": 0
         },
         "source_manifest_sha256": "cf954af515a7aad59fdcefb586f9f317f30238ff86551dcfa967caa2e17ad44f"
+      },
+      "p1_contact": {
+        "schema": "t1005.contact.summary.v1",
+        "observed_utc": "2026-10-15T21:20:23.862827+00:00",
+        "status": "lift_or_co_motion_failed",
+        "platform_status": "SUCCEEDED",
+        "accepted": true,
+        "local_grasp_status": "NOT_PASSED",
+        "two_bowl_primitive_status": "NOT_PASSED",
+        "official_success": null,
+        "official_score": null,
+        "official_outcome_complete": false,
+        "actual_costs": {
+          "attempts": 1,
+          "sessions": 1,
+          "controls": 118,
+          "explicit": {
+            "attempts": 1,
+            "controls": 118,
+            "fk_calls": 26,
+            "fk_poses": 26,
+            "ik": 3,
+            "paths": 3,
+            "sessions": 1
+          }
+        },
+        "worker_execution_seconds": 155.85753644630313,
+        "platform_lifetime_seconds": 189.94,
+        "queue_seconds": null,
+        "GPU_busy_seconds": null,
+        "budget": {
+          "prior_attempts": 10,
+          "prior_sessions": 7,
+          "attempt_cap": 81,
+          "session_cap": 57,
+          "consumed_attempts": 11,
+          "consumed_sessions": 8,
+          "maximum_new_attempts": 1
+        },
+        "validation_started": 0,
+        "fits": 0,
+        "ASBS_gain": null,
+        "runtime_calls": {
+          "model_loads": 0,
+          "VLA_forwards": 0,
+          "training": 0,
+          "provider": 0,
+          "new_download_bytes": 0,
+          "platform_jobs": 1
+        },
+        "old_T1003": "TEACHER_QUALIFICATION_FAILED_PRESERVED",
+        "old_T1004": "DEMO_SPEC_PREPARATION_PRESERVED",
+        "content_groups": 20,
+        "candidate_validation_groups": 11,
+        "student_continuation": 0,
+        "grasp_evidence": {
+          "window_controls": 5,
+          "lift_height_window_passed": false,
+          "co_motion_passed": true,
+          "relative_stability_passed": true,
+          "position_residual_m": 0.000767033802261514,
+          "angle_residual_rad": 0.017673519616068913,
+          "accepted_grasp": false,
+          "raw_transform_label": "UNQUALIFIED_DIAGNOSTIC_MEASUREMENT",
+          "raw_kind_warning": "Raw OBSERVED_THIS_GRASP name alone is not qualification; original receipt preserved"
+        },
+        "evidence_boundary": "Remote parent verified real journals; compact receipt and hashes returned, not local full-journal replay",
+        "source_bundle_sha256": "e83f6190b397802465df4eb222afdb56eeb8da7817fadc4d5edd5808f25e5af8",
+        "protocol_sha256": "e2cfc0ea932c0845c5a35a4e670346084905a9070d28ba5f85c4018bcb64dc5b"
       }
     }
   },

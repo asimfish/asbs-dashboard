@@ -58,6 +58,7 @@
     list("robodojo-p1-qualification-rows",r.p1_qualification?.cases||[],row=>{const tr=node("tr");tr.append(node("th",row.arm+" / "+row.status),node("td",row.success==null?"未取得任务结果":String(row.success)+" / "+Number(row.score).toFixed(3)),node("td",(row.teacher_status?.failure??row.handoff_category??"未运行")+" / "+(row.student_after_controls??"未知")+"步"),node("td",[row.controls,row.model_forwards,row.teacher_controls,row.ik_requests].map(x=>x??"未知").join(" / ")));tr.firstChild.scope="row";return tr;});
     list("robodojo-stages",r.stages,row=>{const tr=node("tr"),state=node("td");state.append(pill(row.status));tr.append(node("th",row.name),node("td",row.scale),node("td",row.question),state);tr.firstChild.scope="row";return tr;});
     $("robodojo-demo-plan-summary").textContent=r.p1_demo_plan?"T1004 示教依据与规划规格准备：3条官方开发示教、24条SPEC_ONLY候选、0条已标定可执行。新增物理/模型/IK/GPU作业均0；下一资格协议未放行，教师能力仍未合格。":"尚无新的示教规划回执。";
+    $("robodojo-contact-summary").textContent=r.p1_contact?"T1005 当前几何接触资格："+r.p1_contact.status+"；局部抓取 "+r.p1_contact.local_grasp_status+"，两碗原语 "+r.p1_contact.two_bowl_primitive_status+"。"+(r.p1_contact.grasp_evidence?"共动："+r.p1_contact.grasp_evidence.co_motion_passed+"，相对稳定："+r.p1_contact.grasp_evidence.relative_stability_passed+"，抬升窗口："+r.p1_contact.grasp_evidence.lift_height_window_passed+"；变换资格："+r.p1_contact.grasp_evidence.accepted_grasp+"。":"")+"VLA/训练/provider为0，提前诊断退出没有官方最终Success/Score。":"尚无单次接触资格回执。";
     list("robodojo-hypotheses",r.hypotheses,item=>node("li",item));
   }
   function renderResearch(research){
