@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-14T18:46:16.826711+00:00",
+  "generated_utc": "2026-10-15T06:03:44.725171+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-995 / RoboDojo 原生闭环；T-997 初始化诊断",
+    "current_task": "T-998 / RoboDojo 真实动作头保持实验",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
-      "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。",
-      "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。"
+      "真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。",
+      "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
+      "ASBS优势与System2蒸馏收益尚未建立；旧闭环负结果保留。"
     ],
     "method": [
       {
@@ -1159,7 +1159,7 @@
       "observed_utc": "2026-10-14T11:23:52.252089+00:00",
       "cpu_tests": 11,
       "legacy_tests": 12,
-      "summary": "保持性训练 v2 已实现并通过 CPU 合同检查：零合格纠错直接保留原模型；保持目标使用冻结原速度场；跨任务共用一个动作头，按任务和初态平衡回放。实际 π0 同噪声输出与闭环保持性尚未验证；尚无语义 System2 提供器。",
+      "summary": "T990的Torch训练接口完成CPU合同检查。独立T998已完成真实RoboDojo JAX保持对照：4种子均在零纠错条件下保持原参数与16/16评估片段的逐位动作一致。非零纠错后的任务保持与收益、语义System2蒸馏仍未验证。",
       "boundary": "测试使用真实 Torch 和合成策略接口；没有新增预训练模型微调、仿真回合或安全收益证据。",
       "modules": [
         {
@@ -1184,12 +1184,18 @@
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-14T18:42:21.969322+00:00",
+      "observed_utc": "2026-10-15T06:00:10.666181+00:00",
       "status": "succeeded",
       "summary": "RoboDojo r0_remaining_v2：完成 5/5，成功 1，执行错误 0，待返回 0。这批仅检查完整闭环，不发布正式成功率。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。",
-      "retention": "T992 的 v3 准入修复已有 35 项 CPU 检查；尚无真实模型保持性结果。RoboDojo π0 内部噪声为 50×32，官方变换后双臂动作是 50×14。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。",
+      "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "R1 · 真实动作头保持机制",
+          "scale": "4/4种子；16训练/16评估片段",
+          "question": "没有纠错时，哪种保持目标仍会改变原模型？",
+          "status": "succeeded"
+        },
         {
           "name": "准备 · 固定源码与推理权重",
           "scale": "4 卡项目资源；22 个权重文件，约 12 GB",
@@ -1285,9 +1291,24 @@
           "path": "src/embodied_asbs/benchmarks/robodojo/reset_probe.py",
           "purpose": "分别比较指令、本体状态、图像及可读取物理字段；不冒充完整状态恢复",
           "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/post_training_jax/adapter.py",
+          "purpose": "官方JAX场与隐藏表示、独立候选头、原生输入输出变换",
+          "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/post_training_jax/retention_v2.py",
+          "purpose": "跨任务均衡、同次计算的冻结原头差值与旧端点对照",
+          "status": "tested"
+        },
+        {
+          "path": "src/embodied_asbs/post_training_jax/contracts.py",
+          "purpose": "零纠错旁路与真实输入分区；不接纳未验证纠错",
+          "status": "tested"
         }
       ],
-      "observation_label": "原生结果、数据重放与初始化诊断回执",
+      "observation_label": "原生结果、初始化诊断与实际动作头实验回执",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -1349,6 +1370,131 @@
             "full_physics_state": false
           }
         ]
+      },
+      "head_ablation": {
+        "schema": "t998.head.v1",
+        "platform_status": "SUCCEEDED",
+        "expected_seeds": 4,
+        "completed_seeds": 4,
+        "input_chunks": 32,
+        "training_chunks": 16,
+        "evaluation_chunks": 16,
+        "completed_episodes": 0,
+        "system2_calls": 0,
+        "accepted_corrections": 0,
+        "cpu_checks": 6,
+        "execution_errors": 0,
+        "seed_results": [
+          {
+            "seed": 7,
+            "arms": {
+              "frozen_field": {
+                "initial_loss": 0.0,
+                "initial_gradient_norm": 0.0,
+                "final_loss": 0.0,
+                "head_unchanged": true,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 16,
+                "mean_joint_rmse_rad": 0.0,
+                "max_joint_abs_rad": 0.0,
+                "mean_gripper_rmse_native_units": 0.0
+              },
+              "legacy_endpoint": {
+                "initial_loss": 0.003072928637266159,
+                "initial_gradient_norm": 0.02626935951411724,
+                "final_loss": 0.0025969657581299543,
+                "head_unchanged": false,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 0,
+                "mean_joint_rmse_rad": 0.003576972930788937,
+                "max_joint_abs_rad": 0.02150334215328298,
+                "mean_gripper_rmse_native_units": 0.002267123111441302
+              }
+            }
+          },
+          {
+            "seed": 11,
+            "arms": {
+              "frozen_field": {
+                "initial_loss": 0.0,
+                "initial_gradient_norm": 0.0,
+                "final_loss": 0.0,
+                "head_unchanged": true,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 16,
+                "mean_joint_rmse_rad": 0.0,
+                "max_joint_abs_rad": 0.0,
+                "mean_gripper_rmse_native_units": 0.0
+              },
+              "legacy_endpoint": {
+                "initial_loss": 0.0030734131578356028,
+                "initial_gradient_norm": 0.026266850531101227,
+                "final_loss": 0.0026057770010083914,
+                "head_unchanged": false,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 0,
+                "mean_joint_rmse_rad": 0.0034201260158751292,
+                "max_joint_abs_rad": 0.020909060123276563,
+                "mean_gripper_rmse_native_units": 0.0017649489804509196
+              }
+            }
+          },
+          {
+            "seed": 19,
+            "arms": {
+              "frozen_field": {
+                "initial_loss": 0.0,
+                "initial_gradient_norm": 0.0,
+                "final_loss": 0.0,
+                "head_unchanged": true,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 16,
+                "mean_joint_rmse_rad": 0.0,
+                "max_joint_abs_rad": 0.0,
+                "mean_gripper_rmse_native_units": 0.0
+              },
+              "legacy_endpoint": {
+                "initial_loss": 0.003072928637266159,
+                "initial_gradient_norm": 0.02626935951411724,
+                "final_loss": 0.002598060993477702,
+                "head_unchanged": false,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 0,
+                "mean_joint_rmse_rad": 0.003457473004153602,
+                "max_joint_abs_rad": 0.019887084925705567,
+                "mean_gripper_rmse_native_units": 0.0019573812918032
+              }
+            }
+          },
+          {
+            "seed": 23,
+            "arms": {
+              "frozen_field": {
+                "initial_loss": 0.0,
+                "initial_gradient_norm": 0.0,
+                "final_loss": 0.0,
+                "head_unchanged": true,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 16,
+                "mean_joint_rmse_rad": 0.0,
+                "max_joint_abs_rad": 0.0,
+                "mean_gripper_rmse_native_units": 0.0
+              },
+              "legacy_endpoint": {
+                "initial_loss": 0.003067112760618329,
+                "initial_gradient_norm": 0.026040904223918915,
+                "final_loss": 0.0026016421616077423,
+                "head_unchanged": false,
+                "evaluation_chunks": 16,
+                "evaluation_bitwise_equal": 0,
+                "mean_joint_rmse_rad": 0.0034034159832710977,
+                "max_joint_abs_rad": 0.02474837235198918,
+                "mean_gripper_rmse_native_units": 0.0019643019813587836
+              }
+            }
+          }
+        ],
+        "observed_utc": "2026-10-15T06:00:10.666181+00:00"
       }
     }
   },
