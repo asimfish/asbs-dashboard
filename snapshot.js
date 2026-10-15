@@ -1,6 +1,6 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T22:25:40.229776+00:00",
+  "generated_utc": "2026-10-15T22:44:00.968295+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
@@ -10,7 +10,7 @@ window.ASBS_SNAPSHOT = {
     "current_task": "T-1008 / prepared-state 续执行探针",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "T1008 NOT_STARTED；A先验20条新释放观测，再一次学生交权；B为条件独立reset原生。",
+      "T1008 COMPLETED；A先验20条新释放观测，再一次学生交权；B为条件独立reset原生。",
       "不修home、不改几何；保留T1007实例门通过/两碗终态未验证。",
       "11候选验证/拟合/ASBS/provider仍关闭。"
     ],
@@ -1184,9 +1184,9 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T22:25:40.028911+00:00",
+      "observed_utc": "2026-10-15T22:42:23.221770+00:00",
       "status": "succeeded",
-      "summary": "T1008 NOT_STARTED；A先验20条新释放观测，再一次学生交权；B为条件独立reset原生。",
+      "summary": "T1008 COMPLETED；A先验20条新释放观测，再一次学生交权；B为条件独立reset原生。",
       "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。 T1004没有新物理/IK/模型调用；示教外观不是官方成功或layout3资格；验证/拟合仍关闭。 T1005仅已曝光layout3单次受限仿真；碰撞覆盖不全；不声称成功率、学生或ASBS收益。 根高度/OBB间隙不证明可靠夹持；CPU门通过不代表抓取修复。 新reset非同状态反事实；新增OBB/持姿观测合同，不是学生/ASBS收益。 不是学生前缀恢复或同状态因果Q；cached transition score不是当前稳定证据。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
@@ -1194,7 +1194,7 @@ window.ASBS_SNAPSHOT = {
           "name": "P1 · prepared-state 学生续执行",
           "scale": "最多2attempt/1teacher session/32forward",
           "question": "释放后几何稳定是否成立，冻结学生能否独立继续？",
-          "status": "planned"
+          "status": "partial"
         },
         {
           "name": "P1 · observation-v2 实例资格",
@@ -3313,25 +3313,353 @@ window.ASBS_SNAPSHOT = {
       },
       "prepared_continuation": {
         "schema": "t1008.prepared.summary.v1",
-        "observed_utc": "2026-10-15T22:25:40.028911+00:00",
-        "phase": "NOT_STARTED",
-        "job_id": null,
-        "platform_status": "NOT_SUBMITTED",
+        "observed_utc": "2026-10-15T22:42:23.221770+00:00",
+        "phase": "COMPLETED",
+        "job_id": "job-kg7bznltdx5c",
+        "platform_status": "SUCCEEDED",
         "source_bundle_sha256": "739cd29f10968dc5236836797a92277dd3e56eba1915917dd2928ebe98c42ec7",
         "protocol_sha256": "20b41ad69ff00b7048e86f8d9aaa0d8cbd99b20b3c7aa79c65bb636aa399c37a",
-        "arms": [],
+        "arms": [
+          {
+            "arm": "prepared_student",
+            "status": "OFFICIAL_TERMINAL_STUDENT",
+            "accepted": true,
+            "prepared_gate_pass": true,
+            "release_window_ids": [
+              237,
+              238,
+              239,
+              240,
+              241,
+              242,
+              243,
+              244,
+              245,
+              246,
+              247,
+              248,
+              249,
+              250,
+              251,
+              252,
+              253,
+              254,
+              255,
+              256
+            ],
+            "official_success": false,
+            "official_score": 0.15,
+            "official_outcome_complete": true,
+            "cached_partial_score": {
+              "control": 800,
+              "semantics": "transition cumulative stage counter;not current geometry or sustained stability",
+              "value": 0.15
+            },
+            "handoff_control": 256,
+            "handoff_live": true,
+            "controls": 800,
+            "teacher_controls": 256,
+            "student_controls": 544,
+            "model_counts": {
+              "failed": false,
+              "model_forward_attempts": 11,
+              "model_forward_completed": 11,
+              "observation_updates": 544,
+              "resets": 2
+            },
+            "explicit_teacher": {
+              "attempts": 1,
+              "controls": 256,
+              "fk_calls": 50,
+              "fk_poses": 50,
+              "ik": 6,
+              "paths": 6,
+              "sessions": 1
+            },
+            "student_progress": {
+              "100": {
+                "base": [
+                  -0.07872089743614197,
+                  -0.21861736476421356,
+                  0.7948155999183655,
+                  0.9922124147415161,
+                  -0.0004507546836975962,
+                  -0.00032453887979499996,
+                  0.12455599755048752
+                ],
+                "base_tilt_rad": 0.001110865080808916,
+                "control": 356,
+                "dz_m": 0.026655256748199463,
+                "grippers": [
+                  0.06663333689421058,
+                  0.9991816144954159
+                ],
+                "source": [
+                  -0.07474812120199203,
+                  -0.22049276530742645,
+                  0.8214708566665649,
+                  0.9898465871810913,
+                  -0.042586054652929306,
+                  -0.09740818291902542,
+                  0.09434917569160461
+                ],
+                "source_tilt_rad": 0.21302359479979519,
+                "tool": [
+                  0.0030994415283203125,
+                  -0.11083915084600449,
+                  1.037947177886963,
+                  0.35507242056860644,
+                  -0.7496116895976893,
+                  0.20643106635882058,
+                  0.5190299661984927
+                ],
+                "xy_m": 0.004393185427922401
+              },
+              "50": {
+                "base": [
+                  -0.0796121284365654,
+                  -0.2189519852399826,
+                  0.7949605584144592,
+                  0.9924548268318176,
+                  -0.0004332464886829257,
+                  -0.004036196507513523,
+                  0.12254339456558228
+                ],
+                "base_tilt_rad": 0.008118787146298613,
+                "control": 306,
+                "dz_m": 0.02926546335220337,
+                "grippers": [
+                  0.6452175851155031,
+                  1.0
+                ],
+                "source": [
+                  -0.07981761544942856,
+                  -0.22149033844470978,
+                  0.8242260217666626,
+                  0.9943840503692627,
+                  -0.050365135073661804,
+                  -0.02119678631424904,
+                  0.09063321352005005
+                ],
+                "source_tilt_rad": 0.10934216718038216,
+                "tool": [
+                  -0.12845897674560547,
+                  -0.21130286157131195,
+                  0.9797834157943726,
+                  0.18125036070489012,
+                  -0.7508702145662441,
+                  0.1541702395491641,
+                  0.616095580944177
+                ],
+                "xy_m": 0.0025466570056456627
+              },
+              "final": {
+                "base": [
+                  0.081344373524189,
+                  -0.140598326921463,
+                  0.826300323009491,
+                  0.9195700287818909,
+                  0.012011190876364708,
+                  -0.1599370688199997,
+                  0.35870161652565
+                ],
+                "base_tilt_rad": 0.3221663442116531,
+                "control": 800,
+                "dz_m": 0.028789162635803223,
+                "grippers": [
+                  0.9982568662712002,
+                  1.0
+                ],
+                "source": [
+                  0.077022485435009,
+                  -0.14543095231056213,
+                  0.8550894856452942,
+                  0.9132394790649414,
+                  -0.013973923400044441,
+                  -0.25371167063713074,
+                  0.31847891211509705
+                ],
+                "source_tilt_rad": 0.5138262382434756,
+                "tool": [
+                  -0.02034667320549488,
+                  -0.09528300166130066,
+                  1.0368748903274536,
+                  0.6494089109145353,
+                  -0.5818432752443775,
+                  0.3570548110214735,
+                  0.3350198970271959
+                ],
+                "xy_m": 0.006483285032046741
+              }
+            },
+            "wall_seconds": 315.08100617676973,
+            "cleanup": {
+              "model_child_reaped": true,
+              "sim_client_finished": true
+            }
+          },
+          {
+            "arm": "native",
+            "status": "OFFICIAL_TERMINAL_STUDENT",
+            "accepted": true,
+            "prepared_gate_pass": null,
+            "release_window_ids": [],
+            "official_success": true,
+            "official_score": 1.0,
+            "official_outcome_complete": true,
+            "cached_partial_score": {
+              "control": 790,
+              "semantics": "transition cumulative stage counter;not current geometry or sustained stability",
+              "value": 1.0
+            },
+            "handoff_control": null,
+            "handoff_live": null,
+            "controls": 790,
+            "teacher_controls": 0,
+            "student_controls": 790,
+            "model_counts": {
+              "failed": false,
+              "model_forward_attempts": 16,
+              "model_forward_completed": 16,
+              "observation_updates": 790,
+              "resets": 2
+            },
+            "explicit_teacher": null,
+            "student_progress": {
+              "100": {
+                "base": [
+                  -0.07918912917375565,
+                  -0.220347598195076,
+                  0.7948155403137207,
+                  0.9999943971633911,
+                  -0.0004851373378187418,
+                  -0.0002682570193428546,
+                  0.00329419132322073
+                ],
+                "base_tilt_rad": 0.0011087292019442455,
+                "control": 100,
+                "dz_m": 0.0,
+                "grippers": [
+                  1.0,
+                  0.5119770449961617
+                ],
+                "source": [
+                  -0.2569895088672638,
+                  -0.20277956128120422,
+                  0.7948155403137207,
+                  0.9999998211860657,
+                  -0.00048589837388135493,
+                  -0.000266722752712667,
+                  -2.871189280995168e-06
+                ],
+                "source_tilt_rad": 0.0011085816226350724,
+                "tool": [
+                  -0.29971224069595337,
+                  -0.35249918699264526,
+                  0.9217693209648132,
+                  0.7063779502800817,
+                  0.0012302260880405133,
+                  -0.0011878744242667105,
+                  0.707832795832628
+                ],
+                "xy_m": 0.17866619976974613
+              },
+              "50": {
+                "base": [
+                  -0.07674085348844528,
+                  -0.2197076976299286,
+                  0.7948155403137207,
+                  0.9999998211860657,
+                  -0.0004859747423324734,
+                  -0.00026682252064347267,
+                  -4.838632321479963e-06
+                ],
+                "base_tilt_rad": 0.0011088115342877496,
+                "control": 50,
+                "dz_m": 0.0,
+                "grippers": [
+                  0.9988143123236325,
+                  1.0
+                ],
+                "source": [
+                  -0.2569895088672638,
+                  -0.20277956128120422,
+                  0.7948155403137207,
+                  0.9999998211860657,
+                  -0.00048589837388135493,
+                  -0.000266722752712667,
+                  -2.871189280995168e-06
+                ],
+                "source_tilt_rad": 0.0011085816226350724,
+                "tool": [
+                  -0.299632728099823,
+                  -0.35222262144088745,
+                  0.9213019013404846,
+                  0.7064858021936783,
+                  0.00011276933499562037,
+                  0.0009253018315111827,
+                  0.7077266014488593
+                ],
+                "xy_m": 0.18104181717524015
+              },
+              "final": {
+                "base": [
+                  0.0665293037891388,
+                  -0.16023589670658112,
+                  0.8526090979576111,
+                  0.8696619868278503,
+                  0.0729137435555458,
+                  0.08514653146266937,
+                  -0.4807511866092682
+                ],
+                "base_tilt_rad": 0.22467166173838782,
+                "control": 790,
+                "dz_m": -0.027233779430389404,
+                "grippers": [
+                  0.9986502916824511,
+                  1.0
+                ],
+                "source": [
+                  0.0812888890504837,
+                  -0.15542344748973846,
+                  0.8253753185272217,
+                  0.9898223280906677,
+                  0.09003343433141708,
+                  -0.11001584678888321,
+                  -0.006497628521174192
+                ],
+                "source_tilt_rad": 0.2852867654754648,
+                "tool": [
+                  -0.28444963693618774,
+                  -0.3417089879512787,
+                  0.9734562635421753,
+                  0.7562037490508239,
+                  -0.1462489901793586,
+                  0.02670924154119836,
+                  0.6372234609689841
+                ],
+                "xy_m": 0.015524336525326914
+              }
+            },
+            "wall_seconds": 301.65720379631966,
+            "cleanup": {
+              "model_child_reaped": true,
+              "sim_client_finished": true
+            }
+          }
+        ],
         "B_not_started": null,
-        "actual_attempts": 0,
-        "actual_teacher_sessions": 0,
-        "global_attempts": 12,
-        "global_sessions": 9,
-        "model_load_attempts": 0,
-        "model_load_completed": 0,
-        "completed_forward_attempts_known": 0,
-        "completed_forwards_known": 0,
-        "forward_total_exact": false,
-        "worker_execution_seconds": null,
-        "platform_lifetime_seconds": null,
+        "actual_attempts": 2,
+        "actual_teacher_sessions": 1,
+        "global_attempts": 14,
+        "global_sessions": 10,
+        "model_load_attempts": 2,
+        "model_load_completed": 2,
+        "completed_forward_attempts_known": 27,
+        "completed_forwards_known": 27,
+        "forward_total_exact": true,
+        "worker_execution_seconds": 636.9497659029439,
+        "platform_lifetime_seconds": 666.489,
         "queue_seconds": null,
         "GPU_busy_seconds": null,
         "fits": 0,
