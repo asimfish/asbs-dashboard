@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T16:22:06.291281+00:00",
+  "generated_utc": "2026-10-15T18:00:47.068233+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-999 / RoboDojo 原生20回合诊断",
+    "current_task": "T-1000 / RoboDojo P0官方接口诊断",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "RoboDojo R1 原生开发小样本完成：10任务×2布局，20/20有效回合；成功 0/20，平均 Score 0.025，0执行错误、0缺失。原始结果、布局与推理日志逐条复算通过。",
-      "零纠错保持机制已验证；非零纠错、ASBS优势和语义System2收益尚未建立。",
-      "下一步核验官方端到端基线，再做有任务后果验证的在线纠错及同预算ASBS对照。"
+      "P0官方接口/执行诊断：BLOCKED；已回收官方结果2/8，执行异常0，记录缺陷2，尚无回执6。 观察到成功0/2，Score0.100。 同输入/同噪声官方facade影子对照8/8；独立重置，不是同状态反事实。",
+      "仅固定两个开发任务、set0两布局、两种RNG，最多8回合；未扩量或训练。",
+      "先验证可靠纠错收益，再比较同预算求解器和学生固化。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T16:00:29.388821+00:00",
+      "observed_utc": "2026-10-15T18:00:46.775724+00:00",
       "status": "succeeded",
-      "summary": "RoboDojo R1 原生开发小样本完成：10任务×2布局，20/20有效回合；成功 0/20，平均 Score 0.025，0执行错误、0缺失。原始结果、布局与推理日志逐条复算通过。 这是20回合开发诊断，不是完整500回合开发评测或6,300回合全量基准。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。",
+      "summary": "P0官方接口/执行诊断：BLOCKED；已回收官方结果2/8，执行异常0，记录缺陷2，尚无回执6。 观察到成功0/2，Score0.100。 同输入/同噪声官方facade影子对照8/8；独立重置，不是同状态反事实。 旧T999原生0/20及T998零纠错保持结果继续保留。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P0 · 官方Model/执行诊断",
+          "scale": "2/8官方结果；8/8影子输入",
+          "question": "同显式噪声是否有接口差异，命令是否被实际执行？",
+          "status": "failed"
+        },
         {
           "name": "R1 · 原生20回合开发诊断",
           "scale": "20/20；成功 0/20",
@@ -1319,7 +1325,7 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         }
       ],
-      "observation_label": "原生20回合终态；此前保持机制实验另列",
+      "observation_label": "P0诊断回执；非方法比较",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -1584,6 +1590,66 @@ window.ASBS_SNAPSHOT = {
         ],
         "official_full_cohort": false,
         "original_artifacts_reconciled": 20
+      },
+      "p0_diagnostic": {
+        "schema": "t1000.p0.v1",
+        "status": "BLOCKED",
+        "platform_status": "STOPPED",
+        "observed_utc": "2026-10-15T18:00:46.775724+00:00",
+        "expected_episodes": 8,
+        "attempted_episodes": 4,
+        "completed_episodes": 2,
+        "recording_errors": 2,
+        "validated_episodes": 0,
+        "inflight_attempts": 0,
+        "interrupted_attempts": 2,
+        "not_started": 4,
+        "execution_errors": 0,
+        "missing": 6,
+        "successes": 0,
+        "mean_score": 0.1,
+        "per_task_arm": [
+          {
+            "task": "cover_blocks",
+            "arm": "official_default",
+            "completed": 1,
+            "successes": 0,
+            "mean_score": 0.05
+          },
+          {
+            "task": "cover_blocks",
+            "arm": "official_explicit",
+            "completed": 0,
+            "successes": null,
+            "mean_score": null
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "official_default",
+            "completed": 1,
+            "successes": 0,
+            "mean_score": 0.15
+          },
+          {
+            "task": "stack_bowls",
+            "arm": "official_explicit",
+            "completed": 0,
+            "successes": null,
+            "mean_score": null
+          }
+        ],
+        "shadow_inputs": 8,
+        "shadow_max_abs": 0.0,
+        "observed_controls": 1598,
+        "known_live_forward_attempts": 32,
+        "known_shadow_forward_completions": 16,
+        "runtime_counts_complete": false,
+        "new_fits": 0,
+        "system2_calls": 0,
+        "accepted_corrections": 0,
+        "source_bundle_sha256": "0348e7585364a34dcefea7269de7c31d5123c953996594cb5b1d8510ee0e05a6",
+        "elapsed_job_seconds": 537.093,
+        "claim_boundary": "Exposed development diagnostic, independent resets, not a same-state causal or ASBS/S2 efficacy result."
       }
     }
   },
