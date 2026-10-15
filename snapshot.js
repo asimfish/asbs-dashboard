@@ -1,18 +1,18 @@
 window.ASBS_SNAPSHOT = {
   "schema_version": 1,
-  "generated_utc": "2026-10-15T19:39:01.427927+00:00",
+  "generated_utc": "2026-10-15T20:29:00.239679+00:00",
   "content": {
     "schema_version": 1,
     "title": "ASBS 研究主板",
     "subtitle": "真实 π0 后训练 · 标准任务覆盖 · 可复用实验组件",
     "goal": "并行探索：安全能量驱动的 VLA 后训练，以及 System 2 能力向 System 1 的蒸馏。",
     "proposal_version": "研究进展 · 2026-10-14",
-    "current_task": "T-1002 / P1真实解析纠错首批",
+    "current_task": "T-1003 / P1教师资格与内容分组修订",
     "verdict": "闭环结果：ASBS 目标动作头成功 1/8，原生 π0 为 5/8；本轮任务保持退化。命令能量较原生 +10.1%。离线指标改善未转化为本轮闭环收益；结论限于这 8 对开发初态。",
     "focus": [
-      "P1解析纠错：PARTIAL_MECHANISM_PILOT；已验收7/9，执行错误2，已启动9/81预算。 布局编号24仅20个内容组，选择/验证重叠；验证门关闭。",
-      "原生、教师→学生、教师→教师分别报告；教师期间已完成不算学生能力。",
-      "内容hash发现重复/跨选择验证重叠；不替换数据，不进入锁定验证或拟合。"
+      "P1教师资格：TEACHER_QUALIFICATION_FAILED；新启动1/4，有效1，错误0。内容分组修订：20组＝8选择＋1已暴露开发＋11候选验证；验证/拟合关闭。",
+      "A正控失败，其他3臂未启动；需要经验证教师/抓取路径或明确的新有限规划版本，不自动扫参数。",
+      "原始9次尝试和全局81/57上限保留；11组只是候选，非执行放行。"
     ],
     "method": [
       {
@@ -1184,12 +1184,18 @@ window.ASBS_SNAPSHOT = {
     },
     "robodojo": {
       "schema": "t993.robodojo.v1",
-      "observed_utc": "2026-10-15T19:36:00.479996+00:00",
+      "observed_utc": "2026-10-15T20:23:18.944833+00:00",
       "status": "succeeded",
-      "summary": "P1解析纠错：PARTIAL_MECHANISM_PILOT；已验收7/9，执行错误2，已启动9/81预算。 布局编号24仅20个内容组，选择/验证重叠；验证门关闭。",
-      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。",
+      "summary": "P1教师资格：TEACHER_QUALIFICATION_FAILED；新启动1/4，有效1，错误0。内容分组修订：20组＝8选择＋1已暴露开发＋11候选验证；验证/拟合关闭。",
+      "boundary": "真实 π0 合成观测推理已通过；RTX 相机检查已通过；15,365 个官方资源文件已核验。16 项回合记录/调用链/结果绑定检查通过。R0 平台状态：SUCCEEDED。先前版本保留执行错误 5。stack_bowls：成功；cover_blocks：任务失败；fill_pen_holder：任务失败；plug_in_charger：任务失败；stack_blocks_by_language：任务失败。ASBS 训练、真实 System2 和算法收益尚未验证。 stack_bowls 原始结果已核验恢复，未重跑；结果收集错误单独保留。其余四项分阶段执行，各自保留运行源码标识。 续跑入口另有一次启动错误，已保留；尚未执行的任务不计为失败回合。 采集/重放验证：SUCCEEDED，已核验 2/2 回合、32 个动作块，执行错误 0。重复已用布局，不增加独立基准样本。 采集重复 cover_blocks：任务失败（Score 0.05；原 R0 失败）。 采集重复 stack_bowls：任务失败（Score 0.15；原 R0 成功）。 存在初始观测/布局标识不同；同输入重放通过不代表完整闭环复现。 初始化对照：SUCCEEDED，完成 4/4 次，执行错误 0；不增加任务回合数。 cover_blocks：指令相同、本体状态相同、图像不同、已观测物理字段相同。 stack_bowls：指令相同、本体状态相同、图像不同、已观测物理字段相同。 探针不包含接触求解器等完整仿真状态；相同布局目录不足以证明同状态反事实。 本轮记录的输入差异在图像；未证明它导致此前任务失败。常规方法对照可按布局独立重复，无需等待图像逐位一致。 V1/V2部分结果与失败保留；V3使用同一次计算中的冻结原头差值，检验数值保持。 真实 JAX 动作头对照：SUCCEEDED，完成 4/4 个训练种子；32个已暴露轨迹片段，0新增任务回合。 种子7：评估片段关节RMSE，旧端点目标0.003577rad，原场目标0rad。 种子11：评估片段关节RMSE，旧端点目标0.0034201rad，原场目标0rad。 种子19：评估片段关节RMSE，旧端点目标0.0034575rad，原场目标0rad。 种子23：评估片段关节RMSE，旧端点目标0.0034034rad，原场目标0rad。 这里只检验原行为保持；动作偏移不是任务失败证据，也不是ASBS或System2收益。 T999未训练、未进行ASBS纠错或System2调用；0/20不能证明方法收益，也不能单独判定失败根因。 P0只检验官方接口/动作执行；没有在线纠错、蒸馏、ASBS或语义S2收益证据。 修复版只验收记录链路；不代表ASBS、解析纠错或语义教师收益。默认/显式RNG仅描述比较。 P1三臂是独立重置的策略组合；live学生子集仅描述，不是逐状态Q、固化或ASBS收益。 T1003资格仅stack/layout3，独立reset；旧T1002负结果不覆盖。教师正控不是学生能力/ASBS。",
       "retention": "实际 RoboDojo JAX 原头、官方32维内部/14维执行变换；数值居中的冻结原场与旧端点目标对照；正纠错拟合仍未接入。",
       "stages": [
+        {
+          "name": "P1 · 教师v2资格",
+          "scale": "1有效/1尝试/1内容组/1任务",
+          "question": "reset起点教师是否先有正向能力，再测试学生前缀后恢复和live学生接管？",
+          "status": "failed"
+        },
         {
           "name": "P1 · 解析纠错首批三臂",
           "scale": "7/9有效，0验证/0拟合",
@@ -1337,7 +1343,7 @@ window.ASBS_SNAPSHOT = {
           "status": "tested"
         }
       ],
-      "observation_label": "P1真实策略组合回执；原工程失败与内容分组冲突保留",
+      "observation_label": "T1003有限教师资格实际回执；软件完成与教师能力分开",
       "capture_component": {
         "replay_verified_chunks": 32,
         "execution_errors": 0,
@@ -2221,6 +2227,770 @@ window.ASBS_SNAPSHOT = {
             "worker_execution_seconds": 1559.5779295819812
           }
         ]
+      },
+      "p1_qualification": {
+        "schema": "t1003.qualification.summary.v1",
+        "status": "TEACHER_QUALIFICATION_FAILED",
+        "observed_utc": "2026-10-15T20:23:18.944833+00:00",
+        "platform_status": "SUCCEEDED",
+        "job_id": "job-p5kzrfwq7zbj",
+        "source_bundle_sha256": "be85471bfd3df45a8152d918ad067cc9e4077f4f261c415e954c4b0f1773dbb3",
+        "protocol_sha256": "aa2d2814fac400aa6446ef72b215eba8cf01f71128753b70ffb2f71c07674b7f",
+        "teacher_source_sha256": "20c5c9fc834ac05db7a05efce5ab828049396a14c1a1cecf4d61dbf6c181f232",
+        "attempted": 1,
+        "valid": 1,
+        "errors": 0,
+        "not_started": 3,
+        "unreturned": 0,
+        "attempted_content_groups": 1,
+        "valid_content_groups": 1,
+        "tasks_attempted": 1,
+        "cases": [
+          {
+            "task": "stack_bowls",
+            "layout_id": 3,
+            "arm": "teacher_reset",
+            "status": "completed",
+            "success": false,
+            "score": 0.0,
+            "error_type": null,
+            "server_reaped": true,
+            "wall_seconds": 301.10076611395925,
+            "controls": 800,
+            "ik_requests": 7,
+            "model_forwards": 0,
+            "student_after_controls": 0,
+            "student_after_forwards": 0,
+            "student_controls": 0,
+            "teacher_controls": 800,
+            "teacher_sessions": 1,
+            "handoff_category": "reset_teacher_control",
+            "student_continuation_eligible": false,
+            "teacher_status": {
+              "version": "analytic_pick_place_v2",
+              "failed": true,
+              "failure": "no_arm_passed_grasp_lift_place_endpoints",
+              "phase": "preflight",
+              "ik_requests": 7,
+              "fk_requests": 12,
+              "controls": 800,
+              "actual_joint_moving_controls": 0,
+              "actual_joint_static_controls": 800,
+              "failure_hold_controls": 800
+            },
+            "terminal_reason": "official_step_limit",
+            "terminal_rows": 800,
+            "final_post_state_sha256": "c5f42a0d102f84f48d581c85c32c141ce3f1e65ed8d5817932e39c77a5159cdd"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_id": 3,
+            "arm": "native",
+            "status": "NOT_STARTED",
+            "success": null,
+            "score": null
+          },
+          {
+            "task": "stack_bowls",
+            "layout_id": 3,
+            "arm": "teacher_teacher",
+            "status": "NOT_STARTED",
+            "success": null,
+            "score": null
+          },
+          {
+            "task": "stack_bowls",
+            "layout_id": 3,
+            "arm": "teacher_student",
+            "status": "NOT_STARTED",
+            "success": null,
+            "score": null
+          }
+        ],
+        "known_valid_costs": {
+          "controls": 800,
+          "model_forwards": 0,
+          "teacher_controls": 800,
+          "teacher_sessions": 1,
+          "ik_requests": 7,
+          "student_after_controls": 0,
+          "student_after_forwards": 0
+        },
+        "whole_stage_controls": null,
+        "budget": {
+          "global_attempt_cap": 81,
+          "old_attempts": 9,
+          "new_attempts": 1,
+          "remaining_attempts": 71,
+          "teacher_session_cap": 57,
+          "old_sessions": 6,
+          "new_valid_sessions": 1,
+          "remaining_sessions": 50,
+          "partial_error_sessions": null
+        },
+        "positive_control": false,
+        "prefix_teacher_gate": null,
+        "worker_execution_seconds": 313.28197923116386,
+        "platform_lifetime_seconds": 1607.098,
+        "queue_seconds": null,
+        "collision_safety": "UNKNOWN",
+        "validation_started": 0,
+        "fits": 0,
+        "semantic_provider_calls": 0,
+        "same_state_counterfactual": false,
+        "student_value_accepted": false,
+        "training_admissible": false,
+        "content_split": {
+          "schema": "t1003.content-split.v2",
+          "nominal_ids": 24,
+          "content_groups": 20,
+          "counts": {
+            "selection": 8,
+            "exposed_development": 1,
+            "candidate_validation": 11
+          },
+          "groups": [
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+              "representative_id": 3,
+              "layout_ids": [
+                3
+              ],
+              "role": "selection",
+              "exposure": [
+                {
+                  "task": "cover_blocks",
+                  "layout_id": 0,
+                  "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+                  "source": "paper_iclr2027/experiments/robodojo_p0_20261016/RESULT.json"
+                },
+                {
+                  "layout_id": 0,
+                  "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+                  "source": "T999 actual20episodes0/1; T995–T1001 reuse; pinned runtime layout bytes",
+                  "task": "cover_blocks"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+              "representative_id": 8,
+              "layout_ids": [
+                8,
+                9
+              ],
+              "role": "exposed_development",
+              "exposure": [
+                {
+                  "task": "cover_blocks",
+                  "layout_id": 1,
+                  "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+                  "source": "paper_iclr2027/experiments/robodojo_p0_successor_20261016/RESULT.json"
+                },
+                {
+                  "layout_id": 1,
+                  "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+                  "source": "T999 actual20episodes0/1; T995–T1001 reuse; pinned runtime layout bytes",
+                  "task": "cover_blocks"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+              "representative_id": 2,
+              "layout_ids": [
+                2,
+                4,
+                5,
+                6
+              ],
+              "role": "selection",
+              "exposure": [
+                {
+                  "task": "cover_blocks",
+                  "layout_id": 2,
+                  "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+                  "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "cover_blocks",
+              "layout_sha256": "d0d9a4f120ab5be327851a068b1c0c9ddced4815da273fab04f7339546e54776",
+              "representative_id": 7,
+              "layout_ids": [
+                7
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "4093f43678c842c9f41e3cb1264d349b0fefa16ec588f6bff691b1a73fb8356f",
+              "representative_id": 8,
+              "layout_ids": [
+                8
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "44571f644830ba86f79204f52b6845443384706a13bcce75698952c6138cb59c",
+              "representative_id": 5,
+              "layout_ids": [
+                5
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "44e4a27da4251e4fa9ca1b8be9b9575e7a7e70df4f9e4371c8b36d46219da638",
+              "representative_id": 4,
+              "layout_ids": [
+                4
+              ],
+              "role": "selection",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "4a9d7a5060b24a480f9f60add116355c08c81832e7ce5db5f6c2d9d2c43bd65c",
+              "representative_id": 2,
+              "layout_ids": [
+                2
+              ],
+              "role": "selection",
+              "exposure": [
+                {
+                  "task": "fill_pen_holder",
+                  "layout_id": 2,
+                  "layout_sha256": "4a9d7a5060b24a480f9f60add116355c08c81832e7ce5db5f6c2d9d2c43bd65c",
+                  "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "68c6b54194678245b7c68c46320b2ce921290211651ed5e19bc2bfd02b8f47b0",
+              "representative_id": 9,
+              "layout_ids": [
+                9
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "ad1d7e609bf80668cc52ad1c43365193df0c68396ec9ea27476bf1d26961d180",
+              "representative_id": 7,
+              "layout_ids": [
+                7
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "d814171cd392aa277426362ba3f52f5fb324d2e6d0a7ea24bb9480ac6fb53682",
+              "representative_id": 3,
+              "layout_ids": [
+                3
+              ],
+              "role": "selection",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "fill_pen_holder",
+              "layout_sha256": "f39f6e89ce4018122ecb3a123afd3772f01169746017892f02143f2d7f013619",
+              "representative_id": 6,
+              "layout_ids": [
+                6
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "212e2745b47d0839e0d469a75d24b996a21bffaf6cb45f74a65d1d7dc3ff2823",
+              "representative_id": 5,
+              "layout_ids": [
+                5
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "62b0df224077e22279dfd3da5d2549dac03c3fd4a7f20d840541d314f47efec9",
+              "representative_id": 7,
+              "layout_ids": [
+                7
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "6b92f99b9c35d6ec0e0176df3ee0d574f98dae58a8dc7a8769c9011bba16720d",
+              "representative_id": 4,
+              "layout_ids": [
+                4
+              ],
+              "role": "selection",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "99a2f67022ba504bbed5420d6e61b79ed95b80aa69076576e0fd5574d119001d",
+              "representative_id": 2,
+              "layout_ids": [
+                2
+              ],
+              "role": "selection",
+              "exposure": [
+                {
+                  "task": "stack_bowls",
+                  "layout_id": 2,
+                  "layout_sha256": "99a2f67022ba504bbed5420d6e61b79ed95b80aa69076576e0fd5574d119001d",
+                  "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "b262fcaafdcb9c515a62a7b75b94985d81d3b06590702d180add3f615e9eb2c1",
+              "representative_id": 9,
+              "layout_ids": [
+                9
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "cb2dea72a9a70f8bf2428481d287d11d26c5529d9afa879f79499ec80f159d66",
+              "representative_id": 6,
+              "layout_ids": [
+                6
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "d0be23c650e7db6e5dc83ad513b1dc99c7dd31b8350a33189e89e33dc0909d3d",
+              "representative_id": 8,
+              "layout_ids": [
+                8
+              ],
+              "role": "candidate_validation",
+              "exposure": [],
+              "model_training_exposure": "UNKNOWN"
+            },
+            {
+              "task": "stack_bowls",
+              "layout_sha256": "f55388c0f852a8d4f0c5ca34a0e3d9f2872b6fd4ae125d742ba62f626533248f",
+              "representative_id": 3,
+              "layout_ids": [
+                3
+              ],
+              "role": "selection",
+              "exposure": [
+                {
+                  "task": "stack_bowls",
+                  "layout_id": 3,
+                  "layout_sha256": "f55388c0f852a8d4f0c5ca34a0e3d9f2872b6fd4ae125d742ba62f626533248f",
+                  "source": "T1003 qualification actual start"
+                }
+              ],
+              "model_training_exposure": "UNKNOWN"
+            }
+          ],
+          "validation_execution_authorized": false,
+          "fitting_authorized": false,
+          "physical_independence": "Different SHA is not proof; repeated reset/chunk is not a new source.",
+          "asset_revision": "35efbc7dedfdbeeb6e95fb749bd885d73d483e41",
+          "robot": "arx_x5",
+          "layout_set": 0,
+          "provenance_semantics": "Revision/robot/physics recorded separately; content identity ignores version labels.",
+          "physics_provenance": {
+            "asset_revision": "35efbc7dedfdbeeb6e95fb749bd885d73d483e41",
+            "robot": "arx_x5",
+            "source_pins": {
+              "XPolicyLab/policy/Pi_0/deploy.py": "4ce7ac892b92ce5eae7d17b94108e7a66f69bcca121bf0cea7b53f5414133680",
+              "XPolicyLab/policy/Pi_0/model.py": "b774b09e6870accce9f054c4c472eaee90f7f31ea349c412b4a2b336a0d8471e",
+              "XPolicyLab/policy/Pi_0/openpi/src/openpi/models/pi0.py": "24b32d7c6ed5e409459afa8ca5af96a4dae09c2dcdf48e828907e411f4f12342",
+              "XPolicyLab/policy/Pi_0/openpi/src/openpi/models/pi0_config.py": "d321858c30b398126035ea2b6da09e1c422eeeebb5ebf8df631daf9dc77647fa",
+              "XPolicyLab/policy/Pi_0/openpi/src/openpi/policies/policy.py": "5a19b73e8d9c60a9e21849bf482c0e9c72f454c3aa88f2de544a24f209913b99",
+              "XPolicyLab/policy/Pi_0/openpi/src/openpi/policies/policy_config.py": "aaf42ab04a33b6c91d2447926211646c33ebd8ebfa427f026d7b6c4f7c45ec52",
+              "XPolicyLab/policy/Pi_0/openpi/src/openpi/training/config.py": "f0b1514ec0f6f5093b1704d8ef1567650901b5afa8633f3af494d4e3ef2fd6b8",
+              "XPolicyLab/utils/process_data.py": "e044e627eb2677907e9227eda8458c857208913bd484c5e922b53025010eef0b",
+              "env/observation_manager/obs_manager.py": "771d6cda443b591f3e7850b901a06b4e653a2feefcbabd23608042377fe9be4b",
+              "env/planner_manager/curobo_planner.py": "3cd830c002901959409ef6f64d54106d8106b48471b266409abc2199f3cb33e1",
+              "env/reward_manager/func_parser.py": "eb928a05c3eb6bae429a922c59e64272c2c3851c22d779143d45627e47b3a504",
+              "env/reward_manager/reward_manager.py": "bc56efd3aaa861b4b38960dc4fb7778a9b4da9cf131f815ac3170300dd233a41",
+              "env/robot_manager/robot_class/x5.py": "107274d0944a4416a1b5216b3ebf05e5f6e96c17eb8a50e4bcd3e134db20ce0f",
+              "env/robot_manager/robot_manager.py": "1306cb6d17b58a04ad8fc298edb6eb9122469048dbc9717dcf246f4f985d9974",
+              "env/scene_manager/layout_manager.py": "7f244bec972e09236a94d8b4761b248ba19ec3f61c631d3c83c00b82912a14b8",
+              "src/eval_client/eval_env.py": "3ae75304d8a840ede2589441f987824f50b2a89cc2ef37f4d43ce0a8dbc4fd88",
+              "src/eval_client/main.py": "ca6ba652b6f123506370f1907b1d88060d83f56c9e91ce6e6930f63d9f2b71a8",
+              "task/RoboDojo/tasks/cover_blocks.py": "9d14931b16842b93bea8abf9a07991a93a7e663b93c5fd1695108c8b922ab862",
+              "task/RoboDojo/tasks/fill_pen_holder.py": "8706dce239487e078b21af0b95bcc5cd4eabdcdadcdcbc6400d6b138d982f1e6",
+              "task/RoboDojo/tasks/stack_bowls.py": "022c129ec3493183b1a26688a0402f5a00a1546ae011999e9c19f4c0029e2b7d"
+            },
+            "actual_robot_planner_configuration": "per-session teacher_configuration in actual private rows",
+            "complete_serialized_environment_configuration": "NOT_RECORDED; not a separate content identity"
+          }
+        },
+        "boundary": "One selection-source qualification, independent resets, not formal method success rate/Q/distillation/ASBS or semantic-transfer evidence. Old errors/negative outcomes unchanged; unused budget is not release."
+      },
+      "p1_content_split": {
+        "schema": "t1003.content-split.v2",
+        "nominal_ids": 24,
+        "content_groups": 20,
+        "counts": {
+          "selection": 8,
+          "exposed_development": 1,
+          "candidate_validation": 11
+        },
+        "groups": [
+          {
+            "task": "cover_blocks",
+            "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+            "representative_id": 3,
+            "layout_ids": [
+              3
+            ],
+            "role": "selection",
+            "exposure": [
+              {
+                "task": "cover_blocks",
+                "layout_id": 0,
+                "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+                "source": "paper_iclr2027/experiments/robodojo_p0_20261016/RESULT.json"
+              },
+              {
+                "layout_id": 0,
+                "layout_sha256": "10a84eed03be80f3ba31bca0cf07c96f34a7143b0670ba0262957add36a1161c",
+                "source": "T999 actual20episodes0/1; T995–T1001 reuse; pinned runtime layout bytes",
+                "task": "cover_blocks"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "cover_blocks",
+            "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+            "representative_id": 8,
+            "layout_ids": [
+              8,
+              9
+            ],
+            "role": "exposed_development",
+            "exposure": [
+              {
+                "task": "cover_blocks",
+                "layout_id": 1,
+                "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+                "source": "paper_iclr2027/experiments/robodojo_p0_successor_20261016/RESULT.json"
+              },
+              {
+                "layout_id": 1,
+                "layout_sha256": "4d7f51a24edfa3c3bd7279f84c36b2151ef0c8528a96bc62ec3453b59c2c2382",
+                "source": "T999 actual20episodes0/1; T995–T1001 reuse; pinned runtime layout bytes",
+                "task": "cover_blocks"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "cover_blocks",
+            "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+            "representative_id": 2,
+            "layout_ids": [
+              2,
+              4,
+              5,
+              6
+            ],
+            "role": "selection",
+            "exposure": [
+              {
+                "task": "cover_blocks",
+                "layout_id": 2,
+                "layout_sha256": "928d04a3aca4af63c2ef66ecef79836a355579b8f06d2891af759e9de92e4e41",
+                "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "cover_blocks",
+            "layout_sha256": "d0d9a4f120ab5be327851a068b1c0c9ddced4815da273fab04f7339546e54776",
+            "representative_id": 7,
+            "layout_ids": [
+              7
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "4093f43678c842c9f41e3cb1264d349b0fefa16ec588f6bff691b1a73fb8356f",
+            "representative_id": 8,
+            "layout_ids": [
+              8
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "44571f644830ba86f79204f52b6845443384706a13bcce75698952c6138cb59c",
+            "representative_id": 5,
+            "layout_ids": [
+              5
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "44e4a27da4251e4fa9ca1b8be9b9575e7a7e70df4f9e4371c8b36d46219da638",
+            "representative_id": 4,
+            "layout_ids": [
+              4
+            ],
+            "role": "selection",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "4a9d7a5060b24a480f9f60add116355c08c81832e7ce5db5f6c2d9d2c43bd65c",
+            "representative_id": 2,
+            "layout_ids": [
+              2
+            ],
+            "role": "selection",
+            "exposure": [
+              {
+                "task": "fill_pen_holder",
+                "layout_id": 2,
+                "layout_sha256": "4a9d7a5060b24a480f9f60add116355c08c81832e7ce5db5f6c2d9d2c43bd65c",
+                "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "68c6b54194678245b7c68c46320b2ce921290211651ed5e19bc2bfd02b8f47b0",
+            "representative_id": 9,
+            "layout_ids": [
+              9
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "ad1d7e609bf80668cc52ad1c43365193df0c68396ec9ea27476bf1d26961d180",
+            "representative_id": 7,
+            "layout_ids": [
+              7
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "d814171cd392aa277426362ba3f52f5fb324d2e6d0a7ea24bb9480ac6fb53682",
+            "representative_id": 3,
+            "layout_ids": [
+              3
+            ],
+            "role": "selection",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "fill_pen_holder",
+            "layout_sha256": "f39f6e89ce4018122ecb3a123afd3772f01169746017892f02143f2d7f013619",
+            "representative_id": 6,
+            "layout_ids": [
+              6
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "212e2745b47d0839e0d469a75d24b996a21bffaf6cb45f74a65d1d7dc3ff2823",
+            "representative_id": 5,
+            "layout_ids": [
+              5
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "62b0df224077e22279dfd3da5d2549dac03c3fd4a7f20d840541d314f47efec9",
+            "representative_id": 7,
+            "layout_ids": [
+              7
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "6b92f99b9c35d6ec0e0176df3ee0d574f98dae58a8dc7a8769c9011bba16720d",
+            "representative_id": 4,
+            "layout_ids": [
+              4
+            ],
+            "role": "selection",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "99a2f67022ba504bbed5420d6e61b79ed95b80aa69076576e0fd5574d119001d",
+            "representative_id": 2,
+            "layout_ids": [
+              2
+            ],
+            "role": "selection",
+            "exposure": [
+              {
+                "task": "stack_bowls",
+                "layout_id": 2,
+                "layout_sha256": "99a2f67022ba504bbed5420d6e61b79ed95b80aa69076576e0fd5574d119001d",
+                "source": "paper_iclr2027/experiments/robodojo_p1_20261016/RESULT.json"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "b262fcaafdcb9c515a62a7b75b94985d81d3b06590702d180add3f615e9eb2c1",
+            "representative_id": 9,
+            "layout_ids": [
+              9
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "cb2dea72a9a70f8bf2428481d287d11d26c5529d9afa879f79499ec80f159d66",
+            "representative_id": 6,
+            "layout_ids": [
+              6
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "d0be23c650e7db6e5dc83ad513b1dc99c7dd31b8350a33189e89e33dc0909d3d",
+            "representative_id": 8,
+            "layout_ids": [
+              8
+            ],
+            "role": "candidate_validation",
+            "exposure": [],
+            "model_training_exposure": "UNKNOWN"
+          },
+          {
+            "task": "stack_bowls",
+            "layout_sha256": "f55388c0f852a8d4f0c5ca34a0e3d9f2872b6fd4ae125d742ba62f626533248f",
+            "representative_id": 3,
+            "layout_ids": [
+              3
+            ],
+            "role": "selection",
+            "exposure": [
+              {
+                "task": "stack_bowls",
+                "layout_id": 3,
+                "layout_sha256": "f55388c0f852a8d4f0c5ca34a0e3d9f2872b6fd4ae125d742ba62f626533248f",
+                "source": "T1003 qualification actual start"
+              }
+            ],
+            "model_training_exposure": "UNKNOWN"
+          }
+        ],
+        "validation_execution_authorized": false,
+        "fitting_authorized": false,
+        "physical_independence": "Different SHA is not proof; repeated reset/chunk is not a new source.",
+        "asset_revision": "35efbc7dedfdbeeb6e95fb749bd885d73d483e41",
+        "robot": "arx_x5",
+        "layout_set": 0,
+        "provenance_semantics": "Revision/robot/physics recorded separately; content identity ignores version labels.",
+        "physics_provenance": {
+          "asset_revision": "35efbc7dedfdbeeb6e95fb749bd885d73d483e41",
+          "robot": "arx_x5",
+          "source_pins": {
+            "XPolicyLab/policy/Pi_0/deploy.py": "4ce7ac892b92ce5eae7d17b94108e7a66f69bcca121bf0cea7b53f5414133680",
+            "XPolicyLab/policy/Pi_0/model.py": "b774b09e6870accce9f054c4c472eaee90f7f31ea349c412b4a2b336a0d8471e",
+            "XPolicyLab/policy/Pi_0/openpi/src/openpi/models/pi0.py": "24b32d7c6ed5e409459afa8ca5af96a4dae09c2dcdf48e828907e411f4f12342",
+            "XPolicyLab/policy/Pi_0/openpi/src/openpi/models/pi0_config.py": "d321858c30b398126035ea2b6da09e1c422eeeebb5ebf8df631daf9dc77647fa",
+            "XPolicyLab/policy/Pi_0/openpi/src/openpi/policies/policy.py": "5a19b73e8d9c60a9e21849bf482c0e9c72f454c3aa88f2de544a24f209913b99",
+            "XPolicyLab/policy/Pi_0/openpi/src/openpi/policies/policy_config.py": "aaf42ab04a33b6c91d2447926211646c33ebd8ebfa427f026d7b6c4f7c45ec52",
+            "XPolicyLab/policy/Pi_0/openpi/src/openpi/training/config.py": "f0b1514ec0f6f5093b1704d8ef1567650901b5afa8633f3af494d4e3ef2fd6b8",
+            "XPolicyLab/utils/process_data.py": "e044e627eb2677907e9227eda8458c857208913bd484c5e922b53025010eef0b",
+            "env/observation_manager/obs_manager.py": "771d6cda443b591f3e7850b901a06b4e653a2feefcbabd23608042377fe9be4b",
+            "env/planner_manager/curobo_planner.py": "3cd830c002901959409ef6f64d54106d8106b48471b266409abc2199f3cb33e1",
+            "env/reward_manager/func_parser.py": "eb928a05c3eb6bae429a922c59e64272c2c3851c22d779143d45627e47b3a504",
+            "env/reward_manager/reward_manager.py": "bc56efd3aaa861b4b38960dc4fb7778a9b4da9cf131f815ac3170300dd233a41",
+            "env/robot_manager/robot_class/x5.py": "107274d0944a4416a1b5216b3ebf05e5f6e96c17eb8a50e4bcd3e134db20ce0f",
+            "env/robot_manager/robot_manager.py": "1306cb6d17b58a04ad8fc298edb6eb9122469048dbc9717dcf246f4f985d9974",
+            "env/scene_manager/layout_manager.py": "7f244bec972e09236a94d8b4761b248ba19ec3f61c631d3c83c00b82912a14b8",
+            "src/eval_client/eval_env.py": "3ae75304d8a840ede2589441f987824f50b2a89cc2ef37f4d43ce0a8dbc4fd88",
+            "src/eval_client/main.py": "ca6ba652b6f123506370f1907b1d88060d83f56c9e91ce6e6930f63d9f2b71a8",
+            "task/RoboDojo/tasks/cover_blocks.py": "9d14931b16842b93bea8abf9a07991a93a7e663b93c5fd1695108c8b922ab862",
+            "task/RoboDojo/tasks/fill_pen_holder.py": "8706dce239487e078b21af0b95bcc5cd4eabdcdadcdcbc6400d6b138d982f1e6",
+            "task/RoboDojo/tasks/stack_bowls.py": "022c129ec3493183b1a26688a0402f5a00a1546ae011999e9c19f4c0029e2b7d"
+          },
+          "actual_robot_planner_configuration": "per-session teacher_configuration in actual private rows",
+          "complete_serialized_environment_configuration": "NOT_RECORDED; not a separate content identity"
+        }
       }
     }
   },
